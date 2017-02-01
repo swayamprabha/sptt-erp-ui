@@ -4,11 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from "@angular/core";
+import { Router } from '@angular/router';
 
 @Component({
     styleUrls: ['./home.component.scss'],
     templateUrl: './home.component.html',
 })
 export class HomeComponent {
-
+    constructor(private router: Router) {
+    }
 }

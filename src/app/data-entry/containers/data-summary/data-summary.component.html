@@ -1,0 +1,59 @@
+<div class="row flex-items-md-between">
+    <div class="col-md-8">
+        <button type="submit" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Daywise Entry</button>
+        <button type="submit" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Tripwise Entry</button>
+    </div>
+    <div class="col-md-2">
+        <form>
+            <div class="toggle-switch">
+                <input type="checkbox" id="trip_summary" [checked]="isTrip" (change)="toggleTripSummary()">
+                <label for="trip_summary">Trip Summary</label>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <clr-datagrid *ngIf="!isTrip" (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+        <clr-dg-column [clrDgField]="'date'">Day</clr-dg-column>
+        <clr-dg-column>Vehicle Registration</clr-dg-column>
+        <clr-dg-column>Vehicle Brand</clr-dg-column>
+        <clr-dg-column [clrDgField]="'openingOdo'">Opening ODO</clr-dg-column>
+        <clr-dg-column [clrDgField]="'closingOdo'">Closing ODO</clr-dg-column>
+        <clr-dg-column [clrDgField]="'loggedinDuration'">Login Duration</clr-dg-column>
+        <clr-dg-column>Fuel</clr-dg-column>
+        <clr-dg-row *ngFor="let result of results">
+            <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
+            <clr-dg-cell>{{result.vehicle.regNumber}}</clr-dg-cell>
+            <clr-dg-cell>{{result.vehicle.vehicleBrand}}</clr-dg-cell>
+            <clr-dg-cell>{{result.openingOdo}}</clr-dg-cell>
+            <clr-dg-cell>{{result.closingOdo}}</clr-dg-cell>
+            <clr-dg-cell>{{result.loggedinDuration}}</clr-dg-cell>
+            <clr-dg-cell>{{result.fuel}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} All Day Summary
+            <clr-dg-pagination #pagination [clrDgTotalItems]="total"></clr-dg-pagination>
+        </clr-dg-footer>
+    </clr-datagrid>
+
+    <clr-datagrid *ngIf="isTrip" (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+        <clr-dg-column [clrDgField]="'tripOrigin'">Trip Origin</clr-dg-column>
+        <clr-dg-column [clrDgField]="'tripDestination'">Trip Destination</clr-dg-column>
+        <clr-dg-column [clrDgField]="'customerName'">Customer Name</clr-dg-column>
+        <clr-dg-column [clrDgField]="'billAmount'">Bill Ammount</clr-dg-column>
+        <clr-dg-column [clrDgField]="'rideEarnings'">Ride Earnings</clr-dg-column>
+        <clr-dg-row *ngFor="let result of results">
+            <clr-dg-cell>{{result.tripOrigin}}</clr-dg-cell>
+            <clr-dg-cell>{{result.tripDestination}}</clr-dg-cell>
+            <clr-dg-cell>{{result.customerName}}</clr-dg-cell>
+            <clr-dg-cell>{{result.billAmount}}</clr-dg-cell>
+            <clr-dg-cell>{{result.rideEarnings}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} Trip Summary
+            <clr-dg-pagination #pagination [clrDgTotalItems]="total"></clr-dg-pagination>
+        </clr-dg-footer>
+    </clr-datagrid>
+</div>
