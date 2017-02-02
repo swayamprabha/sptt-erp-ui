@@ -5,8 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
 
 import { State } from "clarity-angular";
-
-const url: string = 'http://localhost:3000/api/';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class DataSummaryService {
@@ -46,8 +45,8 @@ export class DataSummaryService {
   fetch(skip: number = 0, limit: number = 10): Observable<any[]> {
 
     return Observable.forkJoin(
-      this.http.get(`${url}${this._summaryType}/count`).map((res: Response) => res.json()),
-      this.http.get(`${url}${this._summaryType}?filter[limit]=${limit}&filter[skip]=${skip}${this._relationSegment}${this._sortSegment}`)
+      this.http.get(`${environment.apiUrl}/${this._summaryType}/count`).map((res: Response) => res.json()),
+      this.http.get(`${environment.apiUrl}/${this._summaryType}?filter[limit]=${limit}&filter[skip]=${skip}${this._relationSegment}${this._sortSegment}`)
         .map((response: Response) => response.json())
     );
   }
