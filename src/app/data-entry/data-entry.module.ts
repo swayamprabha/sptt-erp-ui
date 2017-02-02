@@ -15,6 +15,7 @@ import { DayWiseFormComponent } from './containers/day-wise-form/day-wise-form.c
 
 // service
 import { DataSummaryService } from './containers/data-summary/data-summary.service';
+import { DayWiseFormService } from './containers/day-wise-form/day-wise-form.service';
 
 const routes: Routes = [
   {
@@ -44,7 +45,8 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [
-    DataSummaryService
+    DataSummaryService,
+    DayWiseFormService
   ]
 })
 export class DataEntryModule {}
