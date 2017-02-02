@@ -1,7 +1,7 @@
 <div class="row flex-items-md-between">
     <div class="col-md-8">
-        <button type="submit" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Daywise Entry</button>
-        <button type="submit" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Tripwise Entry</button>
+        <button type="button" routerLink="/data-entry/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Daywise Entry</button>
+        <button type="button" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Tripwise Entry</button>
     </div>
     <div class="col-md-2">
         <form>
@@ -21,7 +21,7 @@
         <clr-dg-column [clrDgField]="'closingOdo'">Closing ODO</clr-dg-column>
         <clr-dg-column [clrDgField]="'loggedinDuration'">Login Duration</clr-dg-column>
         <clr-dg-column>Fuel</clr-dg-column>
-        <clr-dg-row *ngFor="let result of results">
+        <clr-dg-row routerLink="/data-entry/{{result.id}}/edit" *ngFor="let result of results">
             <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
             <clr-dg-cell>{{result.vehicle.regNumber}}</clr-dg-cell>
             <clr-dg-cell>{{result.vehicle.vehicleBrand}}</clr-dg-cell>

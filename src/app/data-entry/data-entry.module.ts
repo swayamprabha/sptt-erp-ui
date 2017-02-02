@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // containers
 import { DataSummaryComponent } from './containers/data-summary/data-summary.component';
-//import { PassengerViewerComponent } from './containers/passenger-viewer/passenger-viewer.component';
+import { DayWiseFormComponent } from './containers/day-wise-form/day-wise-form.component';
 
 // components
 // import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
@@ -21,7 +21,8 @@ const routes: Routes = [
     path: 'data-entry',
     children: [
      { path: '', component: DataSummaryComponent},
-   //  { path: '/day-wise', component: DaywiseComponent },
+     { path: 'new', component: DayWiseFormComponent },
+     { path: ':id/edit', component: DayWiseFormComponent },
    //  { path: '/day-wise/:id/trip-wise', component: PassengerViewerComponent }
     ]
   }
@@ -29,7 +30,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-     DataSummaryComponent
+     DataSummaryComponent,
+     DayWiseFormComponent
     // PassengerViewerComponent,
     // PassengerCountComponent,
     // PassengerDetailComponent,
