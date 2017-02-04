@@ -42,7 +42,7 @@ export class DataSummaryService {
     }
     return this;
   }
-  fetch(skip: number = 0, limit: number = 10): Observable<any[]> {
+  fetch(skip: number = 0, limit: number): Observable<any[]> {
 
     return Observable.forkJoin(
       this.http.get(`${environment.apiUrl}/${this._summaryType}/count`).map((res: Response) => res.json()),
