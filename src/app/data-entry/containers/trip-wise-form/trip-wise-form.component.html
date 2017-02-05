@@ -1,10 +1,186 @@
 <div class="row flex-items-xs-between">
     <div class="col-md-4">
-        <button routerLink="/data-entry" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
+        <button routerLink="/data-entry/{{alldaySummary.id}}/trips" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
     </div>
     <div class="col-md-4 text-right">
-        <button [hidden]="!editMode" routerLink="/data-entry/{{id}}/trips/new" type="button" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Trips for this day</button>
         <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
     </div>
 </div>
-Trips form
+<h2 [hidden]="editMode">Add new Trip for <b>{{alldaySummary.vehicle.regNumber}}</b> on <b>{{ alldaySummary.date | date }}</b></h2>
+<h2 [hidden]="!editMode">Edit Trip </h2>
+<form #f="ngForm">
+    <section class="form-block">
+        <div class="form-group row">
+            <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+                <label for="operatorName">Operator</label>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <div class="select">
+                    <select id="operatorName" name="operatorName" ngModel>
+                    <option disabled>Choose an Operator</option>
+                    <option *ngFor="let o of operators" [ngValue]="o.operatorName">{{o.operatorName}}</option>
+                </select>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<form (ngSubmit)="onSubmit(tripSummaryForm)" [formGroup]="tripSummaryForm" novalidate>
+    <section class="form-block">
+        <label>Trip Information</label>
+        <div class="form-group row">
+            <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="rideKMS" class="required">Ride KMS</label>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <label for="rideKMS" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+                    [class.invalid]="tripSummaryForm.get('rideKMS').invalid
+                    && (tripSummaryForm.get('rideKMS').dirty || tripSummaryForm.get('rideKMS').touched)">
+                    <input class="form-control" type="number" id="rideKMS" formControlName="rideKMS" placeholder="">
+                    <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+                    </label>
+            </div>
+            <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="tripOrigin">Origin</label>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" id="tripOrigin" formControlName="tripOrigin" placeholder="">
+            </div>
+            <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="tripDestination">Destination</label>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="text" id="tripDestination" formControlName="tripDestination" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'Other-City' || f.value.operatorName === 'Other-Outstation' || f.value.operatorName === 'LUX-Exclusive'"
+                class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="customerName">Customer Name</label>
+        </div>
+        <div *ngIf="f.value.operatorName === 'Other-City' || f.value.operatorName === 'Other-Outstation' || f.value.operatorName === 'LUX-Exclusive'"
+            class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <input class="form-control" type="number" id="customerName" formControlName="customerName" placeholder="">
+            </div>
+
+            </div>
+    </section>
+    <section class="form-block">
+        <label>Cash Related</label>
+        <div class="form-group row">
+            <div *ngIf="f.value.operatorName === 'Other-City' || f.value.operatorName === 'Other-Outstation'|| f.value.operatorName === 'Ola-Outstation'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label class="required" for="billAmount">Bill Amount</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'Other-City' || f.value.operatorName === 'Other-Outstation' || f.value.operatorName === 'Ola-Outstation'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <label for="billAmount" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
+                    [class.invalid]="tripSummaryForm.get('billAmount').invalid
+                    && (tripSummaryForm.get('billAmount').dirty || tripSummaryForm.get('billAmount').touched)">
+                    <input class="form-control" type="number" id="billAmount" formControlName="billAmount" placeholder="">
+                    <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+                    </label>
+            </div>
+            <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="cashCollected">Cash Collected</label>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="cashCollected" formControlName="cashCollected" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'Other-City' || f.value.operatorName === 'Other-Outstation' || f.value.operatorName === 'LUX-Exclusive'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="onlinePayment">Online Payment</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'Other-City' || f.value.operatorName === 'Other-Outstation' || f.value.operatorName === 'LUX-Exclusive'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="onlinePayment" formControlName="onlinePayment" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'Ola-City' || f.value.operatorName === 'Ola-Outstation'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="olaMoney">OLA Money</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'Ola-City' || f.value.operatorName === 'Ola-Outstation'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="olaMoney" formControlName="olaMoney" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'Uber-City'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="paytm">PayTM</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'Uber-City'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="paytm" formControlName="paytm" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'Ola-City' || f.value.operatorName === 'Uber-City'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="self">Self</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'Ola-City' || f.value.operatorName === 'Uber-City'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="self" formControlName="self" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'Other-City' || f.value.operatorName === 'Other-Outstation'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="balance">Balance</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'Other-City' || f.value.operatorName === 'Other-Outstation'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="balance" formControlName="balance" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'Ola-City' || f.value.operatorName === 'Uber-City' || f.value.operatorName === 'LUX-Exclusive'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="airportToll">Airport Toll</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'Ola-City' || f.value.operatorName === 'Uber-City' || f.value.operatorName === 'LUX-Exclusive'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="airportToll" formControlName="airportToll" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'LUX-Exclusive'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="localToll">Local Toll</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'LUX-Exclusive'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="localToll" formControlName="localToll" placeholder="">
+            </div>
+            <div *ngIf="f.value.operatorName === 'LUX-Exclusive'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label for="incentives">Incentives</label>
+            </div>
+            <div *ngIf="f.value.operatorName === 'LUX-Exclusive'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <input class="form-control" type="number" id="incentives" formControlName="incentives" placeholder="">
+            </div>
+        </div>
+    </section>
+    <section class="form-block">
+        <label>MBG</label>
+        <div class="form-group row">
+            <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                <label class="required" for="rideEarnings">Ride Earnings</label>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                <label for="rideEarnings" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
+                    [class.invalid]="tripSummaryForm.get('rideEarnings').invalid
+                    && (tripSummaryForm.get('rideEarnings').dirty || tripSummaryForm.get('rideEarnings').touched)">
+                    <input class="form-control" type="number" id="rideEarnings" formControlName="rideEarnings" placeholder="">
+                    <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+                    </label>
+            </div>
+        </div>
+    </section>
+    <section class="form-block">
+        <label for="remarks">Remarks</label>
+        <div class="form-group row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <textarea id="remarks" rows="5" formControlName="remarks"></textarea>
+            </div>
+        </div>
+        <button *ngIf="!editMode" type="submit" class="btn btn-primary" [disabled]="tripSummaryForm.invalid">Save</button>
+        <button *ngIf="editMode" type="submit" class="btn btn-primary" [disabled]="tripSummaryForm.pristine">Update</button>
+        <button *ngIf="editMode" type="reset" (click)="revert()" [disabled]="tripSummaryForm.pristine" class="btn btn-danger">Undo Changes</button>
+        <span [hidden]="!isFormSaving"><span class="spinner spinner-inline"> Saving...</span> <span>Saving...</span></span>
+    </section>
+    <clr-modal [(clrModalOpen)]="showModal" [clrModalClosable]="false" [clrModalSize]="'lg'">
+
+        <h3 class="modal-title text-center">
+            <clr-icon shape="check-circle" class="is-success" size="36"></clr-icon> All Day Summary Saved</h3>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <button type="button" class="btn btn-primary" routerLink="/data-entry/{{id}}/trips">Trips Summary for this day</button>
+                    <button type="button" class="btn btn-outline" routerLink="/data-entry">Goto Day Summary Table</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </clr-modal>
+</form>

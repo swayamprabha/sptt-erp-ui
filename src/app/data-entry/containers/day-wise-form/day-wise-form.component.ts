@@ -4,9 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DayWiseFormService } from './day-wise-form.service';
 
-import 'rxjs/add/operator/switchMap';
-import "clarity-icons/shapes/core-shapes"
-
 @Component({
   selector: 'app-day-wise-form',
   templateUrl: './day-wise-form.component.html',
@@ -89,11 +86,6 @@ export class DayWiseFormComponent implements OnInit {
           this.id = params['id'];
         }
       });
-  }
-
-  changeVehicleType(value: string) {
-    console.log(value)
-    // this.vehicleType = value;
   }
 
   ngOnChanges() {

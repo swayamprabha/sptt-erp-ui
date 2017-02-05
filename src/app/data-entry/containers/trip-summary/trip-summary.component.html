@@ -6,7 +6,7 @@
     <button type="button" routerLink="/data-entry/{{alldaySummary.id}}/trip/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Trip Entry</button>
   </div>
 </div>
-<h2>Trip Summary for {{ alldaySummary.date | date }}</h2>
+<h2>Trips Summary for <b>{{alldaySummary.vehicle.regNumber}}</b> on <b>{{ alldaySummary.date | date }}</b></h2>
 <div>
   <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
     <clr-dg-placeholder>There are no trips for this day!</clr-dg-placeholder>

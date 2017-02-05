@@ -20,6 +20,8 @@ import { DaySummaryService } from './containers/day-summary/day-summary.service'
 import { DayWiseFormService } from './containers/day-wise-form/day-wise-form.service';
 import { DayWiseFormResolver } from './containers/day-wise-form/day-wise-form-resolver.service';
 import { TripSummaryService } from './containers/trip-summary/trip-summary.service';
+import { TripWiseFormService } from './containers/trip-wise-form/trip-wise-form.service';
+import { TripWiseFormResolver } from './containers/trip-wise-form/trip-wise-form-resolver.service';
 
 const routes: Routes = [
   {
@@ -43,11 +45,18 @@ const routes: Routes = [
       },
       {
         path: ':id/trip/new',
-        component: TripWiseFormComponent
+        component: TripWiseFormComponent,
+        resolve: {
+          alldaySummary: DayWiseFormResolver
+        }
       },
       {
         path: ':id/trip/:trip-id',
-        component: TripWiseFormComponent
+        component: TripWiseFormComponent,
+         resolve: {
+          alldaySummary: DayWiseFormResolver,
+          tripSummary: TripWiseFormResolver
+        }
       }
     ]
   }
@@ -70,7 +79,9 @@ const routes: Routes = [
     DaySummaryService,
     DayWiseFormService,
     DayWiseFormResolver,
-    TripSummaryService
+    TripSummaryService,
+    TripWiseFormService,
+    TripWiseFormResolver
   ]
 })
 export class DataEntryModule { }
