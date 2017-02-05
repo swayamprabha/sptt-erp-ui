@@ -28,7 +28,7 @@ export class DataSummaryService {
 
   filter(filters: { [key: string]: string[] }): DataSummaryService {
     if (filters) {
-      console.log(filters);
+      console.log("Filters =>" + JSON.stringify(filters));
     }
     return this;
   }
@@ -38,7 +38,7 @@ export class DataSummaryService {
       this._sortBy = sort.by;
       this._sortSegment = `&filter[order]=${this._sortBy} ${this._sortReverse}`;
     } else {
-      this._sortSegment = '';
+      this._sortSegment = '&filter[order]=id DESC';
     }
     return this;
   }

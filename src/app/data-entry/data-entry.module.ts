@@ -16,6 +16,8 @@ import { DayWiseFormResolver } from './containers/day-wise-form/day-wise-form-re
 // service
 import { DataSummaryService } from './containers/data-summary/data-summary.service';
 import { DayWiseFormService } from './containers/day-wise-form/day-wise-form.service';
+import { TripWiseFormComponent } from './containers/trip-wise-form/trip-wise-form.component';
+import { TripSummaryComponent } from './containers/trip-summary/trip-summary.component';
 
 const routes: Routes = [
   {
@@ -31,13 +33,13 @@ const routes: Routes = [
         }
       },
       {
-        path: ':id/:action',
-        component: DayWiseFormComponent,
-        resolve: {
-          alldaySummary: DayWiseFormResolver
-        }
+        path: ':id/trips',
+        component: TripSummaryComponent
       },
-      //  { path: '/day-wise/:id/trip-wise', component: PassengerViewerComponent }
+      {
+        path: ':id/trips/new',
+        component: TripWiseFormComponent
+      }
     ]
   }
 ];
@@ -45,11 +47,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DataSummaryComponent,
-    DayWiseFormComponent
-    // PassengerViewerComponent,
-    // PassengerCountComponent,
-    // PassengerDetailComponent,
-    //PassengerFormComponent
+    DayWiseFormComponent,
+    TripWiseFormComponent,
+    TripSummaryComponent
   ],
   imports: [
     CommonModule,

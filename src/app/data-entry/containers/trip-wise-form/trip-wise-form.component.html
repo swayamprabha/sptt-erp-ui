@@ -1,0 +1,9 @@
+<div class="row flex-items-xs-between">
+    <div class="col-md-4">
+        <button routerLink="/data-entry" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
+    </div>
+    <div class="col-md-4 text-right">
+        <button [hidden]="!editMode" routerLink="/data-entry/{{id}}/trips/new" type="button" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Trips for this day</button>
+        <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
+    </div>
+</div>

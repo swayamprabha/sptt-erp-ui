@@ -3,7 +3,7 @@
         <button routerLink="/data-entry" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
     </div>
     <div class="col-md-4 text-right">
-        <button [hidden]="!editMode" type="button" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Trips for this day</button>
+        <button [hidden]="!editMode" routerLink="/data-entry/{{id}}/trips" type="button" class="btn btn-sm"><clr-icon shape="view-list"></clr-icon> Trips Summary for this day</button>
         <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
     </div>
 </div>
@@ -209,7 +209,7 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <button type="button" class="btn btn-primary" routerLink="/data-entry/{{id}}">Add Trips for this day</button>
+                    <button type="button" class="btn btn-primary" routerLink="/data-entry/{{id}}/trips">Trips Summary for this day</button>
                     <button type="button" class="btn btn-outline" routerLink="/data-entry">Goto Day Summary Table</button>
                 </div>
             </div>
