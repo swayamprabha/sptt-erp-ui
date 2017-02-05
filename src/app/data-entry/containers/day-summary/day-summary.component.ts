@@ -1,32 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSummaryService } from './data-summary.service';
-//import { Passenger } from '../../models/passenger.interface';
+import { DaySummaryService } from './day-summary.service';
 import { State } from "clarity-angular";
 
 @Component({
-    selector: 'data-summary',
-    styleUrls: ['data-summary.component.scss'],
-    templateUrl: './data-summary.component.html',
+    selector: 'day-summary',
+    styleUrls: ['day-summary.component.scss'],
+    templateUrl: './day-summary.component.html',
 })
-export class DataSummaryComponent {
-    constructor(private dataSummaryService: DataSummaryService) { }
+export class DaySummaryComponent {
+
     total: number;
     loading: boolean = true;
-    isTrip: boolean = false;
-    resetting: boolean = false;
     results: any[];
     currentPageSize: Number = 14;
-    
-    toggleTripSummary() {
-        this.resetting = true;
-        this.loading = true;
-        // Timeout hack to make sure we completely reset the datagrid
-        setTimeout(() => {
-            this.isTrip = !this.isTrip;
-            this.results = [];
-            this.resetting = false;
-        });
-    }
+
+    constructor(private daySummaryService: DaySummaryService) { }
+
     refresh(state: State) {
         this.loading = true;
         // We convert the filters from an array to a map,
@@ -38,8 +27,7 @@ export class DataSummaryComponent {
                 filters[property] = [value];
             }
         }
-        this.dataSummaryService
-            .summaryType(this.isTrip)
+        this.daySummaryService
             .filter(filters)
             .sort(<{ by: string, reverse: boolean }>state.sort)
             .fetch(state.page.from, state.page.size)

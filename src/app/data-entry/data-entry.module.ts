@@ -5,25 +5,26 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 // containers
-import { DataSummaryComponent } from './containers/data-summary/data-summary.component';
+import { DaySummaryComponent } from './containers/day-summary/day-summary.component';
 import { DayWiseFormComponent } from './containers/day-wise-form/day-wise-form.component';
-import { DayWiseFormResolver } from './containers/day-wise-form/day-wise-form-resolver.service';
+import { TripWiseFormComponent } from './containers/trip-wise-form/trip-wise-form.component';
+import { TripSummaryComponent } from './containers/trip-summary/trip-summary.component';
+
 // components
 // import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
 // import { PassengerDetailComponent } from './components/passenger-detail/passenger-detail.component';
 // import { PassengerFormComponent } from './components/passenger-form/passenger-form.component';
 
 // service
-import { DataSummaryService } from './containers/data-summary/data-summary.service';
+import { DaySummaryService } from './containers/day-summary/day-summary.service';
 import { DayWiseFormService } from './containers/day-wise-form/day-wise-form.service';
-import { TripWiseFormComponent } from './containers/trip-wise-form/trip-wise-form.component';
-import { TripSummaryComponent } from './containers/trip-summary/trip-summary.component';
+import { DayWiseFormResolver } from './containers/day-wise-form/day-wise-form-resolver.service';
 
 const routes: Routes = [
   {
     path: 'data-entry',
     children: [
-      { path: '', component: DataSummaryComponent },
+      { path: '', component: DaySummaryComponent },
       { path: 'new', component: DayWiseFormComponent },
       {
         path: ':id',
@@ -46,10 +47,10 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    DataSummaryComponent,
+    DaySummaryComponent,
     DayWiseFormComponent,
-    TripWiseFormComponent,
-    TripSummaryComponent
+    TripSummaryComponent,
+    TripWiseFormComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +59,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [
-    DataSummaryService,
+    DaySummaryService,
     DayWiseFormService,
     DayWiseFormResolver
   ]

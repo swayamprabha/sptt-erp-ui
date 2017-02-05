@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DayWiseFormService } from './day-wise-form.service';
@@ -14,6 +13,7 @@ import "clarity-icons/shapes/core-shapes"
   styleUrls: ['./day-wise-form.component.scss']
 })
 export class DayWiseFormComponent implements OnInit {
+
   vehicles: any[];
   drivers: any[];
   isFormSaving: boolean = false;
