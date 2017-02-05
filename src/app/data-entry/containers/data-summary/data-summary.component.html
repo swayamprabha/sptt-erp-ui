@@ -1,17 +1,9 @@
-<div class="row flex-items-md-between">
-    <div class="col-md-8">
+<div class="row flex-items-md-right">
+    <div class="col-md-2 text-right">
         <button type="button" routerLink="/data-entry/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Daywise Entry</button>
-        <button type="button" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Tripwise Entry</button>
-    </div>
-    <div class="col-md-2">
-        <form>
-            <div class="toggle-switch">
-                <input type="checkbox" id="trip_summary" [checked]="isTrip" (change)="toggleTripSummary()">
-                <label for="trip_summary">Trip Summary</label>
-            </div>
-        </form>
     </div>
 </div>
+<h2>Day Wise Summary</h2>
 <div>
     <clr-datagrid *ngIf="!isTrip" (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
         <clr-dg-column [clrDgField]="'date'">Day</clr-dg-column>
@@ -21,7 +13,7 @@
         <clr-dg-column [clrDgField]="'closingOdo'">Closing ODO</clr-dg-column>
         <clr-dg-column [clrDgField]="'loggedinDuration'">Login Duration</clr-dg-column>
         <clr-dg-column>Fuel</clr-dg-column>
-        <clr-dg-row routerLink="/data-entry/{{result.id}}/edit" *ngFor="let result of results">
+        <clr-dg-row routerLink="/data-entry/{{result.id}}" *ngFor="let result of results">
             <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
             <clr-dg-cell>{{result.vehicle.regNumber}}</clr-dg-cell>
             <clr-dg-cell>{{result.vehicle.vehicleBrand}}</clr-dg-cell>
@@ -47,7 +39,7 @@
         <clr-dg-row *ngFor="let result of results">
             <clr-dg-cell>{{result.tripOrigin}}</clr-dg-cell>
             <clr-dg-cell>{{result.tripDestination}}</clr-dg-cell>
-             <clr-dg-cell>{{result.rideKMS}}</clr-dg-cell>
+            <clr-dg-cell>{{result.rideKMS}}</clr-dg-cell>
             <clr-dg-cell>{{result.customerName}}</clr-dg-cell>
             <clr-dg-cell>{{result.billAmount}}</clr-dg-cell>
             <clr-dg-cell>{{result.rideEarnings}}</clr-dg-cell>

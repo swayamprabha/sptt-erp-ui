@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 // containers
 import { DataSummaryComponent } from './containers/data-summary/data-summary.component';
 import { DayWiseFormComponent } from './containers/day-wise-form/day-wise-form.component';
-
+import { DayWiseFormResolver } from './containers/day-wise-form/day-wise-form-resolver.service';
 // components
 // import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
 // import { PassengerDetailComponent } from './components/passenger-detail/passenger-detail.component';
@@ -21,18 +21,31 @@ const routes: Routes = [
   {
     path: 'data-entry',
     children: [
-     { path: '', component: DataSummaryComponent},
-     { path: 'new', component: DayWiseFormComponent },
-     { path: ':id/edit', component: DayWiseFormComponent },
-   //  { path: '/day-wise/:id/trip-wise', component: PassengerViewerComponent }
+      { path: '', component: DataSummaryComponent },
+      { path: 'new', component: DayWiseFormComponent },
+      {
+        path: ':id',
+        component: DayWiseFormComponent,
+        resolve: {
+          alldaySummary: DayWiseFormResolver
+        }
+      },
+      {
+        path: ':id/:action',
+        component: DayWiseFormComponent,
+        resolve: {
+          alldaySummary: DayWiseFormResolver
+        }
+      },
+      //  { path: '/day-wise/:id/trip-wise', component: PassengerViewerComponent }
     ]
   }
 ];
 
 @NgModule({
   declarations: [
-     DataSummaryComponent,
-     DayWiseFormComponent
+    DataSummaryComponent,
+    DayWiseFormComponent
     // PassengerViewerComponent,
     // PassengerCountComponent,
     // PassengerDetailComponent,
@@ -46,7 +59,8 @@ const routes: Routes = [
   ],
   providers: [
     DataSummaryService,
-    DayWiseFormService
+    DayWiseFormService,
+    DayWiseFormResolver
   ]
 })
-export class DataEntryModule {}
+export class DataEntryModule { }

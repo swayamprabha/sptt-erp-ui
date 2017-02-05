@@ -15,7 +15,7 @@ export class DataSummaryComponent {
     isTrip: boolean = false;
     resetting: boolean = false;
     results: any[];
-    currentPageSize: Number = 15;
+    currentPageSize: Number = 14;
     
     toggleTripSummary() {
         this.resetting = true;
