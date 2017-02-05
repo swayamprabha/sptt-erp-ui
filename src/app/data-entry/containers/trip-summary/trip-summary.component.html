@@ -1,10 +1,33 @@
 <div class="row flex-items-md-between">
-   <div class="col-md-4">
-        <button routerLink="/data-entry" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
-    </div>
-    <div class="col-md-2 text-right">
-        <button type="button" routerLink="/data-entry/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Tripwise Entry</button>
-    </div>
+  <div class="col-md-4">
+    <button routerLink="/data-entry/{{alldaySummary.id}}" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
+  </div>
+  <div class="col-md-2 text-right">
+    <button type="button" routerLink="/data-entry/{{alldaySummary.id}}/trip/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Trip Entry</button>
+  </div>
 </div>
-<h2>Trip Wise Summary</h2>
+<h2>Trip Summary for {{ alldaySummary.date | date }}</h2>
 <div>
+  <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+    <clr-dg-placeholder>There are no trips for this day!</clr-dg-placeholder>
+    <clr-dg-column [clrDgField]="'tripOrigin'">Trip Origin</clr-dg-column>
+    <clr-dg-column [clrDgField]="'tripDestination'">Trip Destination</clr-dg-column>
+    <clr-dg-column [clrDgField]="'rideKMS'">Ride Kms</clr-dg-column>
+    <clr-dg-column [clrDgField]="'customerName'">Customer Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'billAmount'">Bill Ammount</clr-dg-column>
+    <clr-dg-column [clrDgField]="'rideEarnings'">Ride Earnings</clr-dg-column>
+    <clr-dg-row routerLink="/data-entry/{{alldaySummary.id}}/trip/{{result.id}}" *ngFor="let result of results">
+      <clr-dg-cell>{{result.tripOrigin}}</clr-dg-cell>
+      <clr-dg-cell>{{result.tripDestination}}</clr-dg-cell>
+      <clr-dg-cell>{{result.rideKMS}}</clr-dg-cell>
+      <clr-dg-cell>{{result.customerName}}</clr-dg-cell>
+      <clr-dg-cell>{{result.billAmount}}</clr-dg-cell>
+      <clr-dg-cell>{{result.rideEarnings}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} Trip Summary
+      <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="currentPageSize"></clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>
