@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { State } from "clarity-angular";
 import { TripSummaryService } from './trip-summary.service';
@@ -19,14 +20,18 @@ export class TripSummaryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private titleService: Title,
     private tripSummaryService: TripSummaryService
   ) { }
 
   ngOnInit() {
+
+    this.titleService.setTitle('SPTT - Trip Summary');
+
     // Get resolved alldaysummary data
     this.route.data
       .subscribe((data: { alldaySummary: any }) => {
-       this.alldaySummary = data.alldaySummary;
+        this.alldaySummary = data.alldaySummary;
       });
   }
   refresh(state: State) {

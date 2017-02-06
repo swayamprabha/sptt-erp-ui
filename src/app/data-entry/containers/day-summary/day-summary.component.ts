@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { DaySummaryService } from './day-summary.service';
 import { State } from "clarity-angular";
 
@@ -7,14 +8,20 @@ import { State } from "clarity-angular";
     styleUrls: ['day-summary.component.scss'],
     templateUrl: './day-summary.component.html',
 })
-export class DaySummaryComponent {
+export class DaySummaryComponent implements OnInit {
 
     total: number;
     loading: boolean = true;
     results: any[];
     currentPageSize: Number = 14;
 
-    constructor(private daySummaryService: DaySummaryService) { }
+    constructor(
+        private daySummaryService: DaySummaryService,
+        private titleService: Title) { }
+      
+    ngOnInit() {
+        this.titleService.setTitle('SPTT - Day Wise Summary');
+     }
 
     refresh(state: State) {
         this.loading = true;

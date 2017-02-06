@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -24,9 +25,12 @@ export class DayWiseFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    private titleService: Title,
     private dayWiseFormService: DayWiseFormService) { }
 
   ngOnInit() {
+
+    this.titleService.setTitle('SPTT - New Day Wise Summary');
 
     // Build the form
     this.alldaySummaryForm = this.fb.group({

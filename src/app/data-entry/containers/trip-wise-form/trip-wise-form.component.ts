@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TripWiseFormService } from './trip-wise-form.service';
@@ -23,14 +24,17 @@ export class TripWiseFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    private titleService: Title,
     private tripWiseFormService: TripWiseFormService
   ) { }
 
   ngOnInit() {
 
+    this.titleService.setTitle('SPTT - New Trip Summary');
+
     // Build the form
     this.tripSummaryForm = this.fb.group({
-      operatorName:['Ola-City'],
+      operatorName: ['Ola-City'],
       tripOrigin: [''],
       tripDestination: [''],
       customerName: [''],
@@ -85,7 +89,7 @@ export class TripWiseFormComponent implements OnInit {
   revert() { this.ngOnChanges(); }
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
     this.isFormSaving = true;
-    value.alldaySummaryId =  this.alldaySummary.id;
+    value.alldaySummaryId = this.alldaySummary.id;
     if (this.editMode) {
       this.tripWiseFormService
         .updateTripSummary(this.tripId, value)
