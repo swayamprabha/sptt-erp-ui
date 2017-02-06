@@ -30,11 +30,12 @@ export class TripWiseFormComponent implements OnInit {
 
     // Build the form
     this.tripSummaryForm = this.fb.group({
+      operatorName:['Ola-City'],
       tripOrigin: [''],
       tripDestination: [''],
       customerName: [''],
-      rideKMS: ['',[Validators.required]],
-      billAmount: ['',[Validators.required]],
+      rideKMS: ['', [Validators.required]],
+      billAmount: [''],
       cashCollected: [''],
       onlinePayment: [''],
       olaMoney: [''],
@@ -45,7 +46,7 @@ export class TripWiseFormComponent implements OnInit {
       localToll: [''],
       incentives: [''],
       remarks: [''],
-      rideEarnings: ['',[Validators.required]]
+      rideEarnings: ['', [Validators.required]]
     });
 
     // Get list of Operators
@@ -65,6 +66,46 @@ export class TripWiseFormComponent implements OnInit {
           this.editMode = false;
         }
       });
+    // Get id if present in the URL 
+    this.route.params
+      .subscribe((params: Params) => {
+        if (params['trip-id']) {
+          this.tripId = params['trip-id'];
+        }
+      });
+  }
+
+  ngOnChanges() {
+    this.tripSummaryForm.reset(this.tripSummary);
+    // this.tripSummaryForm.patchValue({
+    //   date: new Date(this.alldaySummary.date).toISOString().slice(0, 10)
+    // });
+  }
+
+  revert() { this.ngOnChanges(); }
+  onSubmit({ value, valid }: { value: any, valid: boolean }) {
+    this.isFormSaving = true;
+    value.alldaySummaryId =  this.alldaySummary.id;
+    if (this.editMode) {
+      this.tripWiseFormService
+        .updateTripSummary(this.tripId, value)
+        .subscribe((data) => {
+          this.isFormSaving = false;
+          this.showModal = true;
+        });
+    } else {
+      this.tripWiseFormService
+        .saveNewTripSummary(value)
+        .subscribe((data: any) => {
+          console.log(data);
+          this.tripId = data.id;
+          this.isFormSaving = false;
+          this.showModal = true;
+          this.tripSummary = data;
+          this.ngOnChanges;
+          //this.router.navigate(['/data-entry/'+ data.id],{replaceUrl: true})
+        });
+    }
   }
 
 }
