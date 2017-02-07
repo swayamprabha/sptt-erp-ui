@@ -10,6 +10,7 @@ import { AboutComponent } from "./about/about.component";
 import { SharedModule } from './shared/shared.module';
 import { DataEntryModule } from './data-entry/data-entry.module';
 import { DriversModule } from './drivers/drivers.module';
+import { VehiclesModule } from './vehicles/vehicles.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { DriversModule } from './drivers/drivers.module';
         SharedModule.forRoot(),
         ROUTING,
         DataEntryModule,
-        DriversModule
+        DriversModule,
+        VehiclesModule
     ],
     providers: [
         Title

@@ -1,0 +1,152 @@
+<div class="row flex-items-xs-between">
+  <div class="col-md-4">
+    <button routerLink="/vehicles" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
+  </div>
+  <div class="col-md-4 text-right">
+    <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
+  </div>
+</div>
+<h2 [hidden]="editMode">Add new Vehicle</h2>
+<h2 [hidden]="!editMode">Edit Vehicle</h2>
+<form (ngSubmit)="onSubmit(vehicleForm)" [formGroup]="vehicleForm" novalidate>
+  <label>Vehicle Information</label>
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label for="ownershipType">Ownership Type</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <div class="select">
+          <select formControlName="ownershipType" id="ownershipType">
+              <option disabled>Choose a type</option>
+              <option value="OWN">Own</option>
+              <option value="LEASE">Lease</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+        <label class="required" for="regNumber">Reg #</label>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+        <label for="regNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
+          [class.invalid]="vehicleForm.get('regNumber').invalid
+                    && (vehicleForm.get('regNumber').dirty || vehicleForm.get('regNumber').touched)">
+          <input class="form-control" type="text" id="regNumber" formControlName="regNumber" placeholder="">
+          <span class="tooltip-content">
+              This field cannot be empty!
+          </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="vehicleBrand">Brand</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="vehicleBrand" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="vehicleForm.get('vehicleBrand').invalid
+                    && (vehicleForm.get('vehicleBrand').dirty || vehicleForm.get('vehicleBrand').touched)">
+          <input type="text" formControlName="vehicleBrand" id="vehicleBrand">
+          <span class="tooltip-content">
+              This field cannot be empty!
+            </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="vehicleModel">Model</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="vehicleModel" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="vehicleForm.get('vehicleModel').invalid
+                    && (vehicleForm.get('vehicleModel').dirty || vehicleForm.get('vehicleModel').touched)">
+          <input type="text" formControlName="vehicleModel" id="vehicleModel">
+          <span class="tooltip-content">
+              This field cannot be empty!
+            </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label for="vehicleCategoryId">Category</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <div class="select">
+          <select formControlName="vehicleCategoryId" id="vehicleCategoryId">
+              <option disabled>Choose a category</option>
+              <option *ngFor="let c of categories" [ngValue]="c.id">{{c.categoryName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="vehicleOwner">Owner Name</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="vehicleOwner" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="vehicleForm.get('vehicleOwner').invalid
+                    && (vehicleForm.get('vehicleOwner').dirty || vehicleForm.get('vehicleOwner').touched)">
+          <input type="text" formControlName="vehicleOwner" id="vehicleOwner">
+          <span class="tooltip-content">
+              This field cannot be empty!
+            </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="insuranceDuedate">Insurance Duedate</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="insuranceDuedate" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="vehicleForm.get('insuranceDuedate').invalid
+                    && (vehicleForm.get('insuranceDuedate').dirty || vehicleForm.get('insuranceDuedate').touched)">
+          <input type="date" formControlName="insuranceDuedate" id="insuranceDuedate">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="serviceDuedata">Service Tax Duedate</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="serviceDuedata" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="vehicleForm.get('serviceDuedata').invalid
+                    && (vehicleForm.get('serviceDuedata').dirty || vehicleForm.get('serviceDuedata').touched)">
+          <input type="date" formControlName="serviceDuedata" id="serviceDuedata">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="roadtaxDuedata">Road Tax Duedate</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="roadtaxDuedata" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="vehicleForm.get('roadtaxDuedata').invalid
+                    && (vehicleForm.get('roadtaxDuedata').dirty || vehicleForm.get('roadtaxDuedata').touched)">
+          <input type="date" formControlName="roadtaxDuedata" id="roadtaxDuedata">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+    </div>
+  </section>
+  <section class="form-block">
+    <button *ngIf="!editMode" type="submit" class="btn btn-primary" [disabled]="vehicleForm.invalid">Save</button>
+    <button *ngIf="editMode" type="submit" class="btn btn-primary" [disabled]="vehicleForm.pristine">Update</button>
+    <button *ngIf="editMode" type="reset" (click)="revert()" [disabled]="vehicleForm.pristine" class="btn btn-danger">Undo Changes</button>
+    <span [hidden]="!isFormSaving"><span class="spinner spinner-inline"> Saving...</span> <span>Saving...</span></span>
+  </section>
+  <clr-modal [(clrModalOpen)]="showModal" [clrModalClosable]="false" [clrModalSize]="'lg'">
+
+    <h3 class="modal-title text-center">
+      <clr-icon shape="check-circle" class="is-success" size="36"></clr-icon> Vehicle Information Saved</h3>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <button type="button" class="btn btn-primary" routerLink="/vehicles/new">Add new Vehicle</button>
+          <button type="button" class="btn btn-outline" routerLink="/vehicles">Goto Vehicles Summary Table</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </clr-modal>
+</form>
