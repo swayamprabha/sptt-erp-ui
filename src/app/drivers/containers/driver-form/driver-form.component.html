@@ -1,0 +1,134 @@
+<div class="row flex-items-xs-between">
+  <div class="col-md-4">
+    <button routerLink="/drivers" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
+  </div>
+  <div class="col-md-4 text-right">
+    <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
+  </div>
+</div>
+<h2 [hidden]="editMode">Add new Driver</h2>
+<h2 [hidden]="!editMode">Edit Driver</h2>
+<form (ngSubmit)="onSubmit(driverForm)" [formGroup]="driverForm" novalidate>
+  <label>Driver Information</label>
+  <section class="form-block">
+    <div class="form-group row">
+      <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+        <label class="required" for="driverName">Name</label>
+      </div>
+      <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+        <label for="driverName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
+          [class.invalid]="driverForm.get('driverName').invalid
+                    && (driverForm.get('driverName').dirty || driverForm.get('driverName').touched)">
+          <input class="form-control" type="text" id="driverName" formControlName="driverName" placeholder="">
+          <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="driverDOB">DOB</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="driverDOB" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="driverForm.get('driverDOB').invalid
+                    && (driverForm.get('driverDOB').dirty || driverForm.get('driverDOB').touched)">
+          <input type="date" formControlName="driverDOB" id="driverDOB">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label for="driverDOA">DOA</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <input type="date" formControlName="driverDOA" id="driverDOA">
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="driverContact">Contact</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="driverContact" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="driverForm.get('driverContact').invalid
+                    && (driverForm.get('driverContact').dirty || driverForm.get('driverContact').touched)">
+          <input type="number" formControlName="driverContact" id="driverContact">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="dlNumber">DL Number</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="dlNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="driverForm.get('dlNumber').invalid
+                    && (driverForm.get('dlNumber').dirty || driverForm.get('dlNumber').touched)">
+          <input type="text" formControlName="dlNumber" id="dlNumber">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="dlExpiry">DL Expiry</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="dlExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="driverForm.get('dlExpiry').invalid
+                    && (driverForm.get('dlExpiry').dirty || driverForm.get('dlExpiry').touched)">
+          <input type="date" formControlName="dlExpiry" id="dlExpiry">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+        <label class="required" for="badgeExpiry">Badge Expiry</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <label for="badgeExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="driverForm.get('badgeExpiry').invalid
+                    && (driverForm.get('badgeExpiry').dirty || driverForm.get('badgeExpiry').touched)">
+          <input type="date" formControlName="badgeExpiry" id="badgeExpiry">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="form-group row">
+      <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+        <label class="required" for="driverAddress">Address</label>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <textarea id="driverAddress" rows="3" formControlName="driverAddress"></textarea>
+      </div>
+    </div>
+  </section>
+  <section class="form-block">
+    <button *ngIf="!editMode" type="submit" class="btn btn-primary" [disabled]="driverForm.invalid">Save</button>
+    <button *ngIf="editMode" type="submit" class="btn btn-primary" [disabled]="driverForm.pristine">Update</button>
+    <button *ngIf="editMode" type="reset" (click)="revert()" [disabled]="driverForm.pristine" class="btn btn-danger">Undo Changes</button>
+    <span [hidden]="!isFormSaving"><span class="spinner spinner-inline"> Saving...</span> <span>Saving...</span></span>
+  </section>
+  <clr-modal [(clrModalOpen)]="showModal" [clrModalClosable]="false" [clrModalSize]="'lg'">
+
+    <h3 class="modal-title text-center">
+      <clr-icon shape="check-circle" class="is-success" size="36"></clr-icon> Driver Information Saved</h3>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <button type="button" class="btn btn-primary" routerLink="/drivers/new">Add new Driver</button>
+          <button type="button" class="btn btn-outline" routerLink="/drivers">Goto Drivers Summary Table</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </clr-modal>
+</form>
