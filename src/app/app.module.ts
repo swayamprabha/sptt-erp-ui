@@ -5,8 +5,11 @@ import { ClarityModule } from 'clarity-angular';
 import { AppComponent } from './app.component';
 import { ROUTING } from "./app.routing";
 import { AboutComponent } from "./about/about.component";
+
+//Modules
 import { SharedModule } from './shared/shared.module';
 import { DataEntryModule } from './data-entry/data-entry.module';
+import { DriversModule } from './drivers/drivers.module';
 
 @NgModule({
     declarations: [
@@ -19,7 +22,8 @@ import { DataEntryModule } from './data-entry/data-entry.module';
         ClarityModule.forRoot(),
         SharedModule.forRoot(),
         ROUTING,
-        DataEntryModule
+        DataEntryModule,
+        DriversModule
     ],
     providers: [
         Title
