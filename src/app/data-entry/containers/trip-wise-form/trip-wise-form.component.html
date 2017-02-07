@@ -1,6 +1,6 @@
 <div class="row flex-items-xs-between">
     <div class="col-md-4">
-        <button routerLink="/data-entry/{{alldaySummary.id}}/trips" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
+        <button routerLink="/day-summary/{{alldaySummary.id}}/trips" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
     </div>
     <div class="col-md-4 text-right">
         <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
@@ -172,8 +172,8 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <button type="button" class="btn btn-primary" routerLink="/data-entry/{{alldaySummary.id}}/trip/new">Add another Trip</button>
-                    <button type="button" class="btn btn-outline" routerLink="/data-entry/{{alldaySummary.id}}/trips">Goto Trip Summary Table</button>
+                    <button type="button" class="btn btn-primary" routerLink="/day-summary/{{alldaySummary.id}}/trip/new">Add another Trip</button>
+                    <button type="button" class="btn btn-outline" routerLink="/day-summary/{{alldaySummary.id}}/trips">Goto Trip Summary Table</button>
                 </div>
             </div>
         </div>

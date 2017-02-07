@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 
 
 export const ROUTES: Routes = [
-    {path: '', redirectTo: '/data-entry', pathMatch: 'full'}, 
+    {path: '', redirectTo: '/day-summary', pathMatch: 'full'}, 
     {path: 'home', component: HomeComponent},
     {path: 'about', component: AboutComponent}
 ];

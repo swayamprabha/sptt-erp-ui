@@ -107,7 +107,7 @@ export class TripWiseFormComponent implements OnInit {
           this.showModal = true;
           this.tripSummary = data;
           this.ngOnChanges;
-          //this.router.navigate(['/data-entry/'+ data.id],{replaceUrl: true})
+          //this.router.navigate(['/day-summary/'+ data.id],{replaceUrl: true})
         });
     }
   }

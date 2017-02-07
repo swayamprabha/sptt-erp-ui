@@ -17,7 +17,7 @@ export class TripWiseFormResolver implements Resolve<any> {
         return data;
     })
      .catch(data => {
-        this.router.navigate(['/data-entry']);
+        this.router.navigate(['/day-summary']);
         return Observable.of(null);
      })
     .first();

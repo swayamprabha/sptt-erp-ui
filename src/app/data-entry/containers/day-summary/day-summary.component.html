@@ -1,6 +1,6 @@
 <div class="row flex-items-md-right">
     <div class="col-md-2 text-right">
-        <button type="button" routerLink="/data-entry/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Daywise Entry</button>
+        <button type="button" routerLink="/day-summary/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Daywise Entry</button>
     </div>
 </div>
 <h2>Day Wise Summary</h2>
@@ -14,7 +14,7 @@
         <clr-dg-column [clrDgField]="'closingOdo'">Closing ODO</clr-dg-column>
         <clr-dg-column [clrDgField]="'loggedinDuration'">Login Duration</clr-dg-column>
         <clr-dg-column>Fuel</clr-dg-column>
-        <clr-dg-row routerLink="/data-entry/{{result.id}}" *ngFor="let result of results">
+        <clr-dg-row routerLink="/day-summary/{{result.id}}" *ngFor="let result of results">
             <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
             <clr-dg-cell>{{result.vehicle.regNumber}}</clr-dg-cell>
             <clr-dg-cell>{{result.vehicle.vehicleBrand}}</clr-dg-cell>

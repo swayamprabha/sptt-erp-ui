@@ -25,7 +25,7 @@ import { TripWiseFormResolver } from './containers/trip-wise-form/trip-wise-form
 
 const routes: Routes = [
   {
-    path: 'data-entry',
+    path: 'day-summary',
     children: [
       { path: '', component: DaySummaryComponent },
       { path: 'new', component: DayWiseFormComponent },
