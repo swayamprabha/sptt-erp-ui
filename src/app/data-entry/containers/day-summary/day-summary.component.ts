@@ -18,10 +18,10 @@ export class DaySummaryComponent implements OnInit {
     constructor(
         private daySummaryService: DaySummaryService,
         private titleService: Title) { }
-      
+
     ngOnInit() {
         this.titleService.setTitle('SPTT - Day Wise Summary');
-     }
+    }
 
     refresh(state: State) {
         this.loading = true;

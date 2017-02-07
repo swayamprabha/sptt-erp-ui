@@ -8,6 +8,9 @@ import { SharedModule } from './../shared/shared.module';
 // containers
 import { DriverSummaryComponent } from './containers/driver-summary/driver-summary.component';
 
+// services
+import { DriverSummaryService } from './containers/driver-summary/driver-summary.service';
+
 const routes: Routes = [
   {
     path: 'drivers',
@@ -24,6 +27,9 @@ const routes: Routes = [
     SharedModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  declarations: [DriverSummaryComponent]
+  declarations: [DriverSummaryComponent],
+  providers: [
+    DriverSummaryService
+  ]
 })
 export class DriversModule { }
