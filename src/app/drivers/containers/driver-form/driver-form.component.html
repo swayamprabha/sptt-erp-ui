@@ -123,7 +123,7 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-xs-12 text-center">
-          <button type="button" class="btn btn-primary" routerLink="/drivers/new">Add new Driver</button>
+          <button type="button" class="btn btn-primary" (click)="newDriverForm()" replaceUrl='true'>Add new Driver</button>
           <button type="button" class="btn btn-outline" routerLink="/drivers">Goto Drivers Summary Table</button>
         </div>
       </div>

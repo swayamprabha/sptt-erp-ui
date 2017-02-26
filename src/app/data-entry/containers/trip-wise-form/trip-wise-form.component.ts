@@ -88,6 +88,12 @@ export class TripWiseFormComponent implements OnInit {
   }
 
   revert() { this.ngOnChanges(); }
+
+  newTripForm(){
+     this.tripSummaryForm.reset();
+     this.showModal = false;
+  }
+
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
     this.isFormSaving = true;
     value.alldaySummaryId = this.alldaySummary.id;

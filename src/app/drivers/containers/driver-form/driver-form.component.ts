@@ -81,6 +81,11 @@ export class DriverFormComponent implements OnInit {
 
   revert() { this.ngOnChanges(); }
 
+  newDriverForm(){
+     this.driverForm.reset();
+     this.showModal = false;
+  }
+  
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
     this.isFormSaving = true;
     if (this.editMode) {

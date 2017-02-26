@@ -172,7 +172,7 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <button type="button" class="btn btn-primary" routerLink="/day-summary/{{alldaySummary.id}}/trip/new">Add another Trip</button>
+                    <button type="button" class="btn btn-primary" (click)="newTripForm()">Add another Trip</button>
                     <button type="button" class="btn btn-outline" routerLink="/day-summary/{{alldaySummary.id}}/trips">Goto Trip Summary Table</button>
                 </div>
             </div>

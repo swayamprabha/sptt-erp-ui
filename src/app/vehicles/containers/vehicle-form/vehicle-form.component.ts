@@ -87,6 +87,11 @@ export class VehicleFormComponent implements OnInit {
 
   revert() { this.ngOnChanges(); }
 
+  newVehicleForm(){
+     this.vehicleForm.reset();
+     this.showModal = false;
+  }
+  
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
     this.isFormSaving = true;
     if (this.editMode) {
