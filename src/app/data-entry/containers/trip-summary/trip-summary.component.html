@@ -2,8 +2,9 @@
   <div class="col-md-4">
     <button routerLink="/day-summary/{{alldaySummary.id}}" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
   </div>
-  <div class="col-md-2 text-right">
+  <div class="col-md-4 text-right">
     <button type="button" routerLink="/day-summary/{{alldaySummary.id}}/trip/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Trip Entry</button>
+    <button type="submit" routerLink="/day-summary/" class="btn btn-sm btn-success"><clr-icon shape="success"></clr-icon> Done</button>
   </div>
 </div>
 <h2>Trips Summary for <b>{{alldaySummary.vehicle.regNumber}}</b> on <b>{{ alldaySummary.date | date }}</b></h2>
