@@ -26,6 +26,12 @@ export class DriverFormService {
       .map((response: Response) => response.json());
   }
 
+  deleteDriver(id: string): Observable<any> {
+    return this.http
+      .delete(`${environment.apiUrl}/Drivers/${id}`)
+      .map((response: Response) => response.json())
+  }
+
   updateDriver(id: string, payload: any) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

@@ -18,6 +18,8 @@ export class DriverFormComponent implements OnInit {
   driverForm: FormGroup;
   driver: any;
   showModal: boolean = false;
+  showDeleteDriverModal: boolean = false;
+  deletingDriver: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -84,6 +86,17 @@ export class DriverFormComponent implements OnInit {
   newDriverForm(){
      this.driverForm.reset();
      this.showModal = false;
+  }
+
+  deleteDriver(){
+    this.deletingDriver = true;
+    this.driverFormService
+    .deleteDriver(this.id)
+     .subscribe((data) => {
+        this.deletingDriver = false;
+        this.showDeleteDriverModal = false;
+        this.router.navigate(['/drivers']);
+    });
   }
   
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
