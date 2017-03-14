@@ -32,6 +32,12 @@ export class TripWiseFormService {
       .map((response: Response) => response.json());
   }
 
+  deleteTripSummary(id: string): Observable<any> {
+    return this.http
+      .delete(`${environment.apiUrl}/TripSummaries/${id}`)
+      .map((response: Response) => response.json())
+  }
+
   updateTripSummary(id: string, payload: any){
   let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

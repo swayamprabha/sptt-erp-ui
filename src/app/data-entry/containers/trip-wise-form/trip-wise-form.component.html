@@ -3,7 +3,7 @@
         <button routerLink="/day-summary/{{alldaySummary.id}}/trips" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
     </div>
     <div class="col-md-4 text-right">
-        <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
+        <button [hidden]="!editMode" (click)="showDeleteTripModal = true" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
     </div>
 </div>
 <h2 [hidden]="editMode">Add new Trip for <b>{{alldaySummary.vehicle.regNumber}}</b> on <b>{{ alldaySummary.date | date }}</b></h2>
@@ -182,3 +182,17 @@
         </div>
     </clr-modal>
 </form>
+<clr-modal [(clrModalOpen)]="showDeleteTripModal" [clrModalClosable]="true" [clrModalSize]="'sm'">
+  <h3 class="modal-title text-center">
+    <clr-icon shape="warning" class="is-warning" size="36"></clr-icon> Delete Trip</h3>
+  <div class="modal-body">
+     <p>Do you want to delete this Trip ?</p>
+     <br>
+    <div [hidden]="!deletingTrip" class="text-center"><span class="spinner spinner-inline"> Deleting...</span> <span>Deleting...</span></div>
+
+  </div>
+  <div class="modal-footer">
+    <button [hidden]="deletingTrip" class="btn btn-outline" (click)="showDeleteTripModal = false" type="button">Cancel</button>
+    <button [hidden]="deletingTrip" class="btn btn-primary" (click)="deleteTrip()" type="button">Delete</button>
+  </div>
+</clr-modal>

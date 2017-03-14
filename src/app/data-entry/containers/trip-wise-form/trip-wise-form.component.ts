@@ -20,6 +20,8 @@ export class TripWiseFormComponent implements OnInit {
   showModal: boolean = false;
   alldaySummary: any;
   operators: any[];
+  showDeleteTripModal: boolean = false;
+  deletingTrip: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -88,6 +90,17 @@ export class TripWiseFormComponent implements OnInit {
   }
 
   revert() { this.ngOnChanges(); }
+
+  deleteTrip(){
+    this.deletingTrip = true;
+    this.tripWiseFormService
+    .deleteTripSummary(this.tripId)
+     .subscribe((data) => {
+        this.deletingTrip = false;
+        this.showDeleteTripModal = false;
+        this.router.navigate(['/day-summary/'+ this.alldaySummary.id + '/trips']);
+    });
+  }
 
   newTripForm(){
      this.tripSummaryForm.reset();
