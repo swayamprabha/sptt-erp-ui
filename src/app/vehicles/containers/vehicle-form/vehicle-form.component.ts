@@ -19,6 +19,8 @@ export class VehicleFormComponent implements OnInit {
   vehicle: any;
   showModal: boolean = false;
   categories: any;
+  showDeleteVehicleModal: boolean = false;
+  deletingVehicle: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -92,6 +94,17 @@ export class VehicleFormComponent implements OnInit {
      this.showModal = false;
   }
   
+  deleteVehicle(){
+    this.deletingVehicle = true;
+    this.vehicleFormService
+    .deleteVehicle(this.id)
+     .subscribe((data) => {
+        this.deletingVehicle = false;
+        this.showDeleteVehicleModal = false;
+        this.router.navigate(['/vehicles']);
+    });
+  }
+
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
     this.isFormSaving = true;
     if (this.editMode) {

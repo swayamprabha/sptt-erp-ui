@@ -32,6 +32,12 @@ export class VehicleFormService {
       .map((response: Response) => response.json());
   }
 
+  deleteVehicle(id: string): Observable<any> {
+    return this.http
+      .delete(`${environment.apiUrl}/Vehicles/${id}`)
+      .map((response: Response) => response.json())
+  }
+
   updateVehicle(id: string, payload: any) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

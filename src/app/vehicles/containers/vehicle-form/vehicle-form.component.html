@@ -3,7 +3,7 @@
     <button routerLink="/vehicles" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
   </div>
   <div class="col-md-4 text-right">
-    <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
+    <button [hidden]="!editMode" (click)="showDeleteVehicleModal = true" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
   </div>
 </div>
 <h2 [hidden]="editMode">Add new Vehicle</h2>
@@ -150,3 +150,17 @@
     </div>
   </clr-modal>
 </form>
+<clr-modal [(clrModalOpen)]="showDeleteVehicleModal" [clrModalClosable]="true" [clrModalSize]="'sm'">
+  <h3 class="modal-title text-center">
+    <clr-icon shape="warning" class="is-warning" size="36"></clr-icon> Delete Vehicle</h3>
+  <div class="modal-body">
+     <p>Do you want to delete this vehicle ?</p>
+     <br>
+    <div [hidden]="!deletingVehicle" class="text-center"><span class="spinner spinner-inline"> Deleting...</span> <span>Deleting...</span></div>
+
+  </div>
+  <div class="modal-footer">
+    <button [hidden]="deletingVehicle" class="btn btn-outline" (click)="showDeleteVehicleModal = false" type="button">Cancel</button>
+    <button [hidden]="deletingVehicle" class="btn btn-primary" (click)="deleteVehicle()" type="button">Delete</button>
+  </div>
+</clr-modal>
