@@ -1,8 +1,8 @@
 <div class="row flex-items-xs-between">
-    <div class="col-md-4">
+    <div class="col-md-4 col-xs-6">
         <button routerLink="/day-summary/{{alldaySummary.id}}/trips" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
     </div>
-    <div class="col-md-4 text-right">
+    <div class="col-md-4 col-xs-6 text-right">
         <button [hidden]="!editMode" (click)="showDeleteTripModal = true" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
     </div>
 </div>

@@ -1,32 +1,32 @@
-<div class="row flex-items-md-right">
-    <div class="col-md-2 text-right">
-        <button type="button" routerLink="/day-summary/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add Daywise Entry</button>
+<div class="row flex-items-md-between">
+    <div class="col-xs-12 col-md-6">
+        <h2>Day Wise Summary</h2>
+    </div>
+    <div class="col-xs-12 col-md-3 text-right flex-xs-bottom">
+        <button type="button" routerLink="/day-summary/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> New Entry</button>
     </div>
 </div>
-<h2>Day Wise Summary</h2>
-<div>
-    <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-        <clr-dg-placeholder>There are no daywise entries!</clr-dg-placeholder>
-        <clr-dg-column [clrDgField]="'date'">Day</clr-dg-column>
-        <clr-dg-column>Vehicle Registration</clr-dg-column>
-        <clr-dg-column>Vehicle Brand</clr-dg-column>
-        <clr-dg-column [clrDgField]="'openingOdo'">Opening ODO</clr-dg-column>
-        <clr-dg-column [clrDgField]="'closingOdo'">Closing ODO</clr-dg-column>
-        <clr-dg-column [clrDgField]="'loggedinDuration'">Login Duration</clr-dg-column>
-        <clr-dg-column>Fuel</clr-dg-column>
-        <clr-dg-row routerLink="/day-summary/{{result.id}}" *ngFor="let result of results">
-            <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
-            <clr-dg-cell>{{result.vehicle.regNumber}}</clr-dg-cell>
-            <clr-dg-cell>{{result.vehicle.vehicleBrand}}</clr-dg-cell>
-            <clr-dg-cell>{{result.openingOdo}}</clr-dg-cell>
-            <clr-dg-cell>{{result.closingOdo}}</clr-dg-cell>
-            <clr-dg-cell>{{result.loggedinDuration}}</clr-dg-cell>
-            <clr-dg-cell>{{result.fuel}}</clr-dg-cell>
-        </clr-dg-row>
+<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+    <clr-dg-placeholder>There are no daywise entries!</clr-dg-placeholder>
+    <clr-dg-column [clrDgField]="'date'">Day</clr-dg-column>
+    <clr-dg-column>Vehicle Registration</clr-dg-column>
+    <clr-dg-column>Vehicle Brand</clr-dg-column>
+    <clr-dg-column [clrDgField]="'openingOdo'">Opening ODO</clr-dg-column>
+    <clr-dg-column [clrDgField]="'closingOdo'">Closing ODO</clr-dg-column>
+    <clr-dg-column [clrDgField]="'loggedinDuration'">Login Duration</clr-dg-column>
+    <clr-dg-column>Fuel</clr-dg-column>
+    <clr-dg-row routerLink="/day-summary/{{result.id}}" *ngFor="let result of results">
+        <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicle.regNumber}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicle.vehicleBrand}}</clr-dg-cell>
+        <clr-dg-cell>{{result.openingOdo}}</clr-dg-cell>
+        <clr-dg-cell>{{result.closingOdo}}</clr-dg-cell>
+        <clr-dg-cell>{{result.loggedinDuration}}</clr-dg-cell>
+        <clr-dg-cell>{{result.fuel}}</clr-dg-cell>
+    </clr-dg-row>
 
-        <clr-dg-footer>
-            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} All Day Summary
-            <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="currentPageSize"></clr-dg-pagination>
-        </clr-dg-footer>
-    </clr-datagrid>
-</div>
+    <clr-dg-footer>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} All Day Summary
+        <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="currentPageSize"></clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>

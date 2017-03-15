@@ -1,30 +1,30 @@
-<div class="row flex-items-md-right">
-    <div class="col-md-2 text-right">
+<div class="row flex-items-md-between">
+    <div class="col-xs-12 col-md-6">
+        <h2>Vehicles Summary</h2>
+    </div>
+    <div class="col-xs-12 col-md-3 text-right flex-xs-bottom">
         <button type="button" routerLink="/vehicles/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add New Vehicle</button>
     </div>
 </div>
-<h2>Vehicles Summary</h2>
-<div>
-    <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-        <clr-dg-placeholder>There are no vehicles!</clr-dg-placeholder>
-        <clr-dg-column [clrDgField]="'regNumber'">Reg #</clr-dg-column>
-        <clr-dg-column [clrDgField]="'vehicleBrand'">Brand</clr-dg-column>
-        <clr-dg-column [clrDgField]="'vehicleModel'">Model</clr-dg-column>
-        <clr-dg-column [clrDgField]="'vehicleAddress'">Category</clr-dg-column>
-        <clr-dg-column [clrDgField]="'ownershipType'">Ownership Type</clr-dg-column>
-        <clr-dg-column [clrDgField]="'serviceDuedata'">Service Duedate</clr-dg-column>
-        <clr-dg-row routerLink="/vehicles/{{result.id}}" *ngFor="let result of results">
-            <clr-dg-cell>{{result.regNumber}}</clr-dg-cell>
-            <clr-dg-cell>{{result.vehicleBrand}}</clr-dg-cell>
-            <clr-dg-cell>{{result.vehicleModel}}</clr-dg-cell>
-            <clr-dg-cell>{{result.vehicleCategory.categoryName}}</clr-dg-cell>
-            <clr-dg-cell>{{result.ownershipType}}</clr-dg-cell>
-            <clr-dg-cell>{{result.serviceDuedata | date}}</clr-dg-cell>
-        </clr-dg-row>
+<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+    <clr-dg-placeholder>There are no vehicles!</clr-dg-placeholder>
+    <clr-dg-column [clrDgField]="'regNumber'">Reg #</clr-dg-column>
+    <clr-dg-column [clrDgField]="'vehicleBrand'">Brand</clr-dg-column>
+    <clr-dg-column [clrDgField]="'vehicleModel'">Model</clr-dg-column>
+    <clr-dg-column [clrDgField]="'vehicleAddress'">Category</clr-dg-column>
+    <clr-dg-column [clrDgField]="'ownershipType'">Ownership Type</clr-dg-column>
+    <clr-dg-column [clrDgField]="'serviceDuedata'">Service Duedate</clr-dg-column>
+    <clr-dg-row routerLink="/vehicles/{{result.id}}" *ngFor="let result of results">
+        <clr-dg-cell>{{result.regNumber}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicleBrand}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicleModel}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicleCategory.categoryName}}</clr-dg-cell>
+        <clr-dg-cell>{{result.ownershipType}}</clr-dg-cell>
+        <clr-dg-cell>{{result.serviceDuedata | date}}</clr-dg-cell>
+    </clr-dg-row>
 
-        <clr-dg-footer>
-            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} Vehicles
-            <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="currentPageSize"></clr-dg-pagination>
-        </clr-dg-footer>
-    </clr-datagrid>
-</div>
+    <clr-dg-footer>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} Vehicles
+        <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="currentPageSize"></clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>

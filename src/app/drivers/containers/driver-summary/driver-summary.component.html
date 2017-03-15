@@ -1,34 +1,34 @@
-<div class="row flex-items-md-right">
-    <div class="col-md-2 text-right">
+<div class="row flex-items-md-between">
+    <div class="col-xs-12 col-md-6">
+        <h2>Drivers Summary</h2>
+    </div>
+    <div class="col-xs-12 col-md-3 text-right flex-xs-bottom">
         <button type="button" routerLink="/drivers/new" class="btn btn-sm"><clr-icon shape="add"></clr-icon> Add New Driver</button>
     </div>
 </div>
-<h2>Drivers Summary</h2>
-<div>
-    <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-        <clr-dg-placeholder>There are no drivers!</clr-dg-placeholder>
-        <clr-dg-column [clrDgField]="'driverName'">Name</clr-dg-column>
-        <clr-dg-column [clrDgField]="'dlNumber'">DL Number</clr-dg-column>
-        <clr-dg-column [clrDgField]="'driverDOB'">DOB</clr-dg-column>
-        <clr-dg-column [clrDgField]="'driverAddress'">Address</clr-dg-column>
-        <clr-dg-column [clrDgField]="'driverDOA'">DOA</clr-dg-column>
-        <clr-dg-column [clrDgField]="'driverContact'">Contact</clr-dg-column>
-        <clr-dg-column [clrDgField]="'dlExpiry'">DL Expiry</clr-dg-column>
-        <clr-dg-column [clrDgField]="'badgeExpiry'">Badge Expiry</clr-dg-column>
-        <clr-dg-row routerLink="/drivers/{{result.id}}" *ngFor="let result of results">
-            <clr-dg-cell>{{result.driverName}}</clr-dg-cell>
-            <clr-dg-cell>{{result.dlNumber}}</clr-dg-cell>
-            <clr-dg-cell>{{result.driverDOB | date}}</clr-dg-cell>
-            <clr-dg-cell>{{result.driverAddress}}</clr-dg-cell>
-            <clr-dg-cell>{{result.driverDOA | date}}</clr-dg-cell>
-            <clr-dg-cell>{{result.driverContact}}</clr-dg-cell>
-            <clr-dg-cell>{{result.dlExpiry | date }}</clr-dg-cell>
-            <clr-dg-cell>{{result.badgeExpiry | date}}</clr-dg-cell>
-        </clr-dg-row>
+<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+    <clr-dg-placeholder>There are no drivers!</clr-dg-placeholder>
+    <clr-dg-column [clrDgField]="'driverName'">Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'dlNumber'">DL Number</clr-dg-column>
+    <clr-dg-column [clrDgField]="'driverDOB'">DOB</clr-dg-column>
+    <clr-dg-column [clrDgField]="'driverAddress'">Address</clr-dg-column>
+    <clr-dg-column [clrDgField]="'driverDOA'">DOA</clr-dg-column>
+    <clr-dg-column [clrDgField]="'driverContact'">Contact</clr-dg-column>
+    <clr-dg-column [clrDgField]="'dlExpiry'">DL Expiry</clr-dg-column>
+    <clr-dg-column [clrDgField]="'badgeExpiry'">Badge Expiry</clr-dg-column>
+    <clr-dg-row routerLink="/drivers/{{result.id}}" *ngFor="let result of results">
+        <clr-dg-cell>{{result.driverName}}</clr-dg-cell>
+        <clr-dg-cell>{{result.dlNumber}}</clr-dg-cell>
+        <clr-dg-cell>{{result.driverDOB | date}}</clr-dg-cell>
+        <clr-dg-cell>{{result.driverAddress}}</clr-dg-cell>
+        <clr-dg-cell>{{result.driverDOA | date}}</clr-dg-cell>
+        <clr-dg-cell>{{result.driverContact}}</clr-dg-cell>
+        <clr-dg-cell>{{result.dlExpiry | date }}</clr-dg-cell>
+        <clr-dg-cell>{{result.badgeExpiry | date}}</clr-dg-cell>
+    </clr-dg-row>
 
-        <clr-dg-footer>
-            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} Drivers
-            <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="currentPageSize"></clr-dg-pagination>
-        </clr-dg-footer>
-    </clr-datagrid>
-</div>
+    <clr-dg-footer>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} Drivers
+        <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="currentPageSize"></clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>

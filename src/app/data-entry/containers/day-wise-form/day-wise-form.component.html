@@ -2,7 +2,7 @@
     <div class="col-md-4">
         <button routerLink="/day-summary" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
     </div>
-    <div class="col-md-4 text-right">
+    <div class="col-md-8 text-right">
         <button [hidden]="!editMode" routerLink="/day-summary/{{id}}/trips" type="button" class="btn btn-sm"><clr-icon shape="view-list"></clr-icon> Trips Summary for this day</button>
         <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
     </div>
