@@ -34,11 +34,8 @@ export class DaySummaryService {
     return this;
   }
   fetch(skip: number = 0, limit: number): Observable<any[]> {
-
-    return Observable.forkJoin(
-      this.http.get(`${environment.apiUrl}/${this._summaryType}/count`).map((res: Response) => res.json()),
-      this.http.get(`${environment.apiUrl}/${this._summaryType}?filter[limit]=${limit}&filter[skip]=${skip}${this._relationSegment}${this._sortSegment}`)
-        .map((response: Response) => response.json())
-    );
+    return this.http
+      .get(`${environment.apiUrl}/${this._summaryType}?filter[limit]=${limit}&filter[skip]=${skip}${this._relationSegment}${this._sortSegment}`)
+      .map((response: Response) => response.json());
   }
 }
