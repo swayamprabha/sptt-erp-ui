@@ -11,83 +11,81 @@
 <h2 [hidden]="!editMode">Edit All Day Summary</h2>
 <form (ngSubmit)="onSubmit(alldaySummaryForm)" [formGroup]="alldaySummaryForm" novalidate>
     <section class="form-block">
-        <div class="form-group row">
-            <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-                <label class="required" for="date">Date</label>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <label for="date" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
-                    [class.invalid]="alldaySummaryForm.get('date').invalid
+        <div class="form-group">
+            <label class="required" for="date">Date</label>
+            <label for="date" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+                [class.invalid]="alldaySummaryForm.get('date').invalid
                     && (alldaySummaryForm.get('date').dirty || alldaySummaryForm.get('date').touched)">
-                    <input type="date" formControlName="date" id="date">
-                    <span class="tooltip-content">
-                    This field cannot be empty!
-                    </span>
-                    </label>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-                <label for="vehicleType">Vehicle Type</label>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <div class="select">
-                    <select formControlName="vehicleType" id="vehicleType">
+                <input type="date" formControlName="date" id="date">
+                <span class="tooltip-content">
+                This field cannot be empty!
+                </span>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="required" for="vehicleType">Vehicle Type</label>
+            <div class="select">
+                <select formControlName="vehicleType" id="vehicleType">
                     <option disabled>Choose a type</option>
                     <option value="OWN">Own</option>
                     <option value="LEASE">Lease</option>
                 </select>
-                </div>
             </div>
-            <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-                <label for="vehicleId">Vehicle #</label>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        </div>
+        <div class="form-group">
+            <label class="required" for="vehicleId">Vehicle #</label>
                 <div class="select">
                     <select formControlName="vehicleId" id="vehicleId">
                     <option disabled>Choose a vehicle</option>
                     <option *ngFor="let v of vehicles" [ngValue]="v.id">{{v.regNumber}}</option>
-                </select>
-                </div>
-            </div>
-            <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-                <label for="driverId">Driver</label>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                <div class="select">
-                    <select id="driver" formControlName="driverId" id="driverId">
+                    </select>
+                </div>                 
+        </div>
+        <div class="form-group">
+            <label for="driverId">Driver</label>
+            <div class="select">
+                <select id="driver" formControlName="driverId" id="driverId">
                      <option [ngValue]="" disabled>Choose a driver</option>
                     <option *ngFor="let d of drivers" [ngValue]="d.id">{{d.driverName}}</option>
                 </select>
-                </div>
             </div>
         </div>
     </section>
     <section class="form-block">
         <label>Distance & Time</label>
-        <div class="form-group row">
-            <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                <label class="required" for="loggedinDuration">Logged in Duration</label>
-            </div>
-            <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                <label for="loggedinDuration" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
-                    [class.invalid]="alldaySummaryForm.get('loggedinDuration').invalid
+        <div class="form-group">
+            <label class="required" for="loggedinDuration">Logged in Duration</label>
+            <label for="loggedinDuration" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+                [class.invalid]="alldaySummaryForm.get('loggedinDuration').invalid
                     && (alldaySummaryForm.get('loggedinDuration').dirty || alldaySummaryForm.get('loggedinDuration').touched)">
                     <input class="form-control" type="number" id="loggedinDuration" formControlName="loggedinDuration" placeholder="">
                     <span class="tooltip-content">
                         This field cannot be empty!
                     </span>
                     </label>
-            </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                <label for="openingOdo">Opening ODO</label>
-            </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+        </div>
+        <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'">
+            <div class="form-group">
+                <label class="required" for="openingOdo">Opening ODO</label>
+                <label for="openingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+                    [class.invalid]="alldaySummaryForm.get('openingOdo').invalid
+                    && (alldaySummaryForm.get('openingOdo').dirty || alldaySummaryForm.get('openingOdo').touched)">
                 <input class="form-control" type="number" id="openingOdo" formControlName="openingOdo" placeholder="">
+                 <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+                    </label>
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                <label for="closingOdo">Closing ODO</label>
-            </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <label class="required" for="closingOdo">Closing ODO</label>
+                <label for="closingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+                    [class.invalid]="alldaySummaryForm.get('closingOdo').invalid
+                    && (alldaySummaryForm.get('closingOdo').dirty || alldaySummaryForm.get('closingOdo').touched)">
                 <input class="form-control" type="number" id="closingOdo" formControlName="closingOdo" placeholder="">
+                 <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+                    </label>
             </div>
         </div>
     </section>

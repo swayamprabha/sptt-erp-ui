@@ -35,12 +35,12 @@ export class DayWiseFormComponent implements OnInit {
     // Build the form
     this.alldaySummaryForm = this.fb.group({
       date: ['', [Validators.required]],
-      vehicleType: ['OWN'],
-      vehicleId: [''],
+      vehicleType: ['OWN', Validators.required],
+      vehicleId: ['', Validators.required],
       driverId: [''],
       loggedinDuration: ['', Validators.required],
-      openingOdo: [''],
-      closingOdo: [''],
+      openingOdo: ['', Validators.required],
+      closingOdo: ['', Validators.required],
       cashPaidByDriver: [''],
       olaPayment: [''],
       bankTransfer: [''],
@@ -90,6 +90,26 @@ export class DayWiseFormComponent implements OnInit {
           this.id = params['id'];
         }
       });
+    
+     this.alldaySummaryForm.get('vehicleType').valueChanges.subscribe(
+       (vehicleType: string) => {
+         switch(vehicleType){
+           case 'OWN' : {
+            this.alldaySummaryForm.get('openingOdo').setValidators([Validators.required]);
+            this.alldaySummaryForm.get('closingOdo').setValidators([Validators.required]);
+            break;
+           }
+           case 'LEASE' : {
+            this.alldaySummaryForm.get('openingOdo').clearValidators();
+            this.alldaySummaryForm.get('closingOdo').clearValidators();
+            break;
+           }
+         }
+         this.alldaySummaryForm.get('openingOdo').updateValueAndValidity();
+         this.alldaySummaryForm.get('closingOdo').updateValueAndValidity();
+       }
+     );
+
   }
 
   ngOnChanges() {
