@@ -23,7 +23,7 @@ export class DayWiseFormService {
 
   getAllDaySummary(id: string): Observable<any> {
     return this.http
-      .get(`${environment.apiUrl}/AlldaySummaries/${id}?filter[include]=vehicle&filter[include]=driver`)
+      .get(`${environment.apiUrl}/AlldaySummaries/${id}?filter[include]=vehicle`)
       .map((response: Response) => response.json())
       .catch((error:any) => Observable.throw(error.json().status));
 

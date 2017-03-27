@@ -37,7 +37,6 @@ export class DayWiseFormComponent implements OnInit {
       date: ['', [Validators.required]],
       vehicleType: ['OWN', Validators.required],
       vehicleId: ['', Validators.required],
-      driverId: [''],
       loggedinDuration: ['', Validators.required],
       openingOdo: ['', Validators.required],
       closingOdo: ['', Validators.required],
@@ -54,8 +53,7 @@ export class DayWiseFormComponent implements OnInit {
       throughBank: [''],
       bata: [''],
       miscExpense: [''],
-      expenseRemarks: [''],
-      otherRemarks: ['']
+      remarks: ['']
     });
 
     // Get list of Vehicles  

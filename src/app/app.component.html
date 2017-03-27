@@ -6,10 +6,6 @@
         <span class="title">SPTT-ERP</span>
       </a>
     </div>
-    <div class="header-nav" [clr-nav-level]="1">
-      <a [routerLink]="[ '/day-summary' ]" routerLinkActive="active" class="nav-link"><span class="nav-text">Day Summary</span></a>
-      <a [routerLink]="['/about']" routerLinkActive="active" class="nav-link"><span class="nav-text">Business Intellegence</span></a>
-    </div>
     <div class="header-actions">
       <clr-dropdown class="dropdown bottom-right">
         <button class="nav-icon" clrDropdownToggle>
@@ -18,8 +14,6 @@
             </button>
         <div class="dropdown-menu">
           <a [routerLink]="['/account']" clrDropdownItem>Account</a>
-          <a [routerLink]="['/drivers']" clrDropdownItem>Drivers</a>
-          <a [routerLink]="['/vehicles']" clrDropdownItem>Vehicles</a>
           <a href="#" clrDropdownItem>Preferences</a>
           <a [routerLink]="['/about']" clrDropdownItem>About</a>
           <a href="#" clrDropdownItem>Log out</a>
@@ -31,9 +25,12 @@
     <div class="content-area">
       <router-outlet></router-outlet>
     </div>
-    <nav class="sidenav" [clr-nav-level]="2">
+    <nav class="sidenav" [clr-nav-level]="1">
       <section class="sidenav-content">
-        <a href="/" class="nav-link active">Home</a>
+        <a [routerLink]="[ '/day-summary' ]" routerLinkActive="active" class="nav-link">Day Summary</a>
+        <a [routerLink]="[ '/drivers' ]" routerLinkActive="active" class="nav-link">Drivers</a>
+        <a [routerLink]="[ '/vehicles' ]" routerLinkActive="active" class="nav-link">Vehicles</a>
+
       </section>
     </nav>
   </div>

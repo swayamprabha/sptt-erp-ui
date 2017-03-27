@@ -3,7 +3,6 @@
         <button routerLink="/day-summary" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
     </div>
     <div class="col-md-8 text-right">
-        <button [hidden]="!editMode" routerLink="/day-summary/{{id}}/trips" type="button" class="btn btn-sm"><clr-icon shape="view-list"></clr-icon> Trips Summary for this day</button>
         <button [hidden]="!editMode" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
     </div>
 </div>
@@ -40,15 +39,6 @@
                     <option *ngFor="let v of vehicles" [ngValue]="v.id">{{v.regNumber}}</option>
                     </select>
                 </div>                 
-        </div>
-        <div class="form-group">
-            <label for="driverId">Driver</label>
-            <div class="select">
-                <select id="driver" formControlName="driverId" id="driverId">
-                     <option [ngValue]="" disabled>Choose a driver</option>
-                    <option *ngFor="let d of drivers" [ngValue]="d.id">{{d.driverName}}</option>
-                </select>
-            </div>
         </div>
     </section>
     <section class="form-block">
@@ -181,18 +171,10 @@
         <label>Remarks</label>
         <div class="form-group row">
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                <label for="expenseRemarks">Expense Remarks</label>
+                <label for="remarks">Remarks</label>
             </div>
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                <textarea id="expenseRemarks" rows="5" formControlName="expenseRemarks"></textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                <label for="otherRemarks">Other Remarks</label>
-            </div>
-            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                <textarea id="otherRemarks" rows="5" formControlName="otherRemarks"></textarea>
+                <textarea id="remarks" rows="5" formControlName="remarks"></textarea>
             </div>
         </div>
         <button *ngIf="!editMode" type="submit" class="btn btn-primary" [disabled]="alldaySummaryForm.invalid">Save</button>
@@ -207,7 +189,6 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-xs-12 text-center">
-                    <button type="button" class="btn btn-primary" routerLink="/day-summary/{{id}}/trips">Trips Summary for this day</button>
                     <button type="button" class="btn btn-outline" routerLink="/day-summary">Goto Day Summary Table</button>
                 </div>
             </div>

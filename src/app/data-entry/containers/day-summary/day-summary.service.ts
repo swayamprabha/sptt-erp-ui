@@ -13,7 +13,7 @@ export class DaySummaryService {
   private _summaryType: string = 'AlldaySummaries';
   private _sortBy: string;
   private _sortSegment: string = '';
-  private _relationSegment: string = '&filter[include]=vehicle&filter[include]=driver';
+  private _relationSegment: string = '&filter[include]=vehicle';
 
   constructor(private http: Http) { }
 
