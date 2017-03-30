@@ -20,6 +20,7 @@ export class DayWiseFormComponent implements OnInit {
   alldaySummaryForm: FormGroup;
   alldaySummary: any;
   showModal: boolean = false;
+  selectedVehicleType: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +36,6 @@ export class DayWiseFormComponent implements OnInit {
     // Build the form
     this.alldaySummaryForm = this.fb.group({
       date: ['', [Validators.required]],
-      vehicleType: ['OWN', Validators.required],
       vehicleId: ['', Validators.required],
       loggedinDuration: ['', Validators.required],
       openingOdo: ['', Validators.required],
@@ -76,6 +76,7 @@ export class DayWiseFormComponent implements OnInit {
           this.alldaySummaryForm.patchValue({
             date: new Date(this.alldaySummary.date).toISOString().slice(0, 10)
           });
+          this.selectedVehicleType = data.alldaySummary.vehicle.ownershipType;
         } else {
           this.editMode = false;
         }
@@ -88,25 +89,6 @@ export class DayWiseFormComponent implements OnInit {
           this.id = params['id'];
         }
       });
-    
-     this.alldaySummaryForm.get('vehicleType').valueChanges.subscribe(
-       (vehicleType: string) => {
-         switch(vehicleType){
-           case 'OWN' : {
-            this.alldaySummaryForm.get('openingOdo').setValidators([Validators.required]);
-            this.alldaySummaryForm.get('closingOdo').setValidators([Validators.required]);
-            break;
-           }
-           case 'LEASE' : {
-            this.alldaySummaryForm.get('openingOdo').clearValidators();
-            this.alldaySummaryForm.get('closingOdo').clearValidators();
-            break;
-           }
-         }
-         this.alldaySummaryForm.get('openingOdo').updateValueAndValidity();
-         this.alldaySummaryForm.get('closingOdo').updateValueAndValidity();
-       }
-     );
 
   }
 
@@ -131,7 +113,6 @@ export class DayWiseFormComponent implements OnInit {
       this.dayWiseFormService
         .saveNewDailySummary(value)
         .subscribe((data: any) => {
-          console.log(data);
           this.id = data.id;
           this.isFormSaving = false;
           this.showModal = true;
@@ -142,5 +123,20 @@ export class DayWiseFormComponent implements OnInit {
     }
   }
 
-
+   onVehicleTypeChange(vehicleType){
+         switch(vehicleType){
+           case 'OWN' : {
+            this.alldaySummaryForm.get('openingOdo').setValidators([Validators.required]);
+            this.alldaySummaryForm.get('closingOdo').setValidators([Validators.required]);
+            break;
+           }
+           case 'LEASE' : {
+            this.alldaySummaryForm.get('openingOdo').clearValidators();
+            this.alldaySummaryForm.get('closingOdo').clearValidators();
+            break;
+           }
+         }
+         this.alldaySummaryForm.get('openingOdo').updateValueAndValidity();
+         this.alldaySummaryForm.get('closingOdo').updateValueAndValidity();
+       }
 }

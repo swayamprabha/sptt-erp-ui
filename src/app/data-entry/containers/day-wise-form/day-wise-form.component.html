@@ -21,17 +21,17 @@
                 </span>
             </label>
         </div>
-        <div class="form-group">
+        <div [hidden]="editMode" class="form-group">
             <label class="required" for="vehicleType">Vehicle Type</label>
             <div class="select">
-                <select formControlName="vehicleType" id="vehicleType">
+                <select (change)="onVehicleTypeChange($event.target.value)" id="vehicleType">
                     <option disabled>Choose a type</option>
                     <option value="OWN">Own</option>
                     <option value="LEASE">Lease</option>
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        <div [hidden]="editMode" class="form-group">
             <label class="required" for="vehicleId">Vehicle #</label>
                 <div class="select">
                     <select formControlName="vehicleId" id="vehicleId">
@@ -54,7 +54,7 @@
                     </span>
                     </label>
         </div>
-        <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'">
+        <div *ngIf="selectedVehicleType === 'OWN'">
             <div class="form-group">
                 <label class="required" for="openingOdo">Opening ODO</label>
                 <label for="openingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
@@ -82,10 +82,10 @@
     <section class="form-block">
         <label>Cash Related</label>
         <div class="form-group row">
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                 <label for="cashPaidByDriver">Cash paid by driver</label>
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
                 <input class="form-control" type="number" id="cashPaidByDriver" formControlName="cashPaidByDriver" placeholder="">
             </div>
             <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
@@ -117,22 +117,22 @@
     <section class="form-block">
         <label>Expense Releated</label>
         <div class="form-group row">
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                 <label for="fuel">Fuel</label>
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
                 <input class="form-control" type="number" id="fuel" formControlName="fuel" placeholder="">
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                 <label for="parkingFee">Parking Fee</label>
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
                 <input class="form-control" type="number" id="parkingFee" formControlName="parkingFee" placeholder="">
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                 <label for="fine">Fine</label>
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                 <input class="form-control" type="number" id="fine" formControlName="fine" placeholder="">
             </div>
             <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
@@ -141,22 +141,22 @@
             <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                 <input class="form-control" type="number" id="internetCharges" formControlName="internetCharges" placeholder="">
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                 <label for="toll">Toll</label>
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                 <input class="form-control" type="number" id="toll" formControlName="toll" placeholder="">
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                 <label for="throughBank">Through Bank</label>
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                 <input class="form-control" type="number" id="throughBank" formControlName="throughBank" placeholder="">
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                 <label for="bata">BATA</label>
             </div>
-            <div *ngIf="alldaySummaryForm.value.vehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+            <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                 <input class="form-control" type="number" id="bata" formControlName="bata" placeholder="">
             </div>
             <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
