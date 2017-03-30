@@ -56,11 +56,6 @@ export class DayWiseFormComponent implements OnInit {
       remarks: ['']
     });
 
-    // Get list of Vehicles  
-    this.dayWiseFormService
-      .getVehicles()
-      .subscribe((data) => this.vehicles = data);
-
     // Get list of Drivers
     this.dayWiseFormService
       .getDrivers()
@@ -123,20 +118,30 @@ export class DayWiseFormComponent implements OnInit {
     }
   }
 
-   onVehicleTypeChange(vehicleType){
-         switch(vehicleType){
-           case 'OWN' : {
-            this.alldaySummaryForm.get('openingOdo').setValidators([Validators.required]);
-            this.alldaySummaryForm.get('closingOdo').setValidators([Validators.required]);
-            break;
-           }
-           case 'LEASE' : {
-            this.alldaySummaryForm.get('openingOdo').clearValidators();
-            this.alldaySummaryForm.get('closingOdo').clearValidators();
-            break;
-           }
-         }
-         this.alldaySummaryForm.get('openingOdo').updateValueAndValidity();
-         this.alldaySummaryForm.get('closingOdo').updateValueAndValidity();
-       }
+  onVehicleTypeChange(vehicleType) {
+    switch (vehicleType) {
+      case 'OWN': {
+        this.selectedVehicleType = 'OWN';
+        // Get list of Vehicles for OWN type
+        this.dayWiseFormService
+          .getVehicles(vehicleType)
+          .subscribe((data) => this.vehicles = data);
+        this.alldaySummaryForm.get('openingOdo').setValidators([Validators.required]);
+        this.alldaySummaryForm.get('closingOdo').setValidators([Validators.required]);
+        break;
+      }
+      case 'LEASE': {
+        this.selectedVehicleType = 'LEASE';
+         // Get list of Vehicles for LEASE type
+        this.dayWiseFormService
+          .getVehicles(vehicleType)
+          .subscribe((data) => this.vehicles = data);
+        this.alldaySummaryForm.get('openingOdo').clearValidators();
+        this.alldaySummaryForm.get('closingOdo').clearValidators();
+        break;
+      }
+    }
+    this.alldaySummaryForm.get('openingOdo').updateValueAndValidity();
+    this.alldaySummaryForm.get('closingOdo').updateValueAndValidity();
+  }
 }

@@ -9,9 +9,9 @@ import 'rxjs/add/operator/catch';
 export class DayWiseFormService {
 
   constructor(private http: Http) { }
-  getVehicles(): Observable<any[]> {
+  getVehicles(vehicleType: string): Observable<any[]> {
     return this.http
-      .get(`${environment.apiUrl}/Vehicles`)
+      .get(`${environment.apiUrl}/Vehicles?filter[where][ownershipType]=${vehicleType}`)
       .map((response: Response) => response.json());
   }
 
