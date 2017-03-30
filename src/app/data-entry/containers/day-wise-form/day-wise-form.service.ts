@@ -21,6 +21,12 @@ export class DayWiseFormService {
       .map((response: Response) => response.json());
   }
 
+   getOperators(vehicleCategoryId: string): Observable<any[]> {
+    return this.http
+      .get(`${environment.apiUrl}/OperatorCategories?filter[where][vehicleCategories][inq]=${vehicleCategoryId}`)
+      .map((response: Response) => response.json());
+  }
+
   getAllDaySummary(id: string): Observable<any> {
     return this.http
       .get(`${environment.apiUrl}/AlldaySummaries/${id}?filter[include]=vehicle`)

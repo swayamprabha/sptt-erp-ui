@@ -13,7 +13,9 @@ import { DayWiseFormService } from './day-wise-form.service';
 export class DayWiseFormComponent implements OnInit {
 
   vehicles: any[];
+  filteredVehicle: any;
   drivers: any[];
+  operatorTypes: any[];
   isFormSaving: boolean = false;
   editMode: boolean = false;
   id: string;
@@ -84,6 +86,16 @@ export class DayWiseFormComponent implements OnInit {
           this.id = params['id'];
         }
       });
+    
+    // Get list of Operators for the selected vehicle
+    this.alldaySummaryForm.get('vehicleId').valueChanges.subscribe(
+      (vehicleId: string) => {
+        this.filteredVehicle = this.vehicles.find(v => v.id === vehicleId);
+        this.dayWiseFormService
+          .getOperators(this.filteredVehicle.vehicleCategoryId)
+          .subscribe((data) => this.operatorTypes = data);
+      }
+    );
 
   }
 
@@ -119,6 +131,7 @@ export class DayWiseFormComponent implements OnInit {
   }
 
   onVehicleTypeChange(vehicleType) {
+    this.operatorTypes = [];
     switch (vehicleType) {
       case 'OWN': {
         this.selectedVehicleType = 'OWN';
@@ -132,7 +145,7 @@ export class DayWiseFormComponent implements OnInit {
       }
       case 'LEASE': {
         this.selectedVehicleType = 'LEASE';
-         // Get list of Vehicles for LEASE type
+        // Get list of Vehicles for LEASE type
         this.dayWiseFormService
           .getVehicles(vehicleType)
           .subscribe((data) => this.vehicles = data);
