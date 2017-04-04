@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 import { DayWiseFormService } from './day-wise-form.service';
 
@@ -23,6 +23,7 @@ export class DayWiseFormComponent implements OnInit {
   alldaySummary: any;
   showModal: boolean = false;
   selectedVehicleType: string;
+  operatorType: string = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -55,6 +56,7 @@ export class DayWiseFormComponent implements OnInit {
       throughBank: [''],
       bata: [''],
       miscExpense: [''],
+      tripSummary: this.fb.array([]),
       remarks: ['']
     });
 
@@ -73,7 +75,17 @@ export class DayWiseFormComponent implements OnInit {
           this.alldaySummaryForm.patchValue({
             date: new Date(this.alldaySummary.date).toISOString().slice(0, 10)
           });
-          this.selectedVehicleType = data.alldaySummary.vehicle.ownershipType;
+          this.selectedVehicleType = this.alldaySummary.vehicle.ownershipType;
+          this.onVehicleTypeChange(this.selectedVehicleType);
+          // Get list of Operators for the vehicle
+          this.dayWiseFormService
+            .getOperators(this.alldaySummary.vehicle.vehicleCategoryId)
+            .subscribe((data) => this.operatorTypes = data);
+          // set trip summaries manually cause it's a form FormArray
+          // to get the edit feature for FormArray should write 3 extra lines :( https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#form-array 
+          const trips = this.alldaySummary.tripSummary.map(trip => this.fb.group(trip));
+          const tripsFormArray = this.fb.array(trips);
+          this.alldaySummaryForm.setControl('tripSummary', tripsFormArray);
         } else {
           this.editMode = false;
         }
@@ -86,7 +98,7 @@ export class DayWiseFormComponent implements OnInit {
           this.id = params['id'];
         }
       });
-    
+
     // Get list of Operators for the selected vehicle
     this.alldaySummaryForm.get('vehicleId').valueChanges.subscribe(
       (vehicleId: string) => {
@@ -99,11 +111,27 @@ export class DayWiseFormComponent implements OnInit {
 
   }
 
+  get tripSummary(): FormArray {
+    return this.alldaySummaryForm.get('tripSummary') as FormArray;
+  };
+
+  addOperatorCategory() {
+    if (this.operatorType) {
+      let filteredOperatorTypes = this.operatorTypes.find(o => o.id === this.operatorType);
+      this.tripSummary.push(this.fb.group(this.dayWiseFormService.createOperatorCategory(filteredOperatorTypes.operatorName, this.selectedVehicleType)));
+    }
+  }
+
   ngOnChanges() {
     this.alldaySummaryForm.reset(this.alldaySummary);
     this.alldaySummaryForm.patchValue({
       date: new Date(this.alldaySummary.date).toISOString().slice(0, 10)
     });
+    // set trip summaries manually cause it's a form FormArray
+    // to get the edit feature for FormArray should write 3 extra lines :( https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#form-array 
+    const trips = this.alldaySummary.tripSummary.map(trip => this.fb.group(trip));
+    const tripsFormArray = this.fb.array(trips);
+    this.alldaySummaryForm.setControl('tripSummary', tripsFormArray);
   }
 
   revert() { this.ngOnChanges(); }

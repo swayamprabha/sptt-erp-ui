@@ -38,7 +38,7 @@
                     <option *ngFor="let v of vehicles" [ngValue]="v.id">{{v.regNumber}}</option>
                     </select>
             </div>
-             <span><b>{{ filteredVehicle?.vehicleBrand }} {{ filteredVehicle?.vehicleModel }}</b></span>
+            <span><b>{{ filteredVehicle?.vehicleBrand }} {{ filteredVehicle?.vehicleModel }}</b></span>
         </div>
     </section>
     <div *ngIf="selectedVehicleType">
@@ -176,14 +176,28 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <div class="select">
-                        <select id="operatorType">
+                        <select [(ngModel)]="operatorType" [ngModelOptions]="{standalone: true}" id="operatorType">
                             <option disabled>Choose an operator</option>
                             <option *ngFor="let o of operatorTypes" [ngValue]="o.id">{{o.operatorName}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <button type="submit" class="btn btn-sm btn-success"><clr-icon shape="add"></clr-icon> Add</button>
+                    <button type="button" [disabled]="operatorType === null" class="btn btn-sm btn-success" (click)="addOperatorCategory()"><clr-icon shape="add"></clr-icon> Add</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div formArrayName="tripSummary" style="border: 1px solid #ccc;border-radius: 3px;">
+                        <div *ngFor="let trip of tripSummary.controls; let i=index;let l=last" [formGroupName]="i">
+                            <div [ngSwitch]="trip.value.operatorCategory" style="padding-top:25px;padding-right:25px;padding-left:25px">
+                                <trip-ola-city *ngSwitchCase="'Ola-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)"></trip-ola-city>
+                            </div>
+                        </div>
+                        <div [hidden]="tripSummary.controls.length !== 0" style="padding-bottom:25px">
+                          <h3 class="text-center"><clr-icon shape="info-circle" class="is-highlight" size="36"></clr-icon>No Trip entries.</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

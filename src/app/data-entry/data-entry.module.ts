@@ -10,7 +10,7 @@ import { DaySummaryComponent } from './containers/day-summary/day-summary.compon
 import { DayWiseFormComponent } from './containers/day-wise-form/day-wise-form.component';
 
 // components
-// import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
+import { TripOlaCityComponent } from './components/trip-ola-city/trip-ola-city.component';
 // import { PassengerDetailComponent } from './components/passenger-detail/passenger-detail.component';
 // import { PassengerFormComponent } from './components/passenger-form/passenger-form.component';
 
@@ -40,6 +40,7 @@ const routes: Routes = [
   declarations: [
     DaySummaryComponent,
     DayWiseFormComponent,
+    TripOlaCityComponent,
   ],
   imports: [
     CommonModule,

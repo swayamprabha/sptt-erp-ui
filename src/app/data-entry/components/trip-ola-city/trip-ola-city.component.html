@@ -1,0 +1,27 @@
+<section class="form-block" [formGroup]="item" style="border: 1px solid #ccc;border-radius: 3px;padding:15px">
+  <label> {{index+1}}) Ola City Trip</label>
+  <div class="form-group">
+    <label class="required" for="cashCollected">Cash Collected</label>
+    <label for="cashCollected" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+      [class.invalid]="item.get('cashCollected').invalid
+                    && (item.get('cashCollected').dirty || item.get('cashCollected').touched)">
+    <input formControlName="cashCollected" type="number">
+     <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+                    </label>
+  </div>
+  <div class="form-group">
+    <label for="olaMoney">Ola Money</label>
+    <input formControlName="olaMoney" type="number">
+  </div>
+  <div class="form-group">
+    <label for="self">Self</label>
+    <input formControlName="self" type="number">
+  </div>
+  <div class="form-group">
+    <label for="airportToll">Airport Toll</label>
+    <input formControlName="airportToll" type="number">
+  </div>
+  <button type="button" (click)="removed.emit(index)" class="btn btn-sm btn-danger"><clr-icon shape="trash"></clr-icon> Delete</button>
+</section>
