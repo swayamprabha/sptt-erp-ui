@@ -14,7 +14,6 @@
             </button>
         <div class="dropdown-menu">
           <a [routerLink]="['/account']" clrDropdownItem>Account</a>
-          <a href="#" clrDropdownItem>Preferences</a>
           <a [routerLink]="['/about']" clrDropdownItem>About</a>
           <a href="#" clrDropdownItem>Log out</a>
         </div>
@@ -27,10 +26,33 @@
     </div>
     <nav class="sidenav" [clr-nav-level]="1">
       <section class="sidenav-content">
-        <a [routerLink]="[ '/day-summary' ]" routerLinkActive="active" class="nav-link">Day Summary</a>
-        <a [routerLink]="[ '/drivers' ]" routerLinkActive="active" class="nav-link">Drivers</a>
-        <a [routerLink]="[ '/vehicles' ]" routerLinkActive="active" class="nav-link">Vehicles</a>
-
+        <a class="nav-link">Dashboard</a>
+        <a [routerLink]="[ '/day-summary' ]" routerLinkActive="active" class="nav-link">Data Entry</a>
+        <section class="nav-group collapsible">
+          <input id="bi" type="checkbox" checked>
+          <label for="bi">Business Intelligence</label>
+          <ul class="nav-list">
+            <li><a class="nav-link">Report 1</a></li>
+            <li><a class="nav-link">Report 2</a></li>
+            <li><a class="nav-link">Report 3</a></li>
+            <li><a class="nav-link">Report 4</a></li>
+            <li><a class="nav-link">Report 5</a></li>
+            <li><a class="nav-link">Report 6</a></li>
+            <li><a class="nav-link">Report 7</a></li>
+            <li><a class="nav-link">Report 8</a></li>
+            <li><a class="nav-link">Report 9</a></li>
+            <li><a class="nav-link">Report 10</a></li>
+          </ul>
+        </section>
+        <section class="nav-group collapsible">
+          <input id="pref" type="checkbox" checked>
+          <label for="pref">Preferences</label>
+          <ul class="nav-list">
+            <li><a [routerLink]="[ '/drivers' ]" routerLinkActive="active" class="nav-link">Drivers</a></li>
+            <li><a [routerLink]="[ '/vehicles' ]" routerLinkActive="active" class="nav-link">Vehicles</a></li>
+            <li><a class="nav-link">MBG</a></li>
+          </ul>
+        </section>
       </section>
     </nav>
   </div>
