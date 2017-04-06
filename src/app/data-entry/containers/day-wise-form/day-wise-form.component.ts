@@ -24,6 +24,8 @@ export class DayWiseFormComponent implements OnInit {
   showModal: boolean = false;
   selectedVehicleType: string;
   operatorType: string = null;
+  showDeleteAlldaySummaryModal: boolean = false;
+  deletingAlldaySummary: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -158,6 +160,17 @@ export class DayWiseFormComponent implements OnInit {
           //this.router.navigate(['/day-summary/'+ data.id],{replaceUrl: true})
         });
     }
+  }
+
+  deleteAlldaySummary() {
+    this.deletingAlldaySummary = true;
+    this.dayWiseFormService
+      .deleteDailySummary(this.id)
+      .subscribe((data) => {
+        this.deletingAlldaySummary = false;
+        this.showDeleteAlldaySummaryModal = false;
+        this.router.navigate(['/day-summary']);
+      });
   }
 
   onVehicleTypeChange(vehicleType) {

@@ -43,6 +43,12 @@ export class DayWiseFormService {
       .map((response: Response) => response.json());
   }
 
+  deleteDailySummary(id: string): Observable<any> {
+    return this.http
+      .delete(`${environment.apiUrl}/AlldaySummaries/${id}`)
+      .map((response: Response) => response.json())
+  }
+
   updateDailySummary(id: string, payload: any) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
