@@ -23,7 +23,8 @@
         <div [hidden]="editMode" class="form-group">
             <label class="required" for="vehicleType">Vehicle Type</label>
             <div class="select">
-                <select (change)="onVehicleTypeChange($event.target.value)" id="vehicleType">
+                <select [(ngModel)]="selectedVehicleType" [ngModelOptions]="{standalone: true}" (change)="onVehicleTypeChange($event.target.value)"
+                    id="vehicleType">
                     <option disabled>Choose a type</option>
                     <option value="OWN">Own</option>
                     <option value="LEASE">Lease</option>
@@ -195,7 +196,9 @@
                             </div>
                         </div>
                         <div [hidden]="tripSummary.controls.length !== 0" style="padding-bottom:25px">
-                          <h3 class="text-center"><clr-icon shape="info-circle" class="is-highlight" size="36"></clr-icon>No Trip entries.</h3>
+                            <h3 class="text-center">
+                                <clr-icon shape="info-circle" class="is-highlight" size="36"></clr-icon>No Trip entries.
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -221,6 +224,7 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-xs-12 text-center">
+                    <button type="button" class="btn btn-primary" (click)="newAlldaySummaryForm()" replaceUrl='true'>Add new Allday Summary</button>
                     <button type="button" class="btn btn-outline" routerLink="/day-summary">Goto Day Summary Table</button>
                 </div>
             </div>

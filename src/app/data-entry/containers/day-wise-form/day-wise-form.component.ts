@@ -103,9 +103,11 @@ export class DayWiseFormComponent implements OnInit {
     this.alldaySummaryForm.get('vehicleId').valueChanges.subscribe(
       (vehicleId: string) => {
         this.filteredVehicle = this.vehicles.find(v => v.id === vehicleId);
-        this.dayWiseFormService
-          .getOperators(this.filteredVehicle.vehicleCategoryId)
-          .subscribe((data) => this.operatorTypes = data);
+        if (this.filteredVehicle) {
+          this.dayWiseFormService
+            .getOperators(this.filteredVehicle.vehicleCategoryId)
+            .subscribe((data) => this.operatorTypes = data);
+        }
       }
     );
 
@@ -162,7 +164,6 @@ export class DayWiseFormComponent implements OnInit {
     this.operatorTypes = [];
     switch (vehicleType) {
       case 'OWN': {
-        this.selectedVehicleType = 'OWN';
         // Get list of Vehicles for OWN type
         this.dayWiseFormService
           .getVehicles(vehicleType)
@@ -172,7 +173,6 @@ export class DayWiseFormComponent implements OnInit {
         break;
       }
       case 'LEASE': {
-        this.selectedVehicleType = 'LEASE';
         // Get list of Vehicles for LEASE type
         this.dayWiseFormService
           .getVehicles(vehicleType)
@@ -184,5 +184,11 @@ export class DayWiseFormComponent implements OnInit {
     }
     this.alldaySummaryForm.get('openingOdo').updateValueAndValidity();
     this.alldaySummaryForm.get('closingOdo').updateValueAndValidity();
+  }
+
+  newAlldaySummaryForm() {
+    this.alldaySummaryForm.reset();
+    this.selectedVehicleType = null;
+    this.showModal = false;
   }
 }
