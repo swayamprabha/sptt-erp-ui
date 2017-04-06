@@ -86,6 +86,20 @@ export class DayWiseFormService {
           olaMoney: [''],
         };
       }
+        case 'Other-City': {
+        return {
+          operatorCategory: ['Other-City'],
+          //driverId: ['', Validators.required],
+          vehicleType: [`'${vehicleType}'`],
+          customerName:[''],
+          rideKMS: ['', Validators.required],
+          billAmmount: [''],
+          cashCollected: [''],
+          rideEarnings: ['', Validators.required],
+          onlinePayment: [''],
+          balance: [''],
+        };
+      }
     }
   }
 }
