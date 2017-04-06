@@ -85,9 +85,12 @@ export class DayWiseFormComponent implements OnInit {
             .subscribe((data) => this.operatorTypes = data);
           // set trip summaries manually cause it's a form FormArray
           // to get the edit feature for FormArray should write 3 extra lines :( https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#form-array 
-          const trips = this.alldaySummary.tripSummary.map(trip => this.fb.group(trip));
+          const trips = this.alldaySummary.tripSummary.map(trip => {
+            trip.rideKMS = this.fb.array(trip.rideKMS)
+            return this.fb.group(trip);
+          });
           const tripsFormArray = this.fb.array(trips);
-          this.alldaySummaryForm.setControl('tripSummary', tripsFormArray);
+          this.alldaySummaryForm.setControl('tripSummary', tripsFormArray);       
         } else {
           this.editMode = false;
         }

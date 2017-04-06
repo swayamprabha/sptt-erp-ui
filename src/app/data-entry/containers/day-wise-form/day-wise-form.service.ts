@@ -1,7 +1,7 @@
 import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -9,7 +9,10 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class DayWiseFormService {
 
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http,
+    private fb: FormBuilder
+  ) { }
   getVehicles(vehicleType: string): Observable<any[]> {
     return this.http
       .get(`${environment.apiUrl}/Vehicles?filter[where][ownershipType]=${vehicleType}`)
@@ -57,19 +60,19 @@ export class DayWiseFormService {
       .map((response: Response) => response.json());
   }
 
-  createOperatorCategory(operatorName: string, vehicleType: string,): Object {
+  createOperatorCategory(operatorName: string, vehicleType: string, ): Object {
     switch (operatorName) {
       case 'Ola-City': return {
         operatorCategory: ['Ola-City'],
-       // driverId: ['', Validators.required],
+        // driverId: ['', Validators.required],
         vehicleType: [`${vehicleType}`],
-        cashCollected: ['',Validators.required],
+        cashCollected: ['', Validators.required],
         olaMoney: [''],
         self: [''],
         airportToll: [''],
         rideEarnings: [''],
         totalTrips: [''],
-        rideKMS: [],
+        rideKMS: this.fb.array([]),
       };
       case 'Ola-Outstation': {
         return {
