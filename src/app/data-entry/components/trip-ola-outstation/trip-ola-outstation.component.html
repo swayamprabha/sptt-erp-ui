@@ -1,0 +1,38 @@
+<section class="form-block" [formGroup]="item" style="border: 1px solid #ccc;border-radius: 3px;padding:15px">
+  <label> {{index+1}}) Ola Outstation Trip</label>
+  <div class="form-group">
+    <label class="required" for="rideKMS">Ride KMS</label>
+    <label for="rideKMS" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+      [class.invalid]="item.get('rideKMS').invalid
+                    && (item.get('rideKMS').dirty || item.get('rideKMS').touched)">
+    <input formControlName="rideKMS" type="number">
+     <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+                    </label>
+  </div>
+   <div class="form-group">
+    <label class="required" for="rideEarnings">Ride Earnings</label>
+    <label for="rideEarnings" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+      [class.invalid]="item.get('rideEarnings').invalid
+                    && (item.get('rideEarnings').dirty || item.get('rideEarnings').touched)">
+    <input formControlName="rideEarnings" type="number">
+     <span class="tooltip-content">
+                        This field cannot be empty!
+                    </span>
+                    </label>
+  </div>
+  <div class="form-group">
+    <label for="billAmmount">Bill Ammount</label>
+    <input formControlName="billAmmount" type="number">
+  </div>
+  <div class="form-group">
+    <label for="cashCollected">Cash Collected</label>
+    <input formControlName="cashCollected" type="number">
+  </div>
+  <div class="form-group">
+    <label for="olaMoney">Ola Money</label>
+    <input formControlName="olaMoney" type="number">
+  </div>
+  <button type="button" (click)="removed.emit(index)" class="btn btn-sm btn-danger"><clr-icon shape="trash"></clr-icon> Delete</button>
+</section>

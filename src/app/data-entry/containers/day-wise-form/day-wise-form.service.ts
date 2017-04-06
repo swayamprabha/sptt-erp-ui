@@ -77,13 +77,13 @@ export class DayWiseFormService {
       case 'Ola-Outstation': {
         return {
           operatorCategory: ['Ola-Outstation'],
-          driverId: ['', Validators.required],
+          //driverId: ['', Validators.required],
           vehicleType: [`'${vehicleType}'`],
+          rideKMS: ['', Validators.required],
           billAmmount: [''],
           cashCollected: [''],
+          rideEarnings: ['', Validators.required],
           olaMoney: [''],
-          rideEarnings: [''],
-          totalTrips: [''],
         };
       }
     }

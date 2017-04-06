@@ -11,7 +11,7 @@ import { DayWiseFormComponent } from './containers/day-wise-form/day-wise-form.c
 
 // components
 import { TripOlaCityComponent } from './components/trip-ola-city/trip-ola-city.component';
-// import { PassengerDetailComponent } from './components/passenger-detail/passenger-detail.component';
+import { TripOlaOutstationComponent } from './components/trip-ola-outstation/trip-ola-outstation.component';
 // import { PassengerFormComponent } from './components/passenger-form/passenger-form.component';
 
 // service
@@ -41,6 +41,7 @@ const routes: Routes = [
     DaySummaryComponent,
     DayWiseFormComponent,
     TripOlaCityComponent,
+    TripOlaOutstationComponent,
   ],
   imports: [
     CommonModule,
