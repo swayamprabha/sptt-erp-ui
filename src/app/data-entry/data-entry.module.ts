@@ -13,6 +13,7 @@ import { DayWiseFormComponent } from './containers/day-wise-form/day-wise-form.c
 import { TripOlaCityComponent } from './components/trip-ola-city/trip-ola-city.component';
 import { TripOlaOutstationComponent } from './components/trip-ola-outstation/trip-ola-outstation.component';
 import { TripOtherCityComponent } from './components/trip-other-city/trip-other-city.component';
+import { TripOtherOutstationComponent } from './components/trip-other-outstation/trip-other-outstation.component';
 
 // service
 import { DaySummaryService } from './containers/day-summary/day-summary.service';
@@ -43,6 +44,7 @@ const routes: Routes = [
     TripOlaCityComponent,
     TripOlaOutstationComponent,
     TripOtherCityComponent,
+    TripOtherOutstationComponent,
   ],
   imports: [
     CommonModule,

@@ -194,7 +194,9 @@
                             <div [ngSwitch]="trip.value.operatorCategory" style="padding-top:25px;padding-right:25px;padding-left:25px">
                                 <trip-ola-city *ngSwitchCase="'Ola-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)"></trip-ola-city>
                                 <trip-ola-outstation *ngSwitchCase="'Ola-Outstation'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)"></trip-ola-outstation>
-                                <trip-other-city *ngSwitchCase="'Other-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)"></trip-other-city>                          
+                                <trip-other-city *ngSwitchCase="'Other-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)"></trip-other-city>
+                                <trip-other-outstation *ngSwitchCase="'Other-Outstation'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)"></trip-other-outstation>
+
                             </div>
                         </div>
                         <div [hidden]="tripSummary.controls.length !== 0" style="padding-bottom:25px">
