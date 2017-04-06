@@ -9,11 +9,11 @@
         </tr>
       </thead>
       <tbody>
-        <div formArrayName="rideKMS">
-          <tr *ngFor="let ride of rideKMS.controls; let i=index;let l=last">
+        <div formArrayName="rideKMSs">
+          <tr *ngFor="let ride of rideKMSs.controls; let i=index;let l=last">
             <td class="left"><input [formControlName]="i" type="number"></td>
             <td class="right">
-              <clr-icon (click)="rideKMS.removeAt($event)" shape="trash"></clr-icon>
+              <clr-icon (click)="rideKMSs.removeAt($event)" shape="trash"></clr-icon>
             </td>
           </tr>
           <tr>

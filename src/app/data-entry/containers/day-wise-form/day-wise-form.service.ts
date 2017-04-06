@@ -72,7 +72,7 @@ export class DayWiseFormService {
         airportToll: [''],
         rideEarnings: [''],
         totalTrips: [''],
-        rideKMS: this.fb.array([]),
+        rideKMSs: this.fb.array([]),
       };
       case 'Ola-Outstation': {
         return {

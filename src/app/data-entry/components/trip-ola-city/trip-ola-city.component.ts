@@ -24,13 +24,13 @@ export class TripOlaCityComponent implements OnInit {
 
   ngOnInit() {
   }
-  get rideKMS(): FormArray {
-    return this.item.get('rideKMS') as FormArray;
+  get rideKMSs(): FormArray {
+    return this.item.get('rideKMSs') as FormArray;
   };
 
   addTrip(trip: number) {
     if (trip) {
-      this.rideKMS.push(this.fb.control(trip));
+      this.rideKMSs.push(this.fb.control(trip));
       this.newTrip = null;
     }
   }
