@@ -2,11 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 @Component({
-  selector: 'trip-other-outstation',
-  templateUrl: './trip-other-outstation.component.html',
-  styleUrls: ['./trip-other-outstation.component.scss']
+  selector: 'trip-lux-exclusive',
+  templateUrl: './trip-lux-exclusive.component.html',
+  styleUrls: ['./trip-lux-exclusive.component.scss']
 })
-export class TripOtherOutstationComponent implements OnInit {
+export class TripLuxExclusiveComponent implements OnInit {
 
   constructor() { }
   @Input()

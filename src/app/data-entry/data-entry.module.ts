@@ -14,6 +14,7 @@ import { TripOlaCityComponent } from './components/trip-ola-city/trip-ola-city.c
 import { TripOlaOutstationComponent } from './components/trip-ola-outstation/trip-ola-outstation.component';
 import { TripOtherCityComponent } from './components/trip-other-city/trip-other-city.component';
 import { TripOtherOutstationComponent } from './components/trip-other-outstation/trip-other-outstation.component';
+import { TripLuxExclusiveComponent } from './components/trip-lux-exclusive/trip-lux-exclusive.component';
 
 // service
 import { DaySummaryService } from './containers/day-summary/day-summary.service';
@@ -45,6 +46,7 @@ const routes: Routes = [
     TripOlaOutstationComponent,
     TripOtherCityComponent,
     TripOtherOutstationComponent,
+    TripLuxExclusiveComponent,
   ],
   imports: [
     CommonModule,

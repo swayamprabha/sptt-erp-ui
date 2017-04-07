@@ -1,0 +1,44 @@
+<section class="form-block" [formGroup]="item" style="border: 1px solid #ccc;border-radius: 3px;padding:15px">
+  <label> {{index+1}}) Lux Exclusive Trip</label>
+  <div class="form-group">
+    <label for="customerName">Customer Name</label>
+    <input formControlName="customerName" type="text">
+  </div>
+  <div class="form-group">
+    <label class="required" for="rideKMS">Ride KMS</label>
+    <label for="rideKMS" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left" [class.invalid]="item.get('rideKMS').invalid
+                    && (item.get('rideKMS').dirty || item.get('rideKMS').touched)">
+    <input formControlName="rideKMS" type="number">
+     <span class="tooltip-content">This field cannot be empty!</span></label>
+  </div>
+  <div class="form-group">
+    <label class="required" for="rideEarnings">Ride Earnings</label>
+    <label for="rideEarnings" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+      [class.invalid]="item.get('rideEarnings').invalid
+                    && (item.get('rideEarnings').dirty || item.get('rideEarnings').touched)">
+    <input formControlName="rideEarnings" type="number">
+     <span class="tooltip-content">This field cannot be empty!</span>
+    </label>
+  </div>
+  <div class="form-group">
+    <label for="cashCollected">Cash Collected</label>
+    <input formControlName="cashCollected" type="number">
+  </div>
+  <div class="form-group">
+    <label for="onlinePayment">Online Payment</label>
+    <input formControlName="onlinePayment" type="number">
+  </div>
+  <div class="form-group">
+    <label for="airportToll">Airport Toll</label>
+    <input formControlName="airportToll" type="number">
+  </div>
+  <div class="form-group">
+    <label for="localToll">Local Toll</label>
+    <input formControlName="localToll" type="number">
+  </div>
+  <div class="form-group">
+    <label for="incentives">Incentives</label>
+    <input formControlName="incentives" type="number">
+  </div>
+  <button type="button" (click)="removed.emit(index)" class="btn btn-sm btn-danger"><clr-icon shape="trash"></clr-icon> Delete</button>
+</section>

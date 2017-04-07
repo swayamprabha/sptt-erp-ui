@@ -114,6 +114,21 @@ export class DayWiseFormService {
           balance: [''],
         };
       }
+      case 'LUX-Exclusive': {
+        return {
+          operatorCategory: ['LUX-Exclusive'],
+          //driverId: ['', Validators.required],
+          vehicleType: [`'${vehicleType}'`],
+          customerName: [''],
+          rideKMS: ['', Validators.required],
+          cashCollected: [''],
+          rideEarnings: ['', Validators.required],
+          onlinePayment: [''],
+          airportToll: [''],
+          localToll: [''],
+          incentives: ['']
+        };
+      }
     }
   }
 }
