@@ -8,7 +8,7 @@
 </div>
 <h2 [hidden]="editMode">Add new All Day Summary</h2>
 <h2 [hidden]="!editMode">Edit All Day Summary</h2>
-<form (ngSubmit)="onSubmit(alldaySummaryForm)" [formGroup]="alldaySummaryForm" novalidate>
+<form (ngSubmit)="onSubmit(alldaySummaryForm)" [formGroup]="alldaySummaryForm" (keydown.enter)="$event.preventDefault()" novalidate>
     <section class="form-block">
         <div class="form-group">
             <label class="required" for="date">Date</label>

@@ -8,7 +8,7 @@
 </div>
 <h2 [hidden]="editMode">Add new Driver</h2>
 <h2 [hidden]="!editMode">Edit Driver</h2>
-<form (ngSubmit)="onSubmit(driverForm)" [formGroup]="driverForm" novalidate>
+<form (ngSubmit)="onSubmit(driverForm)" [formGroup]="driverForm" (keydown.enter)="$event.preventDefault()" novalidate>
   <label>Driver Information</label>
   <section class="form-block">
     <div class="form-group row">

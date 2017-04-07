@@ -8,7 +8,7 @@
 </div>
 <h2 [hidden]="editMode">Add new Vehicle</h2>
 <h2 [hidden]="!editMode">Edit Vehicle</h2>
-<form (ngSubmit)="onSubmit(vehicleForm)" [formGroup]="vehicleForm" novalidate>
+<form (ngSubmit)="onSubmit(vehicleForm)" [formGroup]="vehicleForm" (keydown.enter)="$event.preventDefault()" novalidate>
   <label>Vehicle Information</label>
   <section class="form-block">
     <div class="form-group row">
