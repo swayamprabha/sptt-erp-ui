@@ -207,6 +207,22 @@
                     </div>
                 </div>
             </div>
+            <div *ngIf="tripSummary.value.length > 1" class="form-group row flex-items-xs-middle flex-items-xs-center">
+                <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                    <label class="required" for="vehicleType">Operator Type</label>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <div class="select">
+                        <select [(ngModel)]="operatorType" [ngModelOptions]="{standalone: true}" id="operatorType">
+                            <option disabled>Choose an operator</option>
+                            <option *ngFor="let o of operatorTypes" [ngValue]="o.id">{{o.operatorName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <button type="button" [disabled]="operatorType === null" class="btn btn-sm btn-success" (click)="addOperatorCategory()"><clr-icon shape="add"></clr-icon> Add</button>
+                </div>
+            </div>
         </section>
         <section class="form-block">
             <label>Remarks</label>

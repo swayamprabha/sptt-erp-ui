@@ -1,9 +1,9 @@
-<section formGroup]="item" style="border: 1px solid #ccc;border-radius: 3px;padding:15px">
+<section [formGroup]="item" style="border: 1px solid #ccc;border-radius: 3px;padding:15px">
   <label> {{index+1}}) Lux Exclusive Trip</label>
   <div class="form-group">
     <label class="required" for="driverId">Driver</label>
     <div class="select">
-      <select formControlName="driverId" id="vehicleId">
+      <select formControlName="driverId" id="driverId">
           <option disabled>Choose a driver</option>
           <option *ngFor="let d of drivers" [ngValue]="d.id">{{d.driverName}}</option>
         </select>
