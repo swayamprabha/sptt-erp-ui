@@ -64,7 +64,7 @@ export class DayWiseFormService {
     switch (operatorName) {
       case 'Ola-City': return {
         operatorCategory: ['Ola-City'],
-        // driverId: ['', Validators.required],
+        driverId: ['', Validators.required],
         vehicleType: [`${vehicleType}`],
         cashCollected: ['', Validators.required],
         olaMoney: [''],
@@ -77,7 +77,7 @@ export class DayWiseFormService {
       case 'Ola-Outstation': {
         return {
           operatorCategory: ['Ola-Outstation'],
-          //driverId: ['', Validators.required],
+          driverId: ['', Validators.required],
           vehicleType: [`'${vehicleType}'`],
           rideKMS: ['', Validators.required],
           billAmmount: [''],
@@ -89,7 +89,7 @@ export class DayWiseFormService {
       case 'Other-City': {
         return {
           operatorCategory: ['Other-City'],
-          //driverId: ['', Validators.required],
+          driverId: ['', Validators.required],
           vehicleType: [`'${vehicleType}'`],
           customerName: [''],
           rideKMS: ['', Validators.required],
@@ -103,7 +103,7 @@ export class DayWiseFormService {
       case 'Other-Outstation': {
         return {
           operatorCategory: ['Other-Outstation'],
-          //driverId: ['', Validators.required],
+          driverId: ['', Validators.required],
           vehicleType: [`'${vehicleType}'`],
           customerName: [''],
           rideKMS: ['', Validators.required],
@@ -117,7 +117,7 @@ export class DayWiseFormService {
       case 'LUX-Exclusive': {
         return {
           operatorCategory: ['LUX-Exclusive'],
-          //driverId: ['', Validators.required],
+          driverId: ['', Validators.required],
           vehicleType: [`'${vehicleType}'`],
           customerName: [''],
           rideKMS: ['', Validators.required],

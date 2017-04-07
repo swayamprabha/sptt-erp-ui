@@ -1,5 +1,14 @@
 <section class="form-block" [formGroup]="item" style="border: 1px solid #ccc;border-radius: 3px;padding:15px">
   <label> {{index+1}}) Ola City Trip</label>
+  <div class="form-group">
+    <label class="required" for="driverId">Driver</label>
+    <div class="select">
+      <select formControlName="driverId" id="vehicleId">
+          <option disabled>Choose a driver</option>
+          <option *ngFor="let d of drivers" [ngValue]="d.id">{{d.driverName}}</option>
+        </select>
+    </div>
+  </div>
   <div class="col-xs-12 col-md-12 col-lg-6 col-xl-3">
     <table class="table">
       <thead>

@@ -18,6 +18,9 @@ export class TripOlaOutstationComponent implements OnInit {
   @Output()
   public removed: EventEmitter<number> = new EventEmitter<number>();
 
+  @Input()
+  public drivers: Array<any>;
+  
   ngOnInit() {
   }
 

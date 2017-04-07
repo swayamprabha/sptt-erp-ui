@@ -8,7 +8,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 })
 export class TripOtherCityComponent implements OnInit {
 
-   constructor() { }
+  constructor() { }
   @Input()
   public item: FormGroup;
 
@@ -18,6 +18,9 @@ export class TripOtherCityComponent implements OnInit {
   @Output()
   public removed: EventEmitter<number> = new EventEmitter<number>();
 
+  @Input()
+  public drivers: Array<any>;
+  
   ngOnInit() {
   }
 
