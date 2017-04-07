@@ -12,39 +12,24 @@ import { DriverFormComponent } from './containers/driver-form/driver-form.compon
 // services
 import { DriverSummaryService } from './containers/driver-summary/driver-summary.service';
 import { DriverFormService } from './containers/driver-form/driver-form.service';
-import { DriverFormResolver } from './containers/driver-form/driver-form-resolver.service';
 
-const routes: Routes = [
-  {
-    path: 'drivers',
-    children: [
-      { path: '', component: DriverSummaryComponent },
-      { path: 'new', component: DriverFormComponent },
-      {
-        path: ':id',
-        component: DriverFormComponent,
-        resolve: {
-          driver: DriverFormResolver
-        }
-      }
-    ]
-  }
-];
+// driver routing module
+import { DriverRoutingModule }    from './driver-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule.forChild(),
     SharedModule.forRoot(),
-    RouterModule.forChild(routes)
+    DriverRoutingModule
   ],
   declarations: [
     DriverSummaryComponent,
-    DriverFormComponent],
+    DriverFormComponent
+    ],
   providers: [
     DriverSummaryService,
     DriverFormService,
-    DriverFormResolver
   ]
 })
 export class DriversModule { }

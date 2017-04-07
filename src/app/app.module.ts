@@ -2,15 +2,17 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ClarityModule } from 'clarity-angular';
-import { AppComponent } from './app.component';
-import { ROUTING } from "./app.routing";
+
 import { AboutComponent } from "./about/about.component";
 
-//Modules
-import { SharedModule } from './shared/shared.module';
+/* App Root */
+import { AppComponent }   from './app.component';
+
+/* Feature Modules */
 import { DataEntryModule } from './data-entry/data-entry.module';
-import { DriversModule } from './drivers/drivers.module';
-import { VehiclesModule } from './vehicles/vehicles.module';
+
+/* Routing Module */
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     declarations: [
@@ -21,11 +23,8 @@ import { VehiclesModule } from './vehicles/vehicles.module';
         BrowserAnimationsModule,
         BrowserModule,
         ClarityModule.forRoot(),
-        SharedModule.forRoot(),
-        ROUTING,
-        DataEntryModule,
-        DriversModule,
-        VehiclesModule
+        AppRoutingModule,
+        DataEntryModule
     ],
     providers: [
         Title

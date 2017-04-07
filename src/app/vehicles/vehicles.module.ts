@@ -12,39 +12,24 @@ import { VehicleFormComponent } from './containers/vehicle-form/vehicle-form.com
 // services
 import { VehicleSummaryService } from './containers/vehicle-summary/vehicle-summary.service';
 import { VehicleFormService } from './containers/vehicle-form/vehicle-form.service';
-import { VehicleFormResolver } from './containers/vehicle-form/vehicle-form-resolver.service';
 
-const routes: Routes = [
-  {
-    path: 'vehicles',
-    children: [
-      { path: '', component: VehicleSummaryComponent },
-      { path: 'new', component: VehicleFormComponent },
-      {
-        path: ':id',
-        component: VehicleFormComponent,
-        resolve: {
-          vehicle: VehicleFormResolver
-        }
-      }
-    ]
-  }
-];
+// vehicle routing module
+import { VehicleRoutingModule }    from './vehicle-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ClarityModule.forChild(),
     SharedModule.forRoot(),
-    RouterModule.forChild(routes)
+    VehicleRoutingModule
   ],
   declarations: [
     VehicleSummaryComponent,
-    VehicleFormComponent],
+    VehicleFormComponent
+    ],
   providers: [
     VehicleSummaryService,
     VehicleFormService,
-    VehicleFormResolver
   ]
 })
 export class VehiclesModule { }
