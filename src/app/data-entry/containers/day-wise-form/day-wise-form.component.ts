@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 
 import { DayWiseFormService } from './day-wise-form.service';
 
@@ -141,6 +141,7 @@ export class DayWiseFormComponent implements OnInit {
     const trips = this.alldaySummary.tripSummary.map(trip => this.fb.group(trip));
     const tripsFormArray = this.fb.array(trips);
     this.alldaySummaryForm.setControl('tripSummary', tripsFormArray);
+
   }
 
   revert() { this.ngOnChanges(); }
@@ -205,8 +206,18 @@ export class DayWiseFormComponent implements OnInit {
   }
 
   newAlldaySummaryForm() {
-    this.alldaySummaryForm.reset();
-    this.selectedVehicleType = null;
-    this.showModal = false;
+    if (this.editMode) {
+      this.showModal = false;
+      this.router.navigate(['/day-summary/new']);
+    } else {
+      this.alldaySummaryForm.reset();
+      // rebind form https://github.com/angular/angular/pull/11051
+      const tripSummaryControl = this.alldaySummaryForm.get('tripSummary') as FormArray;
+      while (tripSummaryControl.length) {
+        tripSummaryControl.removeAt(tripSummaryControl.length - 1);
+      }
+      this.selectedVehicleType = null;
+      this.showModal = false;
+    }
   }
 }
