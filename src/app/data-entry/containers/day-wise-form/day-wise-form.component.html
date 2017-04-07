@@ -191,12 +191,12 @@
                 <div class="col-xs-12">
                     <div formArrayName="tripSummary" style="border: 1px solid #ccc;border-radius: 3px;">
                         <div *ngFor="let trip of tripSummary.controls; let i=index;let l=last" [formGroupName]="i">
-                            <div [ngSwitch]="trip.value.operatorCategory" style="padding-top:25px;padding-right:25px;padding-left:25px">
+                            <div [ngSwitch]="trip.value.operatorCategory" style="padding:25px">
                                 <trip-ola-city *ngSwitchCase="'Ola-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-ola-city>
                                 <trip-ola-outstation *ngSwitchCase="'Ola-Outstation'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-ola-outstation>
                                 <trip-other-city *ngSwitchCase="'Other-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-other-city>
                                 <trip-other-outstation *ngSwitchCase="'Other-Outstation'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-other-outstation>
-                                <trip-lux-exclusive *ngSwitchCase="'LUX-Exclusive'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-lux-exclusive>                           
+                                <trip-lux-exclusive *ngSwitchCase="'LUX-Exclusive'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-lux-exclusive>
                             </div>
                         </div>
                         <div [hidden]="tripSummary.controls.length !== 0" style="padding-bottom:25px">
