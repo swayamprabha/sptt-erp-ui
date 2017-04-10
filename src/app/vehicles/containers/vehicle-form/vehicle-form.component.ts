@@ -40,12 +40,12 @@ export class VehicleFormComponent implements OnInit {
       vehicleModel: ['', [Validators.required]],
       vehicleOwner: [''],
       insuranceDuedate: ['', [Validators.required]],
-      roadtaxDuedata: ['', [Validators.required]],
-      serviceDuedata: ['', [Validators.required]],
+      roadtaxDuedate: ['', [Validators.required]],
+      serviceDuedate: ['', [Validators.required]],
       ownershipType: ['', [Validators.required]]
     });
 
-     // Get list of Vehicle Categories
+    // Get list of Vehicle Categories
     this.vehicleFormService
       .getCategories()
       .subscribe((data) => this.categories = data);
@@ -60,8 +60,8 @@ export class VehicleFormComponent implements OnInit {
           this.vehicleForm.patchValue(this.vehicle);
           this.vehicleForm.patchValue({
             insuranceDuedate: new Date(this.vehicle.insuranceDuedate).toISOString().slice(0, 10),
-            roadtaxDuedata: new Date(this.vehicle.roadtaxDuedata).toISOString().slice(0, 10),
-            serviceDuedata: new Date(this.vehicle.serviceDuedata).toISOString().slice(0, 10)
+            roadtaxDuedate: new Date(this.vehicle.roadtaxDuedate).toISOString().slice(0, 10),
+            serviceDuedate: new Date(this.vehicle.serviceDuedate).toISOString().slice(0, 10)
           });
         } else {
           this.editMode = false;
@@ -82,27 +82,27 @@ export class VehicleFormComponent implements OnInit {
     this.vehicleForm.reset(this.vehicle);
     this.vehicleForm.patchValue({
       insuranceDuedate: new Date(this.vehicle.insuranceDuedate).toISOString().slice(0, 10),
-      roadtaxDuedata: new Date(this.vehicle.roadtaxDuedata).toISOString().slice(0, 10),
-      serviceDuedata: new Date(this.vehicle.serviceDuedata).toISOString().slice(0, 10)
+      roadtaxDuedate: new Date(this.vehicle.roadtaxDuedate).toISOString().slice(0, 10),
+      serviceDuedate: new Date(this.vehicle.serviceDuedate).toISOString().slice(0, 10)
     });
   }
 
   revert() { this.ngOnChanges(); }
 
-  newVehicleForm(){
-     this.vehicleForm.reset();
-     this.showModal = false;
+  newVehicleForm() {
+    this.vehicleForm.reset();
+    this.showModal = false;
   }
-  
-  deleteVehicle(){
+
+  deleteVehicle() {
     this.deletingVehicle = true;
     this.vehicleFormService
-    .deleteVehicle(this.id)
-     .subscribe((data) => {
+      .deleteVehicle(this.id)
+      .subscribe((data) => {
         this.deletingVehicle = false;
         this.showDeleteVehicleModal = false;
         this.router.navigate(['/vehicles']);
-    });
+      });
   }
 
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
@@ -123,7 +123,6 @@ export class VehicleFormComponent implements OnInit {
           this.isFormSaving = false;
           this.showModal = true;
           this.vehicle = data;
-          this.ngOnChanges;
           //this.router.navigate(['/day-summary/'+ data.id],{replaceUrl: true})
         });
     }
