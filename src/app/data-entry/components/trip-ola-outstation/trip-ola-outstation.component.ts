@@ -8,7 +8,6 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 })
 export class TripOlaOutstationComponent implements OnInit {
 
-  constructor() { }
   @Input()
   public item: FormGroup;
 
@@ -20,7 +19,9 @@ export class TripOlaOutstationComponent implements OnInit {
 
   @Input()
   public drivers: Array<any>;
-  
+
+  constructor() { }
+
   ngOnInit() {
   }
 

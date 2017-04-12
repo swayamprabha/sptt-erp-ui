@@ -7,11 +7,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
   styleUrls: ['./trip-ola-city.component.scss']
 })
 export class TripOlaCityComponent implements OnInit {
-  newTrip: Number;
-
-  constructor(
-    private fb: FormBuilder,
-  ) { }
+  public newTrip: number;
 
   @Input()
   public item: FormGroup;
@@ -25,13 +21,17 @@ export class TripOlaCityComponent implements OnInit {
   @Input()
   public drivers: Array<any>;
 
+  constructor(
+    private fb: FormBuilder,
+  ) { }
+
   ngOnInit() {
   }
   get rideKMSs(): FormArray {
     return this.item.get('rideKMSs') as FormArray;
   };
 
-  addTrip(trip: number) {
+  addTrip(trip: Number) {
     if (trip) {
       this.rideKMSs.push(this.fb.control(trip));
       this.newTrip = null;

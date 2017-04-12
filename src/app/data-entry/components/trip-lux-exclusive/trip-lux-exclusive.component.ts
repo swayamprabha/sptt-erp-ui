@@ -8,7 +8,6 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 })
 export class TripLuxExclusiveComponent implements OnInit {
 
-  constructor() { }
   @Input()
   public item: FormGroup;
 
@@ -20,6 +19,8 @@ export class TripLuxExclusiveComponent implements OnInit {
 
   @Input()
   public drivers: Array<any>;
+
+  constructor() { }
 
   ngOnInit() {
   }
