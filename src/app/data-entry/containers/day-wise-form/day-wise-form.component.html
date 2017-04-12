@@ -3,11 +3,11 @@
         <button routerLink="/day-summary" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
     </div>
     <div class="col-md-8 text-right">
-        <button [hidden]="!editMode" (click)="showDeleteAlldaySummaryModal = true" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
+        <button *ngIf="editMode" (click)="showDeleteAlldaySummaryModal = true" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
     </div>
 </div>
-<h2 [hidden]="editMode">Add new All Day Summary</h2>
-<h2 [hidden]="!editMode">Edit Day Summary for <b>{{alldaySummary.vehicle.regNumber}} ({{alldaySummary.vehicle.vehicleBrand}} {{alldaySummary.vehicle.vehicleModel}})</b></h2>
+<h2 *ngIf="!editMode">Add new All Day Summary</h2>
+<h2 *ngIf="editMode">Edit Day Summary for <b>{{alldaySummary.vehicle.regNumber}} ({{alldaySummary.vehicle.vehicleBrand}} {{alldaySummary.vehicle.vehicleModel}})</b></h2>
 <form (ngSubmit)="onSubmit(alldaySummaryForm)" [formGroup]="alldaySummaryForm" (keydown.enter)="$event.preventDefault()"
     novalidate>
     <section class="form-block">
@@ -21,7 +21,7 @@
                 </span>
             </label>
         </div>
-        <div [hidden]="editMode" class="form-group">
+        <div *ngIf="!editMode" class="form-group">
             <label class="required" for="vehicleType">Vehicle Type</label>
             <div class="select">
                 <select [(ngModel)]="selectedVehicleType" [ngModelOptions]="{standalone: true}" (change)="onVehicleTypeChange($event.target.value)"
@@ -32,7 +32,7 @@
                 </select>
             </div>
         </div>
-        <div *ngIf="selectedVehicleType" [hidden]="editMode" class="form-group">
+        <div *ngIf="selectedVehicleType && !editMode" class="form-group">
             <label class="required" for="vehicleId">Vehicle #</label>
             <div class="select">
                 <select formControlName="vehicleId" id="vehicleId">
