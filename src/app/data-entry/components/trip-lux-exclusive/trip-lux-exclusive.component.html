@@ -10,6 +10,10 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="loginDuration">Login Duration</label>
+    <input formControlName="loginDuration" type="number">
+  </div>
+  <div class="form-group">
     <label for="customerName">Customer Name</label>
     <input formControlName="customerName" type="text">
   </div>
@@ -34,8 +38,8 @@
     <input formControlName="cashCollected" type="number">
   </div>
   <div class="form-group">
-    <label for="onlinePayment">Online Payment</label>
-    <input formControlName="onlinePayment" type="number">
+    <label for="olaMoney">OLA Money</label>
+    <input formControlName="olaMoney" type="number">
   </div>
   <div class="form-group">
     <label for="airportToll">Airport Toll</label>
@@ -48,6 +52,14 @@
   <div class="form-group">
     <label for="incentives">Incentives</label>
     <input formControlName="incentives" type="number">
+  </div>
+  <div class="form-group">
+    <label for="fine">Fine</label>
+    <input formControlName="fine" type="number">
+  </div>
+  <div class="form-group">
+    <label for="misc">Misc</label>
+    <input formControlName="misc" type="number">
   </div>
   <button type="button" (click)="removed.emit(index)" class="btn btn-sm btn-danger"><clr-icon shape="trash"></clr-icon> Delete</button>
 </section>

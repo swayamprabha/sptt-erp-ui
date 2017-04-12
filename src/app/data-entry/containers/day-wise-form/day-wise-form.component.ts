@@ -22,7 +22,7 @@ export class DayWiseFormComponent implements OnInit {
   alldaySummaryForm: FormGroup;
   alldaySummary: any;
   showModal: boolean = false;
-  selectedVehicleType: string;
+  selectedVehicleType: string = null;
   operatorType: string = null;
   showDeleteAlldaySummaryModal: boolean = false;
   deletingAlldaySummary: boolean = false;
@@ -42,22 +42,17 @@ export class DayWiseFormComponent implements OnInit {
     this.alldaySummaryForm = this.fb.group({
       date: ['', [Validators.required]],
       vehicleId: ['', Validators.required],
-      loggedinDuration: ['', Validators.required],
       openingOdo: ['', Validators.required],
       closingOdo: ['', Validators.required],
-      cashPaidByDriver: [''],
-      olaPayment: [''],
-      bankTransfer: [''],
-      penalty: [''],
-      cancellationCharges: [''],
-      fuel: [''],
-      parkingFee: [''],
-      fine: [''],
       internetCharges: [''],
-      toll: [''],
+      olaPayment: [''],
       throughBank: [''],
-      bata: [''],
+      cancellationCharges: [''],
       miscExpense: [''],
+      fuelVoucher: [''],
+      paymentMade: [''],
+      penalty: [''],
+      deposit: [''],
       tripSummary: this.fb.array([]),
       remarks: ['']
     });
@@ -127,7 +122,7 @@ export class DayWiseFormComponent implements OnInit {
   addOperatorCategory() {
     if (this.operatorType) {
       let filteredOperatorTypes = this.operatorTypes.find(o => o.id === this.operatorType);
-      this.tripSummary.push(this.fb.group(this.dayWiseFormService.createOperatorCategory(filteredOperatorTypes.operatorName, this.selectedVehicleType)));
+      this.tripSummary.push(this.fb.group(this.dayWiseFormService.createOperatorCategory(filteredOperatorTypes.operatorName)));
     }
   }
 

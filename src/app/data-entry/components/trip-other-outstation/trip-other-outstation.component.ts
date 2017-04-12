@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'trip-other-outstation',
@@ -7,6 +7,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
   styleUrls: ['./trip-other-outstation.component.scss']
 })
 export class TripOtherOutstationComponent implements OnInit {
+  private _vehicleType = '';
 
   @Input()
   public item: FormGroup;
@@ -19,6 +20,15 @@ export class TripOtherOutstationComponent implements OnInit {
 
   @Input()
   public drivers: Array<any>;
+
+  @Input()
+  set vehicleType(vehicleType: string) {
+    // intercept and patch form value
+    this._vehicleType = vehicleType;
+    this.item.patchValue({
+      vehicleType: vehicleType
+    });
+  }
 
   constructor() { }
 

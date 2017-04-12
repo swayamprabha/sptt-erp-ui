@@ -60,73 +60,76 @@ export class DayWiseFormService {
       .map((response: Response) => response.json());
   }
 
-  createOperatorCategory(operatorName: string, vehicleType: string, ): Object {
+  createOperatorCategory(operatorName: string): Object {
     switch (operatorName) {
       case 'Ola-City': return {
         operatorCategory: ['Ola-City'],
         driverId: ['', Validators.required],
-        vehicleType: [`${vehicleType}`],
+        loginDuration: [''],
+        vehicleType: [''],
         cashCollected: ['', Validators.required],
         olaMoney: [''],
         self: [''],
         airportToll: [''],
-        rideEarnings: [''],
+        localToll: [''],
+        fuel: [''],
+        fine: [''],
+        penalty: [''],
+        misc: [''],
         totalTrips: [''],
-        rideKMSs: this.fb.array([]),
+        rideKMSs: this.fb.array([])
       };
       case 'Ola-Outstation': {
         return {
           operatorCategory: ['Ola-Outstation'],
           driverId: ['', Validators.required],
-          vehicleType: [`'${vehicleType}'`],
+          loginDuration: [''],
+          vehicleType: [''],
           rideKMS: ['', Validators.required],
-          billAmmount: [''],
-          cashCollected: [''],
           rideEarnings: ['', Validators.required],
+          cashCollected: [''],
           olaMoney: [''],
+          bata: [''],
+          localToll: [''],
+          fuel: [''],
+          fine: [''],
+          misc: ['']
         };
       }
-      case 'Other-City': {
+      case 'Other-City':
+      case 'Other-Outstation': {
         return {
           operatorCategory: ['Other-City'],
           driverId: ['', Validators.required],
-          vehicleType: [`'${vehicleType}'`],
+          loginDuration: [''],
+          vehicleType: [''],
           customerName: [''],
           rideKMS: ['', Validators.required],
           billAmmount: [''],
           cashCollected: [''],
-          rideEarnings: ['', Validators.required],
           onlinePayment: [''],
-          balance: [''],
-        };
-      }
-      case 'Other-Outstation': {
-        return {
-          operatorCategory: ['Other-Outstation'],
-          driverId: ['', Validators.required],
-          vehicleType: [`'${vehicleType}'`],
-          customerName: [''],
-          rideKMS: ['', Validators.required],
-          billAmmount: [''],
-          cashCollected: [''],
-          rideEarnings: ['', Validators.required],
-          onlinePayment: [''],
-          balance: [''],
+          localToll: [''],
+          bata: [''],
+          fine: [''],
+          misc: ['']
         };
       }
       case 'LUX-Exclusive': {
         return {
           operatorCategory: ['LUX-Exclusive'],
           driverId: ['', Validators.required],
-          vehicleType: [`'${vehicleType}'`],
+          loginDuration: [''],
+          vehicleType: [''],
           customerName: [''],
           rideKMS: ['', Validators.required],
-          cashCollected: [''],
           rideEarnings: ['', Validators.required],
-          onlinePayment: [''],
+          cashCollected: [''],
+          olaMoney: [''],
           airportToll: [''],
           localToll: [''],
-          incentives: ['']
+          incentives: [''],
+          fine: [''],
+          misc: ['']
         };
       }
     }

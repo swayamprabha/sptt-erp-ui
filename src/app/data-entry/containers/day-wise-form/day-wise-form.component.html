@@ -8,7 +8,8 @@
 </div>
 <h2 [hidden]="editMode">Add new All Day Summary</h2>
 <h2 [hidden]="!editMode">Edit All Day Summary</h2>
-<form (ngSubmit)="onSubmit(alldaySummaryForm)" [formGroup]="alldaySummaryForm" (keydown.enter)="$event.preventDefault()" novalidate>
+<form (ngSubmit)="onSubmit(alldaySummaryForm)" [formGroup]="alldaySummaryForm" (keydown.enter)="$event.preventDefault()"
+    novalidate>
     <section class="form-block">
         <div class="form-group">
             <label class="required" for="date">Date</label>
@@ -43,52 +44,39 @@
         </div>
     </section>
     <div *ngIf="selectedVehicleType">
-        <section class="form-block">
+        <section class="form-block" *ngIf="selectedVehicleType === 'OWN'">
             <label>Distance & Time</label>
             <div class="form-group">
-                <label class="required" for="loggedinDuration">Logged in Duration</label>
-                <label for="loggedinDuration" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-                    [class.invalid]="alldaySummaryForm.get('loggedinDuration').invalid
-                    && (alldaySummaryForm.get('loggedinDuration').dirty || alldaySummaryForm.get('loggedinDuration').touched)">
-                    <input class="form-control" type="number" id="loggedinDuration" formControlName="loggedinDuration" placeholder="">
-                    <span class="tooltip-content">
-                        This field cannot be empty!
-                    </span>
-                    </label>
-            </div>
-            <div *ngIf="selectedVehicleType === 'OWN'">
-                <div class="form-group">
-                    <label class="required" for="openingOdo">Opening ODO</label>
-                    <label for="openingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-                        [class.invalid]="alldaySummaryForm.get('openingOdo').invalid
+                <label class="required" for="openingOdo">Opening ODO</label>
+                <label for="openingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+                    [class.invalid]="alldaySummaryForm.get('openingOdo').invalid
                     && (alldaySummaryForm.get('openingOdo').dirty || alldaySummaryForm.get('openingOdo').touched)">
                 <input class="form-control" type="number" id="openingOdo" formControlName="openingOdo" placeholder="">
                  <span class="tooltip-content">
                         This field cannot be empty!
                     </span>
                     </label>
-                </div>
-                <div class="form-group">
-                    <label class="required" for="closingOdo">Closing ODO</label>
-                    <label for="closingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-                        [class.invalid]="alldaySummaryForm.get('closingOdo').invalid
+            </div>
+            <div class="form-group">
+                <label class="required" for="closingOdo">Closing ODO</label>
+                <label for="closingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+                    [class.invalid]="alldaySummaryForm.get('closingOdo').invalid
                     && (alldaySummaryForm.get('closingOdo').dirty || alldaySummaryForm.get('closingOdo').touched)">
                 <input class="form-control" type="number" id="closingOdo" formControlName="closingOdo" placeholder="">
                  <span class="tooltip-content">
                         This field cannot be empty!
                     </span>
                     </label>
-                </div>
             </div>
         </section>
         <section class="form-block">
             <label>Cash Related</label>
             <div class="form-group row">
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="cashPaidByDriver">Cash paid by driver</label>
+                <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                    <label for="internetCharges">Internet Charges</label>
                 </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="cashPaidByDriver" formControlName="cashPaidByDriver" placeholder="">
+                <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                    <input class="form-control" type="number" id="internetCharges" formControlName="internetCharges" placeholder="">
                 </div>
                 <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                     <label for="olaPayment">OLA Payment</label>
@@ -96,17 +84,17 @@
                 <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
                     <input class="form-control" type="number" id="olaPayment" formControlName="olaPayment" placeholder="">
                 </div>
-                <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="bankTransfer">Bank Transfer</label>
+                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                    <label for="throughBank">Through Bank</label>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="bankTransfer" formControlName="bankTransfer" placeholder="">
+                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                    <input class="form-control" type="number" id="throughBank" formControlName="throughBank" placeholder="">
                 </div>
-                <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="penalty">Penalty</label>
+                <div *ngIf="selectedVehicleType === 'LEASE'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                    <label for="paymentMade">Payment Made</label>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="penalty" formControlName="penalty" placeholder="">
+                <div *ngIf="selectedVehicleType === 'LEASE'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                    <input class="form-control" type="number" id="paymentMade" formControlName="paymentMade" placeholder="">
                 </div>
                 <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                     <label for="cancellationCharges">Cancellation Charges</label>
@@ -114,52 +102,23 @@
                 <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
                     <input class="form-control" type="number" id="cancellationCharges" formControlName="cancellationCharges" placeholder="">
                 </div>
-            </div>
-        </section>
-        <section class="form-block">
-            <label>Expense Releated</label>
-            <div class="form-group row">
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="fuel">Fuel</label>
-                </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="fuel" formControlName="fuel" placeholder="">
-                </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="parkingFee">Parking Fee</label>
-                </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="parkingFee" formControlName="parkingFee" placeholder="">
-                </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="fine">Fine</label>
-                </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="fine" formControlName="fine" placeholder="">
-                </div>
                 <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="internetCharges">Internet Charges</label>
+                    <label for="deposit">Deposit</label>
                 </div>
-                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="internetCharges" formControlName="internetCharges" placeholder="">
+                <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                    <input class="form-control" type="number" id="deposit" formControlName="deposit" placeholder="">
                 </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="toll">Toll</label>
+                <div *ngIf="selectedVehicleType === 'LEASE'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                    <label for="penalty">Penalty</label>
                 </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="toll" formControlName="toll" placeholder="">
+                <div *ngIf="selectedVehicleType === 'LEASE'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                    <input class="form-control" type="number" id="penalty" formControlName="penalty" placeholder="">
                 </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="throughBank">Through Bank</label>
+                <div *ngIf="selectedVehicleType === 'LEASE'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+                    <label for="fuelVoucher">Fuel Voucher</label>
                 </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="throughBank" formControlName="throughBank" placeholder="">
-                </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-                    <label for="bata">BATA</label>
-                </div>
-                <div *ngIf="selectedVehicleType === 'OWN'" class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
-                    <input class="form-control" type="number" id="bata" formControlName="bata" placeholder="">
+                <div *ngIf="selectedVehicleType === 'LEASE'" class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                    <input class="form-control" type="number" id="fuelVoucher" formControlName="fuelVoucher" placeholder="">
                 </div>
                 <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
                     <label for="miscExpense">Misc</label>
@@ -192,11 +151,11 @@
                     <div formArrayName="tripSummary" style="border: 1px solid #ccc;border-radius: 3px;">
                         <div *ngFor="let trip of tripSummary.controls; let i=index;let l=last" [formGroupName]="i">
                             <div [ngSwitch]="trip.value.operatorCategory" style="padding:25px">
-                                <trip-ola-city *ngSwitchCase="'Ola-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-ola-city>
-                                <trip-ola-outstation *ngSwitchCase="'Ola-Outstation'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-ola-outstation>
-                                <trip-other-city *ngSwitchCase="'Other-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-other-city>
-                                <trip-other-outstation *ngSwitchCase="'Other-Outstation'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-other-outstation>
-                                <trip-lux-exclusive *ngSwitchCase="'LUX-Exclusive'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers"></trip-lux-exclusive>
+                                <trip-ola-city *ngSwitchCase="'Ola-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers" [vehicleType]="selectedVehicleType"></trip-ola-city>
+                                <trip-ola-outstation *ngSwitchCase="'Ola-Outstation'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers" [vehicleType]="selectedVehicleType"></trip-ola-outstation>
+                                <trip-other-city *ngSwitchCase="'Other-City'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers" [vehicleType]="selectedVehicleType"></trip-other-city>
+                                <trip-other-outstation *ngSwitchCase="'Other-Outstation'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers" [vehicleType]="selectedVehicleType"></trip-other-outstation>
+                                <trip-lux-exclusive *ngSwitchCase="'LUX-Exclusive'" [item]="trip" [index]="i" (removed)="tripSummary.removeAt($event)" [drivers]="drivers" [vehicleType]="selectedVehicleType"></trip-lux-exclusive>
                             </div>
                         </div>
                         <div [hidden]="tripSummary.controls.length !== 0" style="padding-bottom:25px">

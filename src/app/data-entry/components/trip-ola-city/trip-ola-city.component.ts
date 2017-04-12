@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'trip-ola-city',
@@ -7,6 +7,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
   styleUrls: ['./trip-ola-city.component.scss']
 })
 export class TripOlaCityComponent implements OnInit {
+  private _vehicleType = '';
   public newTrip: number;
 
   @Input()
@@ -21,12 +22,24 @@ export class TripOlaCityComponent implements OnInit {
   @Input()
   public drivers: Array<any>;
 
+  @Input()
+  set vehicleType(vehicleType: string) {
+    // intercept and patch form value
+    this._vehicleType = vehicleType;
+    this.item.patchValue({
+      vehicleType: vehicleType
+    });
+  }
+
   constructor(
     private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
   }
+
+  get vehicleType(): string { return this._vehicleType; }
+
   get rideKMSs(): FormArray {
     return this.item.get('rideKMSs') as FormArray;
   };
