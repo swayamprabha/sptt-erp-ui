@@ -13,28 +13,28 @@
     <label for="loginDuration">Login Duration</label>
     <input formControlName="loginDuration" type="number">
   </div>
-  <div class="col-xs-12 col-md-12 col-lg-6 col-xl-3">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="left">Trips</th>
-          <th class="left">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <div formArrayName="rideKMSs">
+  <div class="form-group">
+    <label for="loginDuration">Trips</label>
+    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+      <table class="table table-compact">
+        <tbody formArrayName="rideKMSs">
           <tr *ngFor="let ride of rideKMSs.controls; let i=index;let l=last">
-            <td class="left"><input [formControlName]="i" type="number"></td>
-            <td class="right">
-              <clr-icon (click)="rideKMSs.removeAt($event)" shape="trash"></clr-icon>
+            <td><input [formControlName]="i" type="number" style='width:1em'></td>
+            <td style="vertical-align:middle">
+              <clr-icon (click)="rideKMSs.removeAt($event)" shape="trash" class="is-error"></clr-icon>
             </td>
           </tr>
           <tr>
-            <td><input type="number" [(ngModel)]="newTrip" [ngModelOptions]="{standalone: true}" (keydown.Enter)="addTrip(newTrip)"></td>
+            <td><input type="number" [(ngModel)]="newTrip" [ngModelOptions]="{standalone: true}" (keydown.Enter)="addTrip(newTrip)"
+                style='width:1em'></td>
+            <td></td>
           </tr>
-        </div>
-      </tbody>
-    </table>
+           <tr>
+             <td colspan="2"><b>Total Trips: {{rideKMSs.controls.length}}</b></td>
+           </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <br>
   <div class="form-group">
