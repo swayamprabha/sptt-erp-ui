@@ -131,7 +131,7 @@ export class DayWiseFormComponent implements OnInit {
     }
   }
 
-  ngOnChanges() {
+  dataOnChange() {
     this.alldaySummaryForm.reset(this.alldaySummary);
     this.alldaySummaryForm.patchValue({
       date: new Date(this.alldaySummary.date).toISOString().slice(0, 10)
@@ -144,7 +144,7 @@ export class DayWiseFormComponent implements OnInit {
 
   }
 
-  revert() { this.ngOnChanges(); }
+  revert() { this.dataOnChange(); }
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
     this.isFormSaving = true;
     if (this.editMode) {
@@ -162,7 +162,6 @@ export class DayWiseFormComponent implements OnInit {
           this.isFormSaving = false;
           this.showModal = true;
           this.alldaySummary = data;
-          this.ngOnChanges;
           //this.router.navigate(['/day-summary/'+ data.id],{replaceUrl: true})
         });
     }

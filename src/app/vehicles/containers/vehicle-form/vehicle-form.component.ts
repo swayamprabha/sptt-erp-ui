@@ -78,7 +78,7 @@ export class VehicleFormComponent implements OnInit {
       });
   }
 
-  ngOnChanges() {
+  dataOnChange() {
     this.vehicleForm.reset(this.vehicle);
     this.vehicleForm.patchValue({
       insuranceDuedate: new Date(this.vehicle.insuranceDuedate).toISOString().slice(0, 10),
@@ -87,7 +87,7 @@ export class VehicleFormComponent implements OnInit {
     });
   }
 
-  revert() { this.ngOnChanges(); }
+  revert() { this.dataOnChange(); }
 
   newVehicleForm() {
     this.vehicleForm.reset();

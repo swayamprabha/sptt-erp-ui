@@ -71,7 +71,7 @@ export class DriverFormComponent implements OnInit {
       });
   }
 
-  ngOnChanges() {
+  dataOnChange() {
     this.driverForm.reset(this.driver);
     this.driverForm.patchValue({
       driverDOB: new Date(this.driver.driverDOB).toISOString().slice(0, 10),
@@ -81,7 +81,7 @@ export class DriverFormComponent implements OnInit {
     });
   }
 
-  revert() { this.ngOnChanges(); }
+  revert() { this.dataOnChange(); }
 
   newDriverForm(){
      this.driverForm.reset();
@@ -117,7 +117,6 @@ export class DriverFormComponent implements OnInit {
           this.isFormSaving = false;
           this.showModal = true;
           this.driver = data;
-          this.ngOnChanges;
           //this.router.navigate(['/day-summary/'+ data.id],{replaceUrl: true})
         });
     }
