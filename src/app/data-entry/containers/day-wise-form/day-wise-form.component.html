@@ -7,7 +7,7 @@
     </div>
 </div>
 <h2 [hidden]="editMode">Add new All Day Summary</h2>
-<h2 [hidden]="!editMode">Edit Day Summary for <b>{{alldaySummary.vehicle.regNumber}} ({{alldaySummary.vehicle.vehicleBrand}} {{alldaySummary.vehicle.vehicleModel}})</b> on <b>{{ alldaySummary.date | date }}</b></h2>
+<h2 [hidden]="!editMode">Edit Day Summary for <b>{{alldaySummary.vehicle.regNumber}} ({{alldaySummary.vehicle.vehicleBrand}} {{alldaySummary.vehicle.vehicleModel}})</b></h2>
 <form (ngSubmit)="onSubmit(alldaySummaryForm)" [formGroup]="alldaySummaryForm" (keydown.enter)="$event.preventDefault()"
     novalidate>
     <section class="form-block">
