@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
 import { ClarityModule } from 'clarity-angular';
 
 import { SharedModule } from './../shared/shared.module';
@@ -18,9 +16,8 @@ import { VehicleRoutingModule }    from './vehicle-routing.module';
 
 @NgModule({
   imports: [
-    CommonModule,
     ClarityModule.forChild(),
-    SharedModule.forRoot(),
+    SharedModule,
     VehicleRoutingModule
   ],
   declarations: [
