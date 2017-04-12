@@ -9,6 +9,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class TripOlaCityComponent implements OnInit {
   private _vehicleType = '';
   public newTrip: number;
+  public rideKMSsTotal: number;
 
   @Input()
   public item: FormGroup;
@@ -36,6 +37,10 @@ export class TripOlaCityComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.calculateTotal(this.item.get('rideKMSs').value);
+    this.item.get('rideKMSs')
+      .valueChanges
+      .subscribe(value => this.calculateTotal(value));
   }
 
   get vehicleType(): string { return this._vehicleType; }
@@ -49,5 +54,9 @@ export class TripOlaCityComponent implements OnInit {
       this.rideKMSs.push(this.fb.control(trip));
       this.newTrip = null;
     }
+  }
+
+  calculateTotal(trips: Array<any>) {
+   this.rideKMSsTotal = trips.reduce((acc, cur) => acc + cur, 0);
   }
 }
