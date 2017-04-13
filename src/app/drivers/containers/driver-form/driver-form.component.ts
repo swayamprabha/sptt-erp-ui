@@ -35,13 +35,17 @@ export class DriverFormComponent implements OnInit {
     // Build the form
     this.driverForm = this.fb.group({
       driverName: ['', [Validators.required]],
-      dlNumber: ['', [Validators.required]],
-      driverAddress: ['', [Validators.required]],
       driverDOB: ['', [Validators.required]],
       driverDOA: [''],
-      driverContact: ['', [Validators.required]],
+      dlNumber: ['', [Validators.required]],
       dlExpiry: ['', [Validators.required]],
-      badgeExpiry: ['', [Validators.required]]
+      badgeExpiry: ['', [Validators.required]],
+      PANnumber: ['', [Validators.required]],
+      accountNumber: ['', [Validators.required]],
+      bankName: ['', [Validators.required]],
+      bankIFSC: ['', [Validators.required]],
+      driverAddress: ['', [Validators.required]],
+      driverContact: ['', [Validators.required]]
     });
 
     // Load data for edit mode
@@ -83,22 +87,22 @@ export class DriverFormComponent implements OnInit {
 
   revert() { this.dataOnChange(); }
 
-  newDriverForm(){
-     this.driverForm.reset();
-     this.showModal = false;
+  newDriverForm() {
+    this.driverForm.reset();
+    this.showModal = false;
   }
 
-  deleteDriver(){
+  deleteDriver() {
     this.deletingDriver = true;
     this.driverFormService
-    .deleteDriver(this.id)
-     .subscribe((data) => {
+      .deleteDriver(this.id)
+      .subscribe((data) => {
         this.deletingDriver = false;
         this.showDeleteDriverModal = false;
         this.router.navigate(['/drivers']);
-    });
+      });
   }
-  
+
   onSubmit({ value, valid }: { value: any, valid: boolean }) {
     this.isFormSaving = true;
     if (this.editMode) {

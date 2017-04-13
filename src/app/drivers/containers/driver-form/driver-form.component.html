@@ -9,105 +9,127 @@
 <h2 [hidden]="editMode">Add new Driver</h2>
 <h2 [hidden]="!editMode">Edit Driver</h2>
 <form (ngSubmit)="onSubmit(driverForm)" [formGroup]="driverForm" (keydown.enter)="$event.preventDefault()" novalidate>
-  <label>Driver Information</label>
   <section class="form-block">
-    <div class="form-group row">
-      <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-        <label class="required" for="driverName">Name</label>
-      </div>
-      <div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
-        <label for="driverName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
-          [class.invalid]="driverForm.get('driverName').invalid
+    <label>Driver Information</label>
+    <div class="form-group">
+      <label class="required" for="driverName">Name</label>
+      <label for="driverName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
+        [class.invalid]="driverForm.get('driverName').invalid
                     && (driverForm.get('driverName').dirty || driverForm.get('driverName').touched)">
           <input class="form-control" type="text" id="driverName" formControlName="driverName" placeholder="">
           <span class="tooltip-content">
                         This field cannot be empty!
                     </span>
           </label>
-      </div>
-      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-        <label class="required" for="driverDOB">DOB</label>
-      </div>
-      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label for="driverDOB" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-          [class.invalid]="driverForm.get('driverDOB').invalid
-                    && (driverForm.get('driverDOB').dirty || driverForm.get('driverDOB').touched)">
-          <input type="date" formControlName="driverDOB" id="driverDOB">
-          <span class="tooltip-content">
-                    This field cannot be empty!
-                    </span>
-          </label>
-      </div>
-      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-        <label for="driverDOA">DOA</label>
-      </div>
-      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <input type="date" formControlName="driverDOA" id="driverDOA">
-      </div>
-      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-        <label class="required" for="driverContact">Contact</label>
-      </div>
-      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label for="driverContact" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
-          [class.invalid]="driverForm.get('driverContact').invalid
-                    && (driverForm.get('driverContact').dirty || driverForm.get('driverContact').touched)">
-          <input type="number" formControlName="driverContact" id="driverContact">
-          <span class="tooltip-content">
-                    This field cannot be empty!
-                    </span>
-          </label>
-      </div>
     </div>
-    <div class="form-group row">
-      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-        <label class="required" for="dlNumber">DL Number</label>
-      </div>
-      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label class="required" for="dlNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-          [class.invalid]="driverForm.get('dlNumber').invalid
+    <div class="form-group">
+      <label class="required" for="dlNumber">DL Number</label>
+      <label class="required" for="dlNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('dlNumber').invalid
                     && (driverForm.get('dlNumber').dirty || driverForm.get('dlNumber').touched)">
           <input type="text" formControlName="dlNumber" id="dlNumber">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
           </label>
-      </div>
-      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-        <label class="required" for="dlExpiry">DL Expiry</label>
-      </div>
-      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label for="dlExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-          [class.invalid]="driverForm.get('dlExpiry').invalid
+    </div>
+    <div class="form-group">
+      <label class="required" for="dlExpiry">DL Expiry</label>
+      <label for="dlExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('dlExpiry').invalid
                     && (driverForm.get('dlExpiry').dirty || driverForm.get('dlExpiry').touched)">
           <input type="date" formControlName="dlExpiry" id="dlExpiry">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
           </label>
-      </div>
-      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-        <label class="required" for="badgeExpiry">Badge Expiry</label>
-      </div>
-      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label for="badgeExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-          [class.invalid]="driverForm.get('badgeExpiry').invalid
+    </div>
+    <div class="form-group">
+      <label class="required" for="driverDOB">DOB</label>
+      <label for="driverDOB" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('driverDOB').invalid
+                    && (driverForm.get('driverDOB').dirty || driverForm.get('driverDOB').touched)">
+          <input type="date" formControlName="driverDOB" id="driverDOB">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+    </div>
+    <div class="form-group">
+      <label for="driverDOA">DOA</label>
+      <input type="date" formControlName="driverDOA" id="driverDOA">
+    </div>
+    <div class="form-group">
+      <label class="required" for="badgeExpiry">Badge Expiry</label>
+      <label for="badgeExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('badgeExpiry').invalid
                     && (driverForm.get('badgeExpiry').dirty || driverForm.get('badgeExpiry').touched)">
           <input type="date" formControlName="badgeExpiry" id="badgeExpiry">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
           </label>
-      </div>
+    </div>
+    <div class="form-group">
+      <label class="required" for="PANnumber">PAN Number</label>
+      <label for="PANnumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('PANnumber').invalid
+                    && (driverForm.get('PANnumber').dirty || driverForm.get('PANnumber').touched)">
+          <input type="text" formControlName="PANnumber" id="PANnumber">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+    </div>
+    <div class="form-group">
+      <label class="required" for="accountNumber">Account Number</label>
+      <label for="accountNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('accountNumber').invalid
+                    && (driverForm.get('accountNumber').dirty || driverForm.get('accountNumber').touched)">
+          <input type="text" formControlName="accountNumber" id="accountNumber">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+    </div>
+    <div class="form-group">
+      <label class="required" for="bankName">Bank Name</label>
+      <label for="bankName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('bankName').invalid
+                    && (driverForm.get('bankName').dirty || driverForm.get('bankName').touched)">
+          <input type="text" formControlName="bankName" id="bankName">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+    </div>
+    <div class="form-group">
+      <label class="required" for="bankIFSC">Bank IFSC</label>
+      <label for="bankIFSC" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('bankIFSC').invalid
+                    && (driverForm.get('bankIFSC').dirty || driverForm.get('bankIFSC').touched)">
+          <input type="text" formControlName="bankIFSC" id="bankIFSC">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+    </div>
+    <div class="form-group">
+      <label class="required" for="driverContact">Contact</label>
+      <label for="driverContact" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+        [class.invalid]="driverForm.get('driverContact').invalid
+                    && (driverForm.get('driverContact').dirty || driverForm.get('driverContact').touched)">
+          <input type="number" formControlName="driverContact" id="driverContact">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
     </div>
   </section>
-  <section>
-    <div class="form-group row">
-      <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
-        <label class="required" for="driverAddress">Address</label>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <textarea id="driverAddress" rows="3" formControlName="driverAddress"></textarea>
-      </div>
+  <section class="form-block">
+    <div class="form-group">
+      <label class="required" for="driverAddress">Address</label>
+      <textarea id="driverAddress" rows="3" formControlName="driverAddress"></textarea>
     </div>
   </section>
   <section class="form-block">
@@ -136,8 +158,8 @@
   <h3 class="modal-title text-center">
     <clr-icon shape="warning" class="is-warning" size="36"></clr-icon> Delete Driver</h3>
   <div class="modal-body">
-     <p>Do you want to delete this driver ?</p>
-     <br>
+    <p>Do you want to delete this driver ?</p>
+    <br>
     <div [hidden]="!deletingDriver" class="text-center"><span class="spinner spinner-inline"> Deleting...</span> <span>Deleting...</span></div>
 
   </div>
