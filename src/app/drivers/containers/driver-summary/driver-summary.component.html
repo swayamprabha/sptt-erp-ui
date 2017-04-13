@@ -9,22 +9,20 @@
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
     <clr-dg-placeholder>There are no drivers!</clr-dg-placeholder>
     <clr-dg-column [clrDgField]="'driverName'">Name</clr-dg-column>
-    <clr-dg-column [clrDgField]="'dlNumber'">DL Number</clr-dg-column>
-    <clr-dg-column [clrDgField]="'driverDOB'">DOB</clr-dg-column>
-    <clr-dg-column [clrDgField]="'driverAddress'">Address</clr-dg-column>
-    <clr-dg-column [clrDgField]="'driverDOA'">DOA</clr-dg-column>
     <clr-dg-column [clrDgField]="'driverContact'">Contact</clr-dg-column>
+    <clr-dg-column [clrDgField]="'dlNumber'">DL Number</clr-dg-column>
     <clr-dg-column [clrDgField]="'dlExpiry'">DL Expiry</clr-dg-column>
     <clr-dg-column [clrDgField]="'badgeExpiry'">Badge Expiry</clr-dg-column>
+    <clr-dg-column [clrDgField]="'driverDOB'">DOB</clr-dg-column>
+    <clr-dg-column [clrDgField]="'driverDOA'">DOA</clr-dg-column>
     <clr-dg-row routerLink="/drivers/{{result.id}}" *ngFor="let result of results">
         <clr-dg-cell>{{result.driverName}}</clr-dg-cell>
-        <clr-dg-cell>{{result.dlNumber}}</clr-dg-cell>
-        <clr-dg-cell>{{result.driverDOB | date}}</clr-dg-cell>
-        <clr-dg-cell>{{result.driverAddress}}</clr-dg-cell>
-        <clr-dg-cell>{{result.driverDOA | date}}</clr-dg-cell>
         <clr-dg-cell>{{result.driverContact}}</clr-dg-cell>
+        <clr-dg-cell>{{result.dlNumber}}</clr-dg-cell>
         <clr-dg-cell>{{result.dlExpiry | date }}</clr-dg-cell>
         <clr-dg-cell>{{result.badgeExpiry | date}}</clr-dg-cell>
+        <clr-dg-cell>{{result.driverDOB | date}}</clr-dg-cell>
+        <clr-dg-cell>{{result.driverDOA | date}}</clr-dg-cell>
     </clr-dg-row>
 
     <clr-dg-footer>
