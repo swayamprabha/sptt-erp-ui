@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
 import { ClarityModule } from 'clarity-angular';
 
 import { SharedModule } from './../shared/shared.module';
@@ -19,24 +17,9 @@ import { TripLuxExclusiveComponent } from './components/trip-lux-exclusive/trip-
 // service
 import { DaySummaryService } from './containers/day-summary/day-summary.service';
 import { DayWiseFormService } from './containers/day-wise-form/day-wise-form.service';
-import { DayWiseFormResolver } from './containers/day-wise-form/day-wise-form-resolver.service';
 
-const routes: Routes = [
-  {
-    path: 'day-summary',
-    children: [
-      { path: '', component: DaySummaryComponent },
-      { path: 'new', component: DayWiseFormComponent },
-      {
-        path: ':id',
-        component: DayWiseFormComponent,
-        resolve: {
-          alldaySummary: DayWiseFormResolver
-        }
-      }
-    ]
-  }
-];
+// driver routing module
+import { DataEntryModuleRoutingModule }    from './data-entry-routing.module';
 
 @NgModule({
   declarations: [
@@ -46,18 +29,16 @@ const routes: Routes = [
     TripOlaOutstationComponent,
     TripOtherCityComponent,
     TripOtherOutstationComponent,
-    TripLuxExclusiveComponent,
+    TripLuxExclusiveComponent
   ],
   imports: [
-    CommonModule,
     ClarityModule.forChild(),
-    SharedModule.forRoot(),
-    RouterModule.forChild(routes)
+    SharedModule,
+    DataEntryModuleRoutingModule
   ],
   providers: [
     DaySummaryService,
-    DayWiseFormService,
-    DayWiseFormResolver
+    DayWiseFormService
   ]
 })
-export class DataEntryModule { }
+export class DataEntryModule {}
