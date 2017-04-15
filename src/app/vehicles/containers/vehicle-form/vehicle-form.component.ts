@@ -34,15 +34,18 @@ export class VehicleFormComponent implements OnInit {
 
     // Build the form
     this.vehicleForm = this.fb.group({
+      ownershipType: ['', [Validators.required]],
       regNumber: ['', [Validators.required]],
-      vehicleCategoryId: ['', [Validators.required]],
       vehicleBrand: ['', [Validators.required]],
       vehicleModel: ['', [Validators.required]],
-      vehicleOwner: [''],
+      vehicleCategoryId: ['', [Validators.required]],
       insuranceDuedate: ['', [Validators.required]],
       roadtaxDuedate: ['', [Validators.required]],
-      serviceDuedate: ['', [Validators.required]],
-      ownershipType: ['', [Validators.required]]
+      permitExpiry: ['', [Validators.required]],
+      serviceInterval: [''],
+      badgeExpiry: [''],
+      ownerName: [''],
+      driverName: ['']
     });
 
     // Get list of Vehicle Categories
@@ -61,8 +64,21 @@ export class VehicleFormComponent implements OnInit {
           this.vehicleForm.patchValue({
             insuranceDuedate: new Date(this.vehicle.insuranceDuedate).toISOString().slice(0, 10),
             roadtaxDuedate: new Date(this.vehicle.roadtaxDuedate).toISOString().slice(0, 10),
-            serviceDuedate: new Date(this.vehicle.serviceDuedate).toISOString().slice(0, 10)
+            permitExpiry: new Date(this.vehicle.permitExpiry).toISOString().slice(0, 10)
           });
+          if (this.vehicle.ownershipType === 'OWN') {
+            this.vehicleForm.patchValue({
+              serviceInterval: new Date(this.vehicle.serviceInterval).toISOString().slice(0, 10)
+            });
+            this.vehicleForm.get('badgeExpiry').disable();
+            this.vehicleForm.get('ownerName').disable();
+            this.vehicleForm.get('driverName').disable();
+          } else {
+            this.vehicleForm.patchValue({
+              badgeExpiry: new Date(this.vehicle.badgeExpiry).toISOString().slice(0, 10)
+            });
+            this.vehicleForm.get('serviceInterval').disable();
+          }
         } else {
           this.editMode = false;
           this.titleService.setTitle('SPTT - New Vehicle');
@@ -76,6 +92,34 @@ export class VehicleFormComponent implements OnInit {
           this.id = params['id'];
         }
       });
+    this.vehicleForm.get('ownershipType').valueChanges.subscribe(
+      (ownershipType: string) => {
+        switch (ownershipType) {
+          case 'OWN': {
+            this.vehicleForm.get('serviceInterval').enable();
+            this.vehicleForm.get('serviceInterval').setValidators([Validators.required]);
+            this.vehicleForm.get('badgeExpiry').disable();
+            this.vehicleForm.get('ownerName').disable();
+            this.vehicleForm.get('driverName').disable();
+            break;
+          }
+          case 'LEASE': {
+            this.vehicleForm.get('serviceInterval').disable();
+            this.vehicleForm.get('badgeExpiry').enable();
+            this.vehicleForm.get('badgeExpiry').setValidators([Validators.required]);
+            this.vehicleForm.get('ownerName').enable();
+            this.vehicleForm.get('ownerName').setValidators([Validators.required]);
+            this.vehicleForm.get('driverName').enable();
+            this.vehicleForm.get('driverName').setValidators([Validators.required]);
+            break;
+          }
+        }
+        this.vehicleForm.get('serviceInterval').updateValueAndValidity();
+        this.vehicleForm.get('badgeExpiry').updateValueAndValidity();
+        this.vehicleForm.get('ownerName').updateValueAndValidity();
+        this.vehicleForm.get('driverName').updateValueAndValidity();
+      }
+    );
   }
 
   dataOnChange() {
@@ -83,8 +127,17 @@ export class VehicleFormComponent implements OnInit {
     this.vehicleForm.patchValue({
       insuranceDuedate: new Date(this.vehicle.insuranceDuedate).toISOString().slice(0, 10),
       roadtaxDuedate: new Date(this.vehicle.roadtaxDuedate).toISOString().slice(0, 10),
-      serviceDuedate: new Date(this.vehicle.serviceDuedate).toISOString().slice(0, 10)
+      permitExpiry: new Date(this.vehicle.permitExpiry).toISOString().slice(0, 10)
     });
+    if (this.vehicle.ownershipType === 'OWN') {
+      this.vehicleForm.patchValue({
+        serviceInterval: new Date(this.vehicle.serviceInterval).toISOString().slice(0, 10)
+      });
+    } else {
+      this.vehicleForm.patchValue({
+        badgeExpiry: new Date(this.vehicle.badgeExpiry).toISOString().slice(0, 10)
+      });
+    }
   }
 
   revert() { this.dataOnChange(); }
@@ -118,7 +171,6 @@ export class VehicleFormComponent implements OnInit {
       this.vehicleFormService
         .saveNewVehicle(value)
         .subscribe((data: any) => {
-          console.log(data);
           this.id = data.id;
           this.isFormSaving = false;
           this.showModal = true;
