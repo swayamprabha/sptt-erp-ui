@@ -29,34 +29,41 @@
   </div>
   <div class="form-group">
     <label for="billAmmount">BillAmmount</label>
+    <span>₹</span>
     <input formControlName="billAmmount" type="number">
   </div>
   <div class="form-group">
     <label for="cashCollected">Cash Collected</label>
+    <span>₹</span>
     <input formControlName="cashCollected" type="number">
   </div>
   <div class="form-group">
     <label for="onlinePayment">Online Payment</label>
+    <span>₹</span>
     <input formControlName="onlinePayment" type="number">
   </div>
   <div class="form-group">
     <label for="balance">Pending Amount</label>
-    <span>{{item.value.billAmmount - item.value.cashCollected - item.value.onlinePayment }}</span>
+    <span class="label label-danger">₹ {{item.value.billAmmount - item.value.cashCollected - item.value.onlinePayment }}</span>
   </div>
   <div class="form-group">
     <label for="localToll">Local Toll</label>
+    <span>₹</span>
     <input formControlName="localToll" type="number">
   </div>
   <div class="form-group">
     <label for="bata">Bata</label>
+    <span>₹</span>
     <input formControlName="bata" type="number">
   </div>
   <div class="form-group">
     <label for="fine">Fine</label>
+    <span>₹</span>
     <input formControlName="fine" type="number">
   </div>
   <div class="form-group">
     <label for="misc">Misc</label>
+    <span>₹</span>
     <input formControlName="misc" type="number">
   </div>
   <button type="button" (click)="removed.emit(index)" class="btn btn-sm btn-danger"><clr-icon shape="trash"></clr-icon> Delete</button>
