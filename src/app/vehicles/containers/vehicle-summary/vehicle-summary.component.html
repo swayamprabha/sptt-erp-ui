@@ -9,18 +9,20 @@
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
     <clr-dg-placeholder>There are no vehicles!</clr-dg-placeholder>
     <clr-dg-column [clrDgField]="'vehicleModel'">Model</clr-dg-column>
-    <clr-dg-column [clrDgField]="'regNumber'">Reg #</clr-dg-column>
     <clr-dg-column [clrDgField]="'ownershipType'">Ownership Type</clr-dg-column>
+    <clr-dg-column [clrDgField]="'regNumber'">Reg #</clr-dg-column>
     <clr-dg-column [clrDgField]="'vehicleCategoryId'">Category</clr-dg-column>
     <clr-dg-column [clrDgField]="'roadtaxDuedate'">RoadTax Duedate</clr-dg-column>
     <clr-dg-column [clrDgField]="'insuranceDuedate'">Insurance Duedate</clr-dg-column>
+    <clr-dg-column [clrDgField]="'permitExpiry'">Permit Expiry</clr-dg-column>
     <clr-dg-row routerLink="/vehicles/{{result.id}}" *ngFor="let result of results">
         <clr-dg-cell>{{result.vehicleModel}}</clr-dg-cell>
-        <clr-dg-cell>{{result.regNumber}}</clr-dg-cell>
         <clr-dg-cell>{{result.ownershipType}}</clr-dg-cell>
+        <clr-dg-cell>{{result.regNumber}}</clr-dg-cell>
         <clr-dg-cell>{{result.vehicleCategory.categoryName}}</clr-dg-cell>
         <clr-dg-cell>{{result.roadtaxDuedate | date}}</clr-dg-cell>
         <clr-dg-cell>{{result.insuranceDuedate | date}}</clr-dg-cell>
+        <clr-dg-cell>{{result.permitExpiry | date}}</clr-dg-cell>
     </clr-dg-row>
     <clr-dg-footer>
         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} Vehicles
