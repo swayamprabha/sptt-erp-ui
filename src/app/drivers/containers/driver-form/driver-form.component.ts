@@ -43,6 +43,7 @@ export class DriverFormComponent implements OnInit {
       PANnumber: ['', [Validators.required]],
       accountNumber: ['', [Validators.required]],
       bankName: ['', [Validators.required]],
+      bankBranchName: ['', [Validators.required]],
       bankIFSC: ['', [Validators.required]],
       driverAddress: ['', [Validators.required]],
       driverContact: ['', [Validators.required]]

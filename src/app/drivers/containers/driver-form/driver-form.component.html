@@ -103,6 +103,17 @@
                     </span>
           </label>
     </div>
+     <div class="form-group">
+      <label class="required" for="bankBranchName">Bank Branch Name</label>
+      <label for="bankBranchName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+        [class.invalid]="driverForm.get('bankBranchName').invalid
+                    && (driverForm.get('bankBranchName').dirty || driverForm.get('bankBranchName').touched)">
+          <input type="text" formControlName="bankBranchName" id="bankBranchName">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+    </div>
     <div class="form-group">
       <label class="required" for="bankIFSC">Bank IFSC</label>
       <label for="bankIFSC" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
