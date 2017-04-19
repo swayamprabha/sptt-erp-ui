@@ -47,7 +47,13 @@ export class VehicleFormComponent implements OnInit {
       serviceInterval: [''],
       badgeExpiry: [''],
       ownerName: [''],
-      driverName: ['']
+      driverName: [''],
+      // account details
+      PANnumber: [''],
+      accountNumber: [''],
+      bankName: [''],
+      bankBranchName: [''],
+      bankIFSC: ['']
     });
 
     // Get list of Vehicle Categories
@@ -81,6 +87,12 @@ export class VehicleFormComponent implements OnInit {
             this.vehicleForm.get('ownerName').disable();
             this.vehicleForm.get('driverName').disable();
             this.vehicleForm.get('rankCatergoryId').disable();
+            // account details
+            this.vehicleForm.get('PANnumber').disable();
+            this.vehicleForm.get('accountNumber').disable();
+            this.vehicleForm.get('bankName').disable();
+            this.vehicleForm.get('bankBranchName').disable();
+            this.vehicleForm.get('bankIFSC').disable();
           } else {
             this.vehicleForm.patchValue({
               badgeExpiry: new Date(this.vehicle.badgeExpiry).toISOString().slice(0, 10)
@@ -110,6 +122,12 @@ export class VehicleFormComponent implements OnInit {
             this.vehicleForm.get('ownerName').disable();
             this.vehicleForm.get('driverName').disable();
             this.vehicleForm.get('rankCatergoryId').disable();
+            // account details
+            this.vehicleForm.get('PANnumber').disable();
+            this.vehicleForm.get('accountNumber').disable();
+            this.vehicleForm.get('bankName').disable();
+            this.vehicleForm.get('bankBranchName').disable();
+            this.vehicleForm.get('bankIFSC').disable();
             break;
           }
           case 'LEASE': {
@@ -122,6 +140,17 @@ export class VehicleFormComponent implements OnInit {
             this.vehicleForm.get('driverName').setValidators([Validators.required]);
             this.vehicleForm.get('rankCatergoryId').enable();
             this.vehicleForm.get('rankCatergoryId').setValidators([Validators.required]);
+            // account details
+            this.vehicleForm.get('PANnumber').enable();
+            this.vehicleForm.get('PANnumber').setValidators([Validators.required]);
+            this.vehicleForm.get('accountNumber').enable();
+            this.vehicleForm.get('accountNumber').setValidators([Validators.required]);
+            this.vehicleForm.get('bankName').enable();
+            this.vehicleForm.get('bankName').setValidators([Validators.required]);
+            this.vehicleForm.get('bankBranchName').enable();
+            this.vehicleForm.get('bankBranchName').setValidators([Validators.required]);
+            this.vehicleForm.get('bankIFSC').enable();
+            this.vehicleForm.get('bankIFSC').setValidators([Validators.required]);
             break;
           }
         }

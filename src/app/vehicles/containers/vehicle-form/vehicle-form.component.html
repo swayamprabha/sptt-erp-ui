@@ -55,45 +55,102 @@
             </span>
           </label>
       </div>
-      <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
-        <label class="required" for="rankCatergoryId">Sub Category</label>
-        <div class="select">
-          <select formControlName="rankCatergoryId" id="rankCatergoryId">
+      <div *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
+        <div class="form-group">
+          <label class="required" for="rankCatergoryId">Sub Category</label>
+          <div class="select">
+            <select formControlName="rankCatergoryId" id="rankCatergoryId">
               <option disabled>Choose a type</option>
              <option *ngFor="let s of subcategories" [ngValue]="s.id">{{s.categoryName}}</option>
           </select>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="vehicleCategoryId">Category</label>
-        <div class="select">
-          <select formControlName="vehicleCategoryId" id="vehicleCategoryId">
+        <div class="form-group">
+          <label for="vehicleCategoryId">Category</label>
+          <div class="select">
+            <select formControlName="vehicleCategoryId" id="vehicleCategoryId">
               <option disabled>Choose a category</option>
               <option *ngFor="let c of categories" [ngValue]="c.id">{{c.categoryName}}</option>
           </select>
+          </div>
         </div>
-      </div>
-      <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
-        <label class="required" for="ownerName">Owner Name</label>
-        <label for="ownerName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-          [class.invalid]="vehicleForm.get('ownerName').invalid
+        <div class="form-group">
+          <label class="required" for="ownerName">Owner Name</label>
+          <label for="ownerName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+            [class.invalid]="vehicleForm.get('ownerName').invalid
                     && (vehicleForm.get('ownerName').dirty || vehicleForm.get('ownerName').touched)">
           <input type="text" formControlName="ownerName" id="ownerName">
           <span class="tooltip-content">
               This field cannot be empty!
             </span>
           </label>
-      </div>
-      <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
-        <label class="required" for="driverName">Driver Name</label>
-        <label for="driverName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-          [class.invalid]="vehicleForm.get('driverName').invalid
+        </div>
+        <div class="form-group">
+          <label class="required" for="driverName">Driver Name</label>
+          <label for="driverName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+            [class.invalid]="vehicleForm.get('driverName').invalid
                     && (vehicleForm.get('driverName').dirty || vehicleForm.get('driverName').touched)">
           <input type="text" formControlName="driverName" id="driverName">
           <span class="tooltip-content">
               This field cannot be empty!
             </span>
           </label>
+        </div>
+        <div class="form-group">
+          <label class="required" for="PANnumber">PAN Number</label>
+          <label for="PANnumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+            [class.invalid]="vehicleForm.get('PANnumber').invalid
+                    && (vehicleForm.get('PANnumber').dirty || vehicleForm.get('PANnumber').touched)">
+          <input type="text" formControlName="PANnumber" id="PANnumber">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="required" for="accountNumber">Account Number</label>
+          <label for="accountNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+            [class.invalid]="vehicleForm.get('accountNumber').invalid
+                    && (vehicleForm.get('accountNumber').dirty || vehicleForm.get('accountNumber').touched)">
+          <input type="text" formControlName="accountNumber" id="accountNumber">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="required" for="bankName">Bank Name</label>
+          <label for="bankName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+            [class.invalid]="vehicleForm.get('bankName').invalid
+                    && (vehicleForm.get('bankName').dirty || vehicleForm.get('bankName').touched)">
+          <input type="text" formControlName="bankName" id="bankName">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="required" for="bankBranchName">Bank Branch Name</label>
+          <label for="bankBranchName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+            [class.invalid]="vehicleForm.get('bankBranchName').invalid
+                    && (vehicleForm.get('bankBranchName').dirty || vehicleForm.get('bankBranchName').touched)">
+          <input type="text" formControlName="bankBranchName" id="bankBranchName">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="required" for="bankIFSC">Bank IFSC</label>
+          <label for="bankIFSC" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+            [class.invalid]="vehicleForm.get('bankIFSC').invalid
+                    && (vehicleForm.get('bankIFSC').dirty || vehicleForm.get('bankIFSC').touched)">
+          <input type="text" formControlName="bankIFSC" id="bankIFSC">
+          <span class="tooltip-content">
+                    This field cannot be empty!
+                    </span>
+          </label>
+        </div>
       </div>
       <div class="form-group">
         <label class="required" for="insuranceDuedate">Insurance Duedate</label>
