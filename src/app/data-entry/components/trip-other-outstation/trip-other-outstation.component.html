@@ -9,7 +9,7 @@
         </select>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group" *ngIf="item.value.driverId">
     <label for="loginDuration">Login Duration</label>
     <input formControlName="loginDuration" type="number">
   </div>
