@@ -8,23 +8,32 @@
 </div>
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
     <clr-dg-placeholder>There are no daywise entries!</clr-dg-placeholder>
-    <clr-dg-column [clrDgField]="'date'">Day</clr-dg-column>
-    <clr-dg-column>Vehicle Registration</clr-dg-column>
-    <clr-dg-column>Vehicle Brand</clr-dg-column>
-    <clr-dg-column [clrDgField]="'openingOdo'">Opening ODO</clr-dg-column>
-    <clr-dg-column [clrDgField]="'closingOdo'">Closing ODO</clr-dg-column>
-    <clr-dg-column [clrDgField]="'loggedinDuration'">Login Duration</clr-dg-column>
-    <clr-dg-column>Fuel</clr-dg-column>
+    <clr-dg-column [clrDgField]="'date'">Date</clr-dg-column>
+    <clr-dg-column>Vehicle Registration #</clr-dg-column>
+    <clr-dg-column>Vehicle Category</clr-dg-column>
+    <clr-dg-column>Vehicle Rank</clr-dg-column>
+    <clr-dg-column>Ride Kms</clr-dg-column>
+    <clr-dg-column>Login Duration</clr-dg-column>
+    <clr-dg-column>Cash Collected</clr-dg-column>
+    <clr-dg-column>Self</clr-dg-column>
+    <clr-dg-column>Self</clr-dg-column>
+    <clr-dg-column>Ola Payment</clr-dg-column>
+    <clr-dg-column>Payment Made</clr-dg-column>
+    <clr-dg-column>Penalty</clr-dg-column>
     <clr-dg-row routerLink="/day-summary/{{result.id}}" *ngFor="let result of results">
         <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
-        <clr-dg-cell>{{result.vehicle.regNumber}}</clr-dg-cell>
-        <clr-dg-cell>{{result.vehicle.vehicleBrand}}</clr-dg-cell>
-        <clr-dg-cell>{{result.openingOdo}}</clr-dg-cell>
-        <clr-dg-cell>{{result.closingOdo}}</clr-dg-cell>
-        <clr-dg-cell>{{result.loggedinDuration}}</clr-dg-cell>
-        <clr-dg-cell>{{result.fuel}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicle?.regNumber}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicle?.vehicleCategory.categoryName}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicle?.rankCatergory?.categoryName}}</clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell></clr-dg-cell>
     </clr-dg-row>
-
     <clr-dg-footer>
         {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{total}} All Day Summary
         <clr-dg-pagination #pagination [clrDgTotalItems]="total" [clrDgPageSize]="currentPageSize"></clr-dg-pagination>

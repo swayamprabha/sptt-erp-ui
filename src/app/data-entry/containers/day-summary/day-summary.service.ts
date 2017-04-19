@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
@@ -13,7 +13,7 @@ export class DaySummaryService {
   private _summaryType: string = 'AlldaySummaries';
   private _sortBy: string;
   private _sortSegment: string = '';
-  private _relationSegment: string = '&filter[include]=vehicle';
+  private _relationSegment: string = '&filter[include][vehicle]=vehicleCategory&filter[include][vehicle]=rankCatergory';
 
   constructor(private http: Http) { }
 
