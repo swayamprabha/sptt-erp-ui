@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/forkJoin';
 
-import { State } from "clarity-angular";
+import { State } from 'clarity-angular';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class VehicleSummaryService {
   private _sortReverse: string;
   private _sortBy: string;
   private _sortSegment: string = '';
-  private _relationSegment: string = '&filter[include]=vehicleCategory';
+  private _relationSegment: string = '&filter[include]=vehicleCategory&filter[include]=rankCatergory';
 
   constructor(private http: Http) { }
 

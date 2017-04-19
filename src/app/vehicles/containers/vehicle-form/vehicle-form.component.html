@@ -22,125 +22,134 @@
       </div>
     </div>
     <div *ngIf="vehicleForm.get('ownershipType').value">
-    <div class="form-group">
-      <label class="required" for="regNumber">Reg #</label>
-      <label for="regNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
-        [class.invalid]="vehicleForm.get('regNumber').invalid
+      <div class="form-group">
+        <label class="required" for="regNumber">Reg #</label>
+        <label for="regNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-right"
+          [class.invalid]="vehicleForm.get('regNumber').invalid
                     && (vehicleForm.get('regNumber').dirty || vehicleForm.get('regNumber').touched)">
           <input class="form-control" type="text" id="regNumber" formControlName="regNumber" placeholder="">
           <span class="tooltip-content">
               This field cannot be empty!
           </span>
           </label>
-    </div>
-    <div class="form-group">
-      <label class="required" for="vehicleBrand">Brand</label>
-      <label for="vehicleBrand" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-        [class.invalid]="vehicleForm.get('vehicleBrand').invalid
+      </div>
+      <div class="form-group">
+        <label class="required" for="vehicleBrand">Brand</label>
+        <label for="vehicleBrand" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="vehicleForm.get('vehicleBrand').invalid
                     && (vehicleForm.get('vehicleBrand').dirty || vehicleForm.get('vehicleBrand').touched)">
           <input type="text" formControlName="vehicleBrand" id="vehicleBrand">
           <span class="tooltip-content">
               This field cannot be empty!
             </span>
           </label>
-    </div>
-    <div class="form-group">
-      <label class="required" for="vehicleModel">Model</label>
-      <label for="vehicleModel" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-        [class.invalid]="vehicleForm.get('vehicleModel').invalid
+      </div>
+      <div class="form-group">
+        <label class="required" for="vehicleModel">Model</label>
+        <label for="vehicleModel" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="vehicleForm.get('vehicleModel').invalid
                     && (vehicleForm.get('vehicleModel').dirty || vehicleForm.get('vehicleModel').touched)">
           <input type="text" formControlName="vehicleModel" id="vehicleModel">
           <span class="tooltip-content">
               This field cannot be empty!
             </span>
           </label>
-    </div>
-    <div class="form-group">
-      <label for="vehicleCategoryId">Category</label>
-      <div class="select">
-        <select formControlName="vehicleCategoryId" id="vehicleCategoryId">
+      </div>
+      <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
+        <label class="required" for="rankCatergoryId">Sub Category</label>
+        <div class="select">
+          <select formControlName="rankCatergoryId" id="rankCatergoryId">
+              <option disabled>Choose a type</option>
+             <option *ngFor="let s of subcategories" [ngValue]="s.id">{{s.categoryName}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="vehicleCategoryId">Category</label>
+        <div class="select">
+          <select formControlName="vehicleCategoryId" id="vehicleCategoryId">
               <option disabled>Choose a category</option>
               <option *ngFor="let c of categories" [ngValue]="c.id">{{c.categoryName}}</option>
           </select>
+        </div>
       </div>
-    </div>
-     <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
-      <label class="required" for="ownerName">Owner Name</label>
-      <label for="ownerName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-        [class.invalid]="vehicleForm.get('ownerName').invalid
+      <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
+        <label class="required" for="ownerName">Owner Name</label>
+        <label for="ownerName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="vehicleForm.get('ownerName').invalid
                     && (vehicleForm.get('ownerName').dirty || vehicleForm.get('ownerName').touched)">
           <input type="text" formControlName="ownerName" id="ownerName">
           <span class="tooltip-content">
               This field cannot be empty!
             </span>
           </label>
-    </div>
-     <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
-      <label class="required" for="driverName">Driver Name</label>
-      <label for="driverName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-        [class.invalid]="vehicleForm.get('driverName').invalid
+      </div>
+      <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
+        <label class="required" for="driverName">Driver Name</label>
+        <label for="driverName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
+          [class.invalid]="vehicleForm.get('driverName').invalid
                     && (vehicleForm.get('driverName').dirty || vehicleForm.get('driverName').touched)">
           <input type="text" formControlName="driverName" id="driverName">
           <span class="tooltip-content">
               This field cannot be empty!
             </span>
           </label>
-    </div>
-    <div class="form-group">
-      <label class="required" for="insuranceDuedate">Insurance Duedate</label>
-      <label for="insuranceDuedate" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
-        [class.invalid]="vehicleForm.get('insuranceDuedate').invalid
+      </div>
+      <div class="form-group">
+        <label class="required" for="insuranceDuedate">Insurance Duedate</label>
+        <label for="insuranceDuedate" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="vehicleForm.get('insuranceDuedate').invalid
                     && (vehicleForm.get('insuranceDuedate').dirty || vehicleForm.get('insuranceDuedate').touched)">
           <input type="date" formControlName="insuranceDuedate" id="insuranceDuedate">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
           </label>
-    </div>
-    <div class="form-group">
-      <label class="required" for="roadtaxDuedate">Road Tax Duedate</label>
-      <label for="roadtaxDuedate" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
-        [class.invalid]="vehicleForm.get('roadtaxDuedate').invalid
+      </div>
+      <div class="form-group">
+        <label class="required" for="roadtaxDuedate">Road Tax Duedate</label>
+        <label for="roadtaxDuedate" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="vehicleForm.get('roadtaxDuedate').invalid
                     && (vehicleForm.get('roadtaxDuedate').dirty || vehicleForm.get('roadtaxDuedate').touched)">
           <input type="date" formControlName="roadtaxDuedate" id="roadtaxDuedate">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
           </label>
-    </div>
-    <div class="form-group">
-      <label class="required" for="permitExpiry">Permit Expiry</label>
-      <label for="permitExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
-        [class.invalid]="vehicleForm.get('permitExpiry').invalid
+      </div>
+      <div class="form-group">
+        <label class="required" for="permitExpiry">Permit Expiry</label>
+        <label for="permitExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="vehicleForm.get('permitExpiry').invalid
                     && (vehicleForm.get('permitExpiry').dirty || vehicleForm.get('permitExpiry').touched)">
           <input type="date" formControlName="permitExpiry" id="permitExpiry">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
           </label>
-    </div>
-    <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'OWN'">
-      <label class="required" for="serviceInterval">Service Internals</label>
-      <label for="serviceInterval" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
-        [class.invalid]="vehicleForm.get('serviceInterval').invalid
+      </div>
+      <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'OWN'">
+        <label class="required" for="serviceInterval">Service Internals</label>
+        <label for="serviceInterval" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="vehicleForm.get('serviceInterval').invalid
                     && (vehicleForm.get('serviceInterval').dirty || vehicleForm.get('serviceInterval').touched)">
           <input type="date" formControlName="serviceInterval" id="serviceInterval">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
           </label>
-    </div>
-    <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
-      <label class="required" for="badgeExpiry">Badge Expiry</label>
-      <label for="badgeExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
-        [class.invalid]="vehicleForm.get('badgeExpiry').invalid
+      </div>
+      <div class="form-group" *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
+        <label class="required" for="badgeExpiry">Badge Expiry</label>
+        <label for="badgeExpiry" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
+          [class.invalid]="vehicleForm.get('badgeExpiry').invalid
                     && (vehicleForm.get('badgeExpiry').dirty || vehicleForm.get('badgeExpiry').touched)">
           <input type="date" formControlName="badgeExpiry" id="badgeExpiry">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
           </label>
-    </div>
+      </div>
     </div>
   </section>
   <section class="form-block">

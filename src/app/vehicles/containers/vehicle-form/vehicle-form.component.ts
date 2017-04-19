@@ -19,6 +19,7 @@ export class VehicleFormComponent implements OnInit {
   vehicle: any;
   showModal: boolean = false;
   categories: any;
+  subcategories: any;
   showDeleteVehicleModal: boolean = false;
   deletingVehicle: boolean = false;
 
@@ -42,6 +43,7 @@ export class VehicleFormComponent implements OnInit {
       insuranceDuedate: ['', [Validators.required]],
       roadtaxDuedate: ['', [Validators.required]],
       permitExpiry: ['', [Validators.required]],
+      rankCatergoryId: [''],
       serviceInterval: [''],
       badgeExpiry: [''],
       ownerName: [''],
@@ -52,6 +54,11 @@ export class VehicleFormComponent implements OnInit {
     this.vehicleFormService
       .getCategories()
       .subscribe((data) => this.categories = data);
+
+    // Get list of Sub Categories
+    this.vehicleFormService
+      .getSubcategories()
+      .subscribe((data) => this.subcategories = data);
 
     // Load data for edit mode
     this.route.data
@@ -73,6 +80,7 @@ export class VehicleFormComponent implements OnInit {
             this.vehicleForm.get('badgeExpiry').disable();
             this.vehicleForm.get('ownerName').disable();
             this.vehicleForm.get('driverName').disable();
+            this.vehicleForm.get('rankCatergoryId').disable();
           } else {
             this.vehicleForm.patchValue({
               badgeExpiry: new Date(this.vehicle.badgeExpiry).toISOString().slice(0, 10)
@@ -101,6 +109,7 @@ export class VehicleFormComponent implements OnInit {
             this.vehicleForm.get('badgeExpiry').disable();
             this.vehicleForm.get('ownerName').disable();
             this.vehicleForm.get('driverName').disable();
+            this.vehicleForm.get('rankCatergoryId').disable();
             break;
           }
           case 'LEASE': {
@@ -111,6 +120,8 @@ export class VehicleFormComponent implements OnInit {
             this.vehicleForm.get('ownerName').setValidators([Validators.required]);
             this.vehicleForm.get('driverName').enable();
             this.vehicleForm.get('driverName').setValidators([Validators.required]);
+            this.vehicleForm.get('rankCatergoryId').enable();
+            this.vehicleForm.get('rankCatergoryId').setValidators([Validators.required]);
             break;
           }
         }

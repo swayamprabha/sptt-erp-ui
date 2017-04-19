@@ -18,6 +18,12 @@ export class VehicleFormService {
 
   }
 
+  getSubcategories(): Observable<any[]> {
+    return this.http
+      .get(`${environment.apiUrl}/RankCatergories`)
+      .map((response: Response) => response.json());
+  }
+
   getCategories(): Observable<any[]> {
     return this.http
       .get(`${environment.apiUrl}/VehicleCategories`)
