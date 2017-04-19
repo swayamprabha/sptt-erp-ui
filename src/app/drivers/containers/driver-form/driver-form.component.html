@@ -22,6 +22,15 @@
                     </span>
           </label>
     </div>
+     <div class="form-group">
+      <label class="required" for="rankCatergoryId">Sub Category</label>
+      <div class="select">
+        <select formControlName="rankCatergoryId" id="rankCatergoryId">
+              <option disabled>Choose a type</option>
+             <option *ngFor="let s of subcategories" [ngValue]="s.id">{{s.categoryName}}</option>
+          </select>
+      </div>
+    </div>
     <div class="form-group">
       <label class="required" for="dlNumber">DL Number</label>
       <label class="required" for="dlNumber" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"

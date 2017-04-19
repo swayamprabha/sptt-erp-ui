@@ -20,6 +20,7 @@ export class DriverFormComponent implements OnInit {
   showModal: boolean = false;
   showDeleteDriverModal: boolean = false;
   deletingDriver: boolean = false;
+  subcategories: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class DriverFormComponent implements OnInit {
     // Build the form
     this.driverForm = this.fb.group({
       driverName: ['', [Validators.required]],
+      rankCatergoryId: ['', [Validators.required]],
       driverDOB: ['', [Validators.required]],
       driverDOA: [''],
       dlNumber: ['', [Validators.required]],
@@ -74,6 +76,11 @@ export class DriverFormComponent implements OnInit {
           this.id = params['id'];
         }
       });
+
+    // Get list of Sub Categories
+    this.driverFormService
+      .getSubcategories()
+      .subscribe((data) => this.subcategories = data);
   }
 
   dataOnChange() {

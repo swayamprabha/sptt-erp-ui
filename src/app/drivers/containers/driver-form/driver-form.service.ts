@@ -18,6 +18,12 @@ export class DriverFormService {
 
   }
 
+  getSubcategories(): Observable<any[]> {
+    return this.http
+      .get(`${environment.apiUrl}/RankCatergories`)
+      .map((response: Response) => response.json());
+  }
+
   saveNewDriver(payload: any) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
