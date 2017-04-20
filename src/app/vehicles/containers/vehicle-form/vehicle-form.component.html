@@ -190,7 +190,7 @@
         <label for="serviceInterval" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-bottom-left"
           [class.invalid]="vehicleForm.get('serviceInterval').invalid
                     && (vehicleForm.get('serviceInterval').dirty || vehicleForm.get('serviceInterval').touched)">
-          <input type="date" formControlName="serviceInterval" id="serviceInterval">
+          <input type="number" formControlName="serviceInterval" id="serviceInterval">
           <span class="tooltip-content">
                     This field cannot be empty!
                     </span>
