@@ -33,7 +33,7 @@
             </div>
         </div>
         <div *ngIf="selectedVehicleType && !editMode" class="form-group">
-            <label class="required" for="vehicleId">Vehicle #</label>
+            <label class="required" for="vehicleId">Vehicle Registration #</label>
             <div class="select">
                 <select formControlName="vehicleId" id="vehicleId">
                     <option disabled>Choose a vehicle</option>
@@ -82,7 +82,7 @@
                 <input type="number" id="olaPayment" formControlName="olaPayment" placeholder="">
             </div>
             <div class="form-group" *ngIf="selectedVehicleType === 'OWN'">
-                <label for="throughBank">Through Bank</label>
+                <label for="throughBank">Expense Through Bank</label>
                 <span>₹</span>
                 <input type="number" id="throughBank" formControlName="throughBank" placeholder="">
             </div>

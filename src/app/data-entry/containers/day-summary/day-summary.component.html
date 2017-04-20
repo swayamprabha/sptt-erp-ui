@@ -9,22 +9,22 @@
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
     <clr-dg-placeholder>There are no daywise entries!</clr-dg-placeholder>
     <clr-dg-column [clrDgField]="'date'">Date</clr-dg-column>
+    <clr-dg-column>Ownership Type</clr-dg-column>
     <clr-dg-column>Vehicle Registration #</clr-dg-column>
     <clr-dg-column>Vehicle Category</clr-dg-column>
-    <clr-dg-column>Vehicle Rank</clr-dg-column>
+    <clr-dg-column>Closing ODO</clr-dg-column>
     <clr-dg-column>Ride Kms</clr-dg-column>
     <clr-dg-column>Login Duration</clr-dg-column>
     <clr-dg-column>Cash Collected</clr-dg-column>
     <clr-dg-column>Self</clr-dg-column>
     <clr-dg-column>Ola Payment</clr-dg-column>
     <clr-dg-column>Payment Made</clr-dg-column>
-    <clr-dg-column>Penalty</clr-dg-column>
     <clr-dg-row routerLink="/day-summary/{{result.id}}" *ngFor="let result of results">
         <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
+        <clr-dg-cell>{{result.vehicle?.ownershipType}}</clr-dg-cell>
         <clr-dg-cell>{{result.vehicle?.regNumber}}</clr-dg-cell>
         <clr-dg-cell>{{result.vehicle?.vehicleCategory.categoryName}}</clr-dg-cell>
-        <clr-dg-cell>{{result.vehicle?.rankCatergory?.categoryName}}</clr-dg-cell>
-        <clr-dg-cell></clr-dg-cell>
+        <clr-dg-cell>{{result.closingOdo}}</clr-dg-cell>
         <clr-dg-cell></clr-dg-cell>
         <clr-dg-cell></clr-dg-cell>
         <clr-dg-cell></clr-dg-cell>
