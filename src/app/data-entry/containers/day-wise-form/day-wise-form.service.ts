@@ -96,10 +96,26 @@ export class DayWiseFormService {
           misc: ['']
         };
       }
-      case 'Other-City':
-      case 'Other-Outstation': {
+      case 'Other-City':{
         return {
           operatorCategory: ['Other-City'],
+          driverId: ['', Validators.required],
+          loginDuration: [''],
+          vehicleType: [''],
+          customerName: [''],
+          rideKMS: ['', Validators.required],
+          billAmmount: [''],
+          cashCollected: [''],
+          onlinePayment: [''],
+          localToll: [''],
+          bata: [''],
+          fine: [''],
+          misc: ['']
+        };
+      }
+      case 'Other-Outstation': {
+        return {
+          operatorCategory: ['Other-Outstation'],
           driverId: ['', Validators.required],
           loginDuration: [''],
           vehicleType: [''],
