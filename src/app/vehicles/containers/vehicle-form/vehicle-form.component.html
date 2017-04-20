@@ -34,43 +34,33 @@
           </label>
       </div>
       <div class="form-group">
-        <label class="required" for="vehicleBrand">Brand</label>
-        <label for="vehicleBrand" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-          [class.invalid]="vehicleForm.get('vehicleBrand').invalid
-                    && (vehicleForm.get('vehicleBrand').dirty || vehicleForm.get('vehicleBrand').touched)">
-          <input type="text" formControlName="vehicleBrand" id="vehicleBrand">
-          <span class="tooltip-content">
-              This field cannot be empty!
-            </span>
-          </label>
+        <label for="vehicleBrand">Brand</label>
+        <input type="text" formControlName="vehicleBrand" id="vehicleBrand">
       </div>
       <div class="form-group">
-        <label class="required" for="vehicleModel">Model</label>
-        <label for="vehicleModel" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-          [class.invalid]="vehicleForm.get('vehicleModel').invalid
-                    && (vehicleForm.get('vehicleModel').dirty || vehicleForm.get('vehicleModel').touched)">
-          <input type="text" formControlName="vehicleModel" id="vehicleModel">
-          <span class="tooltip-content">
-              This field cannot be empty!
-            </span>
-          </label>
+        <label for="vehicleModel">Model</label>
+        <input type="text" formControlName="vehicleModel" id="vehicleModel">
+      </div>
+      <div class="form-group">
+        <label for="finoId">FINO ID</label>
+        <input type="text" formControlName="finoId" id="finoId">
       </div>
       <div *ngIf="vehicleForm.get('ownershipType').value === 'LEASE'">
         <div class="form-group">
-          <label class="required" for="rankCatergoryId">Sub Category</label>
-          <div class="select">
-            <select formControlName="rankCatergoryId" id="rankCatergoryId">
-              <option disabled>Choose a type</option>
-             <option *ngFor="let s of subcategories" [ngValue]="s.id">{{s.categoryName}}</option>
-          </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="vehicleCategoryId">Category</label>
+          <label class="required" for="vehicleCategoryId">Category</label>
           <div class="select">
             <select formControlName="vehicleCategoryId" id="vehicleCategoryId">
               <option disabled>Choose a category</option>
               <option *ngFor="let c of categories" [ngValue]="c.id">{{c.categoryName}}</option>
+          </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="required" for="rankCatergoryId">Rank</label>
+          <div class="select">
+            <select formControlName="rankCatergoryId" id="rankCatergoryId">
+              <option disabled>Choose a type</option>
+             <option *ngFor="let s of subcategories" [ngValue]="s.id">{{s.categoryName}}</option>
           </select>
           </div>
         </div>

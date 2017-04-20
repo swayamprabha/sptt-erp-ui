@@ -37,8 +37,9 @@ export class VehicleFormComponent implements OnInit {
     this.vehicleForm = this.fb.group({
       ownershipType: ['', [Validators.required]],
       regNumber: ['', [Validators.required]],
-      vehicleBrand: ['', [Validators.required]],
-      vehicleModel: ['', [Validators.required]],
+      vehicleBrand: [''],
+      vehicleModel: [''],
+      finoId: [''],
       vehicleCategoryId: ['', [Validators.required]],
       insuranceDuedate: ['', [Validators.required]],
       roadtaxDuedate: ['', [Validators.required]],
