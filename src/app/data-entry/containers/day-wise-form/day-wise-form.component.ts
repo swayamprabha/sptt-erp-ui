@@ -45,7 +45,6 @@ export class DayWiseFormComponent implements OnInit {
       openingOdo: ['', Validators.required],
       closingOdo: ['', Validators.required],
       internetCharges: [''],
-      olaPayment: [''],
       throughBank: [''],
       cancellationCharges: [''],
       miscExpense: [''],
