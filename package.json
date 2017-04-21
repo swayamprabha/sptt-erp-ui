@@ -9,8 +9,8 @@
     "test": "ng test --single-run",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor protractor.config.js",
-    "deploy-stage": "surge --project ./dist --domain sptt-stage.surge.sh",
-    "deploy-prod": "surge --project ./dist --domain sptt.surge.sh"
+    "deploy-stage": "surge --project ./dist --domain https://sptt-stage.surge.sh",
+    "deploy-prod": "surge --project ./dist --domain https://sptt.surge.sh"
   },
   "private": true,
   "dependencies": {
