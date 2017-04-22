@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://sptt-api-stage.herokuapp.com/api/v1'
+  apiUrl: 'https://stage-api.sptt.in/api/v1'
 };
