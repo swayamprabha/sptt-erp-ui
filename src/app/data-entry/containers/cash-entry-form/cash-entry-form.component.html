@@ -81,11 +81,11 @@
 </form>
 <clr-modal [(clrModalOpen)]="showDeleteCashEntryModal" [clrModalClosable]="true" [clrModalSize]="'sm'">
   <h3 class="modal-title text-center">
-    <clr-icon shape="warning" class="is-warning" size="36"></clr-icon> Delete Vehicle</h3>
+    <clr-icon shape="warning" class="is-warning" size="36"></clr-icon> Delete Cash Entry</h3>
   <div class="modal-body">
     <p>Do you want to delete entry ?</p>
     <br>
-    <div [hidden]="!deletingVehicle" class="text-center"><span class="spinner spinner-inline"> Deleting...</span> <span>Deleting...</span></div>
+    <div *ngIf="deletingCashEntry" class="text-center"><span class="spinner spinner-inline"> Deleting...</span> <span>Deleting...</span></div>
 
   </div>
   <div class="modal-footer">

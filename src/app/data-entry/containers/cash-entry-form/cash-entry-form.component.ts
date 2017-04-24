@@ -31,7 +31,7 @@ export class CashEntryFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.titleService.setTitle('SPTT - New Cash Entry');
+    this.titleService.setTitle('SPTT - New Cash Entr');
 
     // Build the form
     this.cashEntryForm = this.fb.group({
