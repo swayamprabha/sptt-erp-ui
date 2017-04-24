@@ -49,6 +49,7 @@ export class VehicleFormComponent implements OnInit {
       badgeExpiry: [''],
       ownerName: [''],
       driverName: [''],
+      fuelcardNumber: [''],
       // account details
       PANnumber: [''],
       accountNumber: [''],
