@@ -7,7 +7,7 @@
     </div>
 </div>
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-    <clr-dg-placeholder>There are no daywise entries!</clr-dg-placeholder>
+    <clr-dg-placeholder>There are no cash entries!</clr-dg-placeholder>
     <clr-dg-column [clrDgField]="'date'">Date</clr-dg-column>
     <clr-dg-column>Vehicle Registration #</clr-dg-column>
     <clr-dg-column>OLA Payment</clr-dg-column>
@@ -17,7 +17,7 @@
     <clr-dg-column>Cash Paid</clr-dg-column>
     <clr-dg-column>Driver Incentive</clr-dg-column>
     <clr-dg-column>Driver Recovery</clr-dg-column>
-    <clr-dg-row routerLink="/cash-entry/{{result.id}}" *ngFor="let result of results">
+    <clr-dg-row routerLink="/day-summary/cash-entry/{{result.id}}" *ngFor="let result of results">
         <clr-dg-cell>{{result.date | date}}</clr-dg-cell>
         <clr-dg-cell>{{result.vehicle?.regNumber}}</clr-dg-cell>
         <clr-dg-cell>{{result.olaPayment}}</clr-dg-cell>

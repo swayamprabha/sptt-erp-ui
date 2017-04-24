@@ -13,10 +13,16 @@
   <section class="form-block">
     <div class="form-group">
       <label class="required" for="date">Date</label>
-      <input type="date" formControlName="date" id="date">
+      <label for="date" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left" [class.invalid]="cashEntryForm.get('date').invalid
+                    && (cashEntryForm.get('date').dirty || cashEntryForm.get('date').touched)">
+                      <input type="date" formControlName="date" id="date">
+                <span class="tooltip-content">
+                This field cannot be empty!
+                </span>
+            </label>
     </div>
     <div class="form-group">
-      <label class="required" for="vehicleId">Vehicle Registration #</label>
+      <label for="vehicleId">Vehicle Registration #</label>
       <div class="select">
         <select formControlName="vehicleId" id="vehicleId">
                     <option disabled>Choose a vehicle</option>
@@ -26,18 +32,18 @@
     </div>
     <div class="form-group">
       <label for="olaPayment">OLA Payment</label>
-      <input type="text" formControlName="olaPayment" id="olaPayment">
+      <input type="number" formControlName="olaPayment" id="olaPayment">
     </div>
     <div class="form-group">
       <label for="vehicleIncentive">Vehicle Incentive</label>
-      <input type="text" formControlName="vehicleIncentive" id="vehicleIncentive">
+      <input type="number" formControlName="vehicleIncentive" id="vehicleIncentive">
     </div>
     <div class="form-group">
       <label for="vehicleRecovery">Vehicle Recovery</label>
-      <input type="text" formControlName="vehicleRecovery" id="vehicleRecovery">
+      <input type="number" formControlName="vehicleRecovery" id="vehicleRecovery">
     </div>
     <div class="form-group">
-      <label class="required" for="driverId">Driver</label>
+      <label for="driverId">Driver</label>
       <div class="select">
         <select formControlName="driverId" id="vehicleId">
           <option disabled>Choose a driver</option>
@@ -47,15 +53,15 @@
     </div>
     <div class="form-group">
       <label for="cashPaid">Cash Paid</label>
-      <input type="text" formControlName="cashPaid" id="cashPaid">
+      <input type="number" formControlName="cashPaid" id="cashPaid">
     </div>
     <div class="form-group">
       <label for="driverIncentive">Driver Incentive</label>
-      <input type="text" formControlName="driverIncentive" id="driverIncentive">
+      <input type="number" formControlName="driverIncentive" id="driverIncentive">
     </div>
     <div class="form-group">
       <label for="driverRecovery">Driver Recovery</label>
-      <input type="text" formControlName="driverRecovery" id="driverRecovery">
+      <input type="number" formControlName="driverRecovery" id="driverRecovery">
     </div>
   </section>
   <section class="form-block">
