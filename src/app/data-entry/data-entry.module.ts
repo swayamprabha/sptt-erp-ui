@@ -6,6 +6,8 @@ import { SharedModule } from './../shared/shared.module';
 // containers
 import { DaySummaryComponent } from './containers/day-summary/day-summary.component';
 import { DayWiseFormComponent } from './containers/day-wise-form/day-wise-form.component';
+import { CashEntrySummaryComponent } from './containers/cash-entry-summary/cash-entry-summary.component';
+import { CashEntryFormComponent } from './containers/cash-entry-form/cash-entry-form.component';
 
 // components
 import { TripOlaCityComponent } from './components/trip-ola-city/trip-ola-city.component';
@@ -17,6 +19,8 @@ import { TripLuxExclusiveComponent } from './components/trip-lux-exclusive/trip-
 // service
 import { DaySummaryService } from './containers/day-summary/day-summary.service';
 import { DayWiseFormService } from './containers/day-wise-form/day-wise-form.service';
+import { CashEntryFormService } from './containers/cash-entry-form/cash-entry-form.service';
+import { CashEntrySummaryService } from './containers/cash-entry-summary/cash-entry-summary.service';
 
 // driver routing module
 import { DataEntryModuleRoutingModule }    from './data-entry-routing.module';
@@ -29,7 +33,9 @@ import { DataEntryModuleRoutingModule }    from './data-entry-routing.module';
     TripOlaOutstationComponent,
     TripOtherCityComponent,
     TripOtherOutstationComponent,
-    TripLuxExclusiveComponent
+    TripLuxExclusiveComponent,
+    CashEntrySummaryComponent,
+    CashEntryFormComponent
   ],
   imports: [
     ClarityModule.forChild(),
@@ -38,7 +44,9 @@ import { DataEntryModuleRoutingModule }    from './data-entry-routing.module';
   ],
   providers: [
     DaySummaryService,
-    DayWiseFormService
+    DayWiseFormService,
+    CashEntrySummaryService,
+    CashEntryFormService
   ]
 })
 export class DataEntryModule {}

@@ -1,0 +1,95 @@
+<div class="row flex-items-xs-between">
+  <div class="col-md-4 col-xs-6">
+    <button routerLink="/day-summary/cash-entry" class="btn btn-sm"><clr-icon shape="arrow left"></clr-icon> Back</button>
+  </div>
+  <div class="col-md-4 col-xs-6 text-right">
+    <button *ngIf="editMode" (click)="showDeleteCashEntryModal = true" type="button" class="btn btn-warning btn-sm"> <clr-icon shape="trash"></clr-icon> Delete</button>
+  </div>
+</div>
+<h2 *ngIf="!editMode">Add new Cash Entry</h2>
+<h2 *ngIf="editMode">Edit Cash Entry</h2>
+<form (ngSubmit)="onSubmit(cashEntryForm)" [formGroup]="cashEntryForm" (keydown.enter)="$event.preventDefault()" novalidate>
+  <label>Cash Entry Information</label>
+  <section class="form-block">
+    <div class="form-group">
+      <label class="required" for="date">Date</label>
+      <input type="date" formControlName="date" id="date">
+    </div>
+    <div class="form-group">
+      <label class="required" for="vehicleId">Vehicle Registration #</label>
+      <div class="select">
+        <select formControlName="vehicleId" id="vehicleId">
+                    <option disabled>Choose a vehicle</option>
+                    <option *ngFor="let v of vehicles" [ngValue]="v.id">{{v.regNumber}}</option>
+                    </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="olaPayment">OLA Payment</label>
+      <input type="text" formControlName="olaPayment" id="olaPayment">
+    </div>
+    <div class="form-group">
+      <label for="vehicleIncentive">Vehicle Incentive</label>
+      <input type="text" formControlName="vehicleIncentive" id="vehicleIncentive">
+    </div>
+    <div class="form-group">
+      <label for="vehicleRecovery">Vehicle Recovery</label>
+      <input type="text" formControlName="vehicleRecovery" id="vehicleRecovery">
+    </div>
+    <div class="form-group">
+      <label class="required" for="driverId">Driver</label>
+      <div class="select">
+        <select formControlName="driverId" id="vehicleId">
+          <option disabled>Choose a driver</option>
+          <option *ngFor="let d of drivers" [ngValue]="d.id">{{d.driverName}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cashPaid">Cash Paid</label>
+      <input type="text" formControlName="cashPaid" id="cashPaid">
+    </div>
+    <div class="form-group">
+      <label for="driverIncentive">Driver Incentive</label>
+      <input type="text" formControlName="driverIncentive" id="driverIncentive">
+    </div>
+    <div class="form-group">
+      <label for="driverRecovery">Driver Recovery</label>
+      <input type="text" formControlName="driverRecovery" id="driverRecovery">
+    </div>
+  </section>
+  <section class="form-block">
+    <button *ngIf="!editMode" type="submit" class="btn btn-primary" [disabled]="cashEntryForm.invalid">Save</button>
+    <button *ngIf="editMode" type="submit" class="btn btn-primary" [disabled]="cashEntryForm.pristine">Update</button>
+    <button *ngIf="editMode" type="reset" (click)="revert()" [disabled]="cashEntryForm.pristine" class="btn btn-danger">Undo Changes</button>
+    <span [hidden]="!isFormSaving"><span class="spinner spinner-inline"> Saving...</span> <span>Saving...</span></span>
+  </section>
+  <clr-modal [(clrModalOpen)]="showModal" [clrModalClosable]="false" [clrModalSize]="'lg'">
+    <h3 class="modal-title text-center">
+      <clr-icon shape="check-circle" class="is-success" size="36"></clr-icon> Cash Entry Information Saved</h3>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <button type="button" class="btn btn-primary" (click)="newCashEntryForm()">Add new Cash Entry</button>
+          <button type="button" class="btn btn-outline" routerLink="/cash-entry">Goto Cash Entry Summary Table</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </clr-modal>
+</form>
+<clr-modal [(clrModalOpen)]="showDeleteCashEntryModal" [clrModalClosable]="true" [clrModalSize]="'sm'">
+  <h3 class="modal-title text-center">
+    <clr-icon shape="warning" class="is-warning" size="36"></clr-icon> Delete Vehicle</h3>
+  <div class="modal-body">
+    <p>Do you want to delete entry ?</p>
+    <br>
+    <div [hidden]="!deletingVehicle" class="text-center"><span class="spinner spinner-inline"> Deleting...</span> <span>Deleting...</span></div>
+
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!deletingCashEntry" class="btn btn-outline" (click)="showDeleteCashEntryModal = false" type="button">Cancel</button>
+    <button *ngIf="!deletingCashEntry" class="btn btn-primary" (click)="deleteCashEntry()" type="button">Delete</button>
+  </div>
+</clr-modal>

@@ -13,6 +13,7 @@ export class DayWiseFormService {
     private http: Http,
     private fb: FormBuilder
   ) { }
+
   getVehicles(vehicleType: string): Observable<any[]> {
     return this.http
       .get(`${environment.apiUrl}/Vehicles?filter[where][ownershipType]=${vehicleType}`)

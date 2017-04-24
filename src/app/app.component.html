@@ -34,7 +34,14 @@
     <nav class="sidenav" [clr-nav-level]="1">
       <section class="sidenav-content">
         <a class="nav-link">Dashboard</a>
-        <a [routerLink]="[ '/day-summary' ]" routerLinkActive="active" class="nav-link">Data Entry</a>
+        <section class="nav-group collapsible">
+          <input id="de" type="checkbox">
+          <label for="de">Data Entry</label>
+          <ul class="nav-list">
+            <li><a [routerLink]="[ '/day-summary' ]" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Daywise Entry</a></li>
+            <li><a [routerLink]="[ '/day-summary/cash-entry' ]" routerLinkActive="active" class="nav-link">Cash Entry</a></li>
+          </ul>
+        </section>
         <section class="nav-group collapsible">
           <input id="bi" type="checkbox" checked>
           <label for="bi">Business Intelligence</label>

@@ -28,7 +28,6 @@ export class VehicleFormComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private titleService: Title,
-
     private vehicleFormService: VehicleFormService) { }
 
   ngOnInit() {
