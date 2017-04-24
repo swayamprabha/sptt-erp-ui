@@ -47,26 +47,12 @@
         <section class="form-block" *ngIf="selectedVehicleType === 'OWN'">
             <label>Distance & Time</label>
             <div class="form-group">
-                <label class="required" for="openingOdo">Opening ODO</label>
-                <label for="openingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-                    [class.invalid]="alldaySummaryForm.get('openingOdo').invalid
-                    && (alldaySummaryForm.get('openingOdo').dirty || alldaySummaryForm.get('openingOdo').touched)">
+                <label for="openingOdo">Opening ODO</label>
                 <input type="number" id="openingOdo" formControlName="openingOdo" placeholder="">
-                 <span class="tooltip-content">
-                        This field cannot be empty!
-                    </span>
-                    </label>
             </div>
             <div class="form-group">
-                <label class="required" for="closingOdo">Closing ODO</label>
-                <label for="closingOdo" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm tooltip-top-left"
-                    [class.invalid]="alldaySummaryForm.get('closingOdo').invalid
-                    && (alldaySummaryForm.get('closingOdo').dirty || alldaySummaryForm.get('closingOdo').touched)">
+                <label for="closingOdo">Closing ODO</label>
                 <input type="number" id="closingOdo" formControlName="closingOdo" placeholder="">
-                 <span class="tooltip-content">
-                        This field cannot be empty!
-                    </span>
-                    </label>
             </div>
         </section>
         <section class="form-block">

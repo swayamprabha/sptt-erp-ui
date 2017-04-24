@@ -42,8 +42,8 @@ export class DayWiseFormComponent implements OnInit {
     this.alldaySummaryForm = this.fb.group({
       date: ['', [Validators.required]],
       vehicleId: ['', Validators.required],
-      openingOdo: ['', Validators.required],
-      closingOdo: ['', Validators.required],
+      openingOdo: [''],
+      closingOdo: [''],
       internetCharges: [''],
       throughBank: [''],
       cancellationCharges: [''],
