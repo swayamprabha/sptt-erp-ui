@@ -34,13 +34,13 @@ export class CashEntrySummaryComponent implements OnInit {
         filters[property] = [value];
       }
     }
-    this.CashEntrySummaryService
+     this.CashEntrySummaryService
       .filter(filters)
       .sort(<{ by: string, reverse: boolean }>state.sort)
       .fetch(state.page.from, state.page.size)
       .subscribe((result: any) => {
-        this.results = result;
-        this.total = result.length;
+        this.results = result[1];
+        this.total = result[0].count;
         this.loading = false;
       });
   }

@@ -33,9 +33,12 @@ export class DriverSummaryService {
     }
     return this;
   }
+
   fetch(skip: number = 0, limit: number): Observable<any[]> {
-    return this.http
-      .get(`${environment.apiUrl}/Drivers?filter[limit]=${limit}&filter[skip]=${skip}${this._relationSegment}${this._sortSegment}`)
-      .map((response: Response) => response.json());
+    return Observable.forkJoin(
+      this.http.get(`${environment.apiUrl}/Drivers/count`).map((res: Response) => res.json()),
+      this.http.get(`${environment.apiUrl}/Drivers?filter[limit]=${limit}&filter[skip]=${skip}${this._relationSegment}${this._sortSegment}`)
+        .map((response: Response) => response.json())
+    );
   }
 }
